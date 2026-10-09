@@ -84,6 +84,20 @@ describe('fichiers voiture', () => {
     const ok = new Set(localisables.fiches.map((l) => l.numero));
     for (const d of [clio5, yaris]) for (const z of d.zones as any[]) for (const n of z.fiches) expect(ok.has(n), `zone ${z.id} fiche ${n}`).toBe(true);
   });
+
+  it.each([
+    ['clio5', clio5],
+    ['yaris', yaris],
+  ])('les repères de %s visent des vérifications intérieures, une seule fois chacune', (_id, donnees) => {
+    const vues = new Set<number>();
+    for (const r of (donnees as any).reperes ?? []) {
+      for (const n of r.fiches) {
+        expect(fiches[n - 1].type, `fiche ${n}`).toBe('interieure');
+        expect(vues.has(n), `fiche ${n} en double`).toBe(false);
+        vues.add(n);
+      }
+    }
+  });
 });
 
 describe('notes « Bon à savoir »', () => {

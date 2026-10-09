@@ -96,5 +96,170 @@
       "grosPlan": null,
       "statut": "valide"
     }
+  ],
+  "reperes": [
+    {
+      "fiches": [
+        1,
+        65
+      ],
+      "texte": "Sous la planche de bord, à gauche du volant : la molette avec le pictogramme d’un phare, dans le bloc de boutons. Tourne-la pour monter ou baisser la portée (0 quand tu es seul à bord, sans bagages).",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Contacteur des phares » (sélecteur de réglage manuel de portée des phares) et « Index illustré »"
+    },
+    {
+      "fiches": [
+        3,
+        67
+      ],
+      "texte": "Bascule le petit levier sous le rétroviseur intérieur. S’il n’y a pas de levier, ton rétroviseur est automatique : il s’assombrit tout seul quand des phares t’éblouissent.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Rétroviseur intérieur »"
+    },
+    {
+      "fiches": [
+        5,
+        69
+      ],
+      "texte": "Manette à droite du volant : abaisse-la jusqu’au 3e cran, c’est le balayage rapide. Contact mis.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Essuie-glaces et lave-glace avant »"
+    },
+    {
+      "fiches": [
+        11
+      ],
+      "texte": "Au tableau de bord, derrière le volant : la jauge de carburant, avec le pictogramme d’une pompe à carburant.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Jauges et compteurs »"
+    },
+    {
+      "fiches": [
+        13,
+        73
+      ],
+      "texte": "Dans les commandes de climatisation, au-dessus du levier de vitesses : appuie sur la touche « REAR ». Son témoin s’allume. Elle désembue aussi les rétroviseurs extérieurs et s’arrête toute seule au bout d’un moment.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Système de climatisation automatique »"
+    },
+    {
+      "fiches": [
+        15,
+        23,
+        27,
+        75,
+        83
+      ],
+      "texte": "Ce voyant ne fait pas partie de ceux qui s’allument quand tu mets le contact : il s’affiche seulement en cas de problème, sur l’écran derrière le volant, avec un message. Montre cet écran et décris le pictogramme.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Voyants et témoins » et « Si un voyant s’allume ou si un signal sonore d’avertissement retentit »"
+    },
+    {
+      "fiches": [
+        25,
+        29,
+        39,
+        55,
+        63,
+        81,
+        89,
+        99
+      ],
+      "texte": "Les voyants sont au tableau de bord, derrière le volant. Astuce : certains (freinage, pression des pneus…) s’allument quelques secondes quand tu mets le contact, c’est le moment de les repérer.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Voyants et témoins »"
+    },
+    {
+      "fiches": [
+        19
+      ],
+      "texte": "Levier sous la colonne de direction : abaisse-le, place le volant (hauteur et profondeur), puis relève-le pour le bloquer. Uniquement à l’arrêt.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Volant »"
+    },
+    {
+      "fiches": [
+        21,
+        79
+      ],
+      "texte": "Dans les commandes de climatisation, au-dessus du levier de vitesses : appuie sur la touche « FRONT » (pictogramme du pare-brise). Son témoin s’allume.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Système de climatisation automatique »"
+    },
+    {
+      "fiches": [
+        31,
+        85
+      ],
+      "texte": "Bouton avec le triangle rouge, juste sous l’écran central, au milieu.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Feux de détresse » et « Index illustré »"
+    },
+    {
+      "fiches": [
+        33
+      ],
+      "texte": "Sur la branche droite du volant : appuie sur « MODE » pour choisir le régulateur, puis sur la touche juste au-dessus (pictogramme d’une voiture et d’un compteur) pour fixer la vitesse ; + et − pour l’ajuster.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Régulateur de vitesse dynamique à radar », « Régulateur de vitesse » et « Index illustré »"
+    },
+    {
+      "fiches": [
+        35
+      ],
+      "texte": "Au centre du volant : appuie sur le pictogramme du klaxon ou juste autour.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Volant » (avertisseur sonore)"
+    },
+    {
+      "fiches": [
+        37,
+        87
+      ],
+      "texte": "Ouvre la porte passager : le contacteur à clé est sur le côté de la planche de bord. Insère la clé mécanique de la voiture et tourne-la sur « OFF » ; contact mis, le témoin « PASSENGER AIR BAG » OFF s’allume au centre de la planche de bord.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Système d’activation/désactivation manuelle d’airbag » et « Voyants et témoins »"
+    },
+    {
+      "fiches": [
+        43,
+        47,
+        91
+      ],
+      "texte": "Manette à gauche du volant, phares allumés : tourne la bague du milieu vers le haut jusqu’au cran du feu de brouillard arrière (le dernier), puis relâche-la : elle revient seule. Un voyant orange s’allume au tableau de bord.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Contacteur des feux antibrouillard »"
+    },
+    {
+      "fiches": [
+        45
+      ],
+      "texte": "Pour le monter, tire l’appui-tête vers le haut. Pour le baisser, appuie sur le bouton à sa base et pousse-le vers le bas. Son centre doit arriver vers le haut de tes oreilles.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Appuie-têtes »"
+    },
+    {
+      "fiches": [
+        49,
+        93
+      ],
+      "texte": "Dans les commandes de climatisation, au-dessus du levier de vitesses : la touche avec une voiture et une flèche en boucle. Son témoin s’allume quand le recyclage est actif.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Système de climatisation automatique »"
+    },
+    {
+      "fiches": [
+        51,
+        95
+      ],
+      "texte": "Manette à gauche du volant, phares allumés : pousse-la vers le tableau de bord. Ramène-la vers toi en position centrale pour revenir en croisement. Le voyant est bleu.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Contacteur des phares » (allumage des feux de route)"
+    },
+    {
+      "fiches": [
+        57
+      ],
+      "texte": "Sur la branche droite du volant : appuie sur « MODE » jusqu’au limiteur (témoin blanc), puis sur la touche juste au-dessus (voiture et compteur) pour fixer la vitesse à ne pas dépasser ; + et − pour l’ajuster.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Limiteur de vitesse » et « Index illustré »"
+    },
+    {
+      "fiches": [
+        59,
+        97
+      ],
+      "texte": "Manette à droite du volant : tourne la bague au bout de la manette vers le haut (1er cran : intermittent, 2e cran : normal). Contact mis.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Essuie-glace et lave-glace arrière »"
+    },
+    {
+      "fiches": [
+        61
+      ],
+      "texte": "Aux places arrière de gauche et de droite (pas au milieu). Des repères sur les sièges indiquent où se trouvent les ancrages.",
+      "source": "Manuel du propriétaire Toyota Yaris Hybrid (éditions du 15/01/2024 et du 09/03/2026, réf. PZ49X-9A596-FR et PZ49X-9AG95-FR), « Systèmes de retenue pour enfant » (ancrages inférieurs ISOFIX)"
+    }
   ]
 }
