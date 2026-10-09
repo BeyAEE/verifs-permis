@@ -116,3 +116,4 @@ Une fois pour toutes (déjà fait) : Settings → Pages → Source : **GitHub Ac
 - **Hors ligne.** Le site entier est pré-caché (~1 Mo). Pour les photos, seules celles de la voiture choisie sont gardées, avec une largeur par photo. Le service worker sert la largeur disponible la plus proche.
 - **Choix de la voiture.** Il est demandé au premier lancement sur les pages élèves. Il n'est pas demandé sur les mentions légales, la page 404 ni l'éditeur.
 - **Astro 5** plutôt que la toute dernière version majeure : API stable et bien connue.
+- **Référencement.** Sur un site de projet GitHub Pages, les moteurs ne lisent que le `robots.txt` de la racine du domaine (`beyaee.github.io/robots.txt`), pas celui du site. L'éditeur est donc exclu par sa balise `noindex`, et le plan du site (`sitemap-index.xml`) est à déclarer dans Google Search Console. Ces deux points sautent si un nom de domaine dédié est branché un jour.
