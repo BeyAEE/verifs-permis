@@ -22,7 +22,10 @@ function montrer(bouton: HTMLButtonElement, oui: boolean, annonce = true): void 
     reponse.classList.remove('apparait');
     void reponse.offsetWidth; // relance l'animation
     reponse.classList.add('apparait');
-    if (annonce) annoncer('Réponse : ' + (reponse.querySelector('.reponse-texte')?.textContent ?? '').trim());
+    if (annonce) {
+      const picto = reponse.querySelector<HTMLImageElement>('.pictogramme img')?.alt;
+      annoncer('Réponse : ' + (picto ?? reponse.querySelector('.reponse-texte')?.textContent ?? '').trim());
+    }
     if (bouton.dataset.voir === 'verification') void afficherZone();
   }
   majTout();

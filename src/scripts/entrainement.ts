@@ -13,9 +13,20 @@ interface Serie {
   items: Item[];
   index: number;
   resultats: Resultat[];
+  /** QCU : 3 choix au lieu de l'auto-évaluation (quand la question s'y prête). */
+  qcu: boolean;
 }
 
 const SESSION = 'entrainement';
+const SESSION_MODE = 'mode-reponse';
+const AIDES = {
+  auto: 'Tu réponds dans ta tête, puis tu dis honnêtement si tu savais.',
+  qcu: '3 réponses, une seule est juste. Les vérifications sans pictogramme restent en auto-évaluation.',
+};
+
+function modeChoisi(): boolean {
+  return racine.querySelector<HTMLInputElement>('input[name="mode-reponse"]:checked')?.value === 'qcu';
+}
 const racine = document.querySelector<HTMLElement>('[data-entrainement]')!;
 const vues = Object.fromEntries([...racine.querySelectorAll<HTMLElement>('[data-vue]')].map((v) => [v.dataset.vue!, v]));
 const $ = <T extends HTMLElement = HTMLElement>(s: string) => racine.querySelector<T>(s)!;
@@ -39,8 +50,8 @@ function majReprise(): void {
   if (enCours) $('[data-reprise-detail]').textContent = `(${NOMS_SERIES[enCours.type]}, question ${enCours.index + 1} sur ${enCours.items.length})`;
 }
 
-function demarrer(type: TypeSerie, items: Item[]): void {
-  serie = { type, items, index: 0, resultats: [] };
+function demarrer(type: TypeSerie, items: Item[], qcu = modeChoisi()): void {
+  serie = { type, items, index: 0, resultats: [], qcu };
   sauver();
   montrerVue('question');
   afficherCourante();
@@ -74,6 +85,7 @@ function afficherCourante(): void {
     nomVoiture: libelleVoiture(choix),
     mode: 'entrainement',
     libelleSuite: serie.index + 1 < serie.items.length ? 'Question suivante' : 'Voir mon score',
+    qcu: serie.qcu ? { fiches } : undefined,
     surFin: (r) => {
       serie!.resultats.push(r);
       serie!.index++;
@@ -120,7 +132,7 @@ racine.addEventListener('click', (e) => {
   } else if (cible.hasAttribute('data-arreter')) {
     afficherBilan();
   } else if (cible.hasAttribute('data-recommencer-revoir') && serie?.items.length) {
-    demarrer('revoir', serie.items);
+    demarrer('revoir', serie.items, serie.qcu);
   } else if (cible.hasAttribute('data-nouvelle')) {
     serie = null;
     majReprise();
@@ -129,6 +141,16 @@ racine.addEventListener('click', (e) => {
     racine.querySelector<HTMLButtonElement>('[data-serie]')?.focus();
   }
 });
+
+// Mode de réponse mémorisé pour la session.
+racine.querySelectorAll<HTMLInputElement>('input[name="mode-reponse"]').forEach((r) => {
+  if (r.value === (lireSession<string>(SESSION_MODE) ?? 'auto')) r.checked = true;
+  r.addEventListener('change', () => {
+    ecrireSession(SESSION_MODE, r.value);
+    $('[data-aide-mode]').textContent = AIDES[r.value as 'auto' | 'qcu'];
+  });
+});
+$('[data-aide-mode]').textContent = AIDES[modeChoisi() ? 'qcu' : 'auto'];
 
 // Chargement : les fiches sont indispensables, les voitures facultatives.
 racine.querySelectorAll<HTMLButtonElement>('[data-serie]').forEach((b) => (b.disabled = true));

@@ -16,7 +16,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check": "astro check",
-    "couverture": "node scripts/couverture.mjs"
+    "couverture": "node scripts/couverture.mjs",
+    "pictogrammes": "python3 scripts/import-pictogrammes.py data/source/banque-verifications-2018.pdf && node scripts/optimiser-pictogrammes.mjs"
   },
   "engines": {
     "node": ">=20"

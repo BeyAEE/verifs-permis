@@ -7,8 +7,8 @@ export interface Item {
 
 export interface Resultat extends Item {
   ok: boolean;
-  /** « auto » : l'élève s'est évalué ; « zone » : mode Trouve l'élément. */
-  mode: 'auto' | 'zone';
+  /** « auto » : l'élève s'est évalué ; « zone » : Trouve l'élément ; « qcu » : 3 choix. */
+  mode: 'auto' | 'zone' | 'qcu';
 }
 
 export interface Bilan {

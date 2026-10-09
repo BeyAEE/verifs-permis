@@ -31,6 +31,15 @@ const series = [
         </div>
       </div>
 
+      <fieldset class="mode-reponse">
+        <legend class="etiquette">Comment veux-tu répondre ?</legend>
+        <div class="segments">
+          <label><input type="radio" name="mode-reponse" value="auto" checked /><span>Je m’auto-évalue</span></label>
+          <label><input type="radio" name="mode-reponse" value="qcu" /><span>QCU · 3 choix</span></label>
+        </div>
+        <p class="doux aide" data-aide-mode>Tu réponds dans ta tête, puis tu dis honnêtement si tu savais.</p>
+      </fieldset>
+
       <h2 class="visuellement-cache">Choisis ta série</h2>
       <div class="choix-series">
         {
@@ -88,6 +97,17 @@ const series = [
 <style>
   .intro {
     gap: 8px;
+  }
+  .mode-reponse {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mode-reponse .aide {
+    font-size: 0.88rem;
   }
   .reprise {
     display: flex;

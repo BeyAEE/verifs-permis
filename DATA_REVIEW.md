@@ -1,90 +1,79 @@
 # Points de données à valider
 
 Les 100 fiches sont reprises **mot pour mot** de l'outil moniteur
-(`beyaee/outil-moniteur`, commit `b186ea3`, bloc `const FICHES=[…]` de
-`remc-moniteur.html`). Une vérification indépendante a confirmé **0 écart sur
-4 755 contrôles** entre la source, les données du site et les 100 pages
-publiées. Rien n'a été corrigé : ce document liste ce qui semble anormal dans
-la source, pour que tu tranches.
+(`beyaee/outil-moniteur`, commit `b186ea3`). Une vérification indépendante a
+confirmé **0 écart sur 4 755 contrôles** entre l'outil, les données du site et
+les 100 pages publiées.
 
-**Pour corriger une fiche :** modifie-la dans l'outil moniteur, puis lance
-`npm run import:fiches -- --commit <nouveau sha>`. Retire ensuite l'entrée
-correspondante de ce document. Le test d'intégrité (CI) vérifie que le site
-reste identique à la source.
+L'outil a ensuite été comparé au **PDF officiel** (banque DSR du 1er janvier 2018,
+copié dans `data/source/banque-verifications-2018.pdf`) : **540 textes sur 545
+sont identiques** au document officiel. Les « coquilles » repérées dans les
+fiches (« De » majuscule, « avants », « arrières », « gène », fiche 55 en
+triple, fiches 60 et 62 identiques…) figurent **telles quelles dans le
+document officiel** : l'outil les a recopiées fidèlement.
 
-Légende : ⚠️ à corriger probablement · 🔎 à vérifier · ℹ️ pour information.
+Légende : ⚠️ à corriger dans l'outil moniteur · 🔎 à vérifier · ℹ️ pour information.
 
-## 1. Textes mélangés (extraction du PDF) — le site les affiche tels quels
+## 1. Erreurs d'extraction à corriger dans l'outil moniteur
 
-| | Fiche | Problème |
-|---|---|---|
-| ⚠️ | **90** | Question et réponse mélangées ligne par ligne. Question actuelle : « Avec l'assistance de Vérification des feux, propres, en l'accompagnateur, bon état et fonctionnent contrôlez l'état, la propreté et le (toute anomalie doit être fonctionnement des feux de stop. » ; réponse : « signalée). » D'après la fiche jumelle 46, le texte attendu est probablement : question « Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop. », réponse « Vérification des feux, propres, en bon état et fonctionnent (toute anomalie doit être signalée). » |
-| ⚠️ | **67** | Une phrase de la réponse s'est glissée dans la question : « Mettez le rétroviseur intérieur en position "nuit". **Si le rétroviseur de l'accompagnateur gène la manipulation du dispositif, l'explication suffit.** » La seconde phrase est le début de la réponse de la fiche jumelle 3. L'élève la voit donc avant d'avoir révélé la réponse. |
+Ce sont les **5 seuls textes** de l'outil qui ne correspondent pas au PDF officiel.
 
-## 2. Doublons et incohérences entre fiches
-
-| | Fiches | Problème |
-|---|---|---|
-| ⚠️ | **55** (avec 25 et 81) | « De quelle couleur est le voyant qui indique une défaillance du système de freinage. » C'est la seule vérification présente 3 fois, et la 55 finit par un point au lieu d'un « ? ». La 55 reprend aussi mot pour mot la question et la réponse de sécurité routière de la 25/81 ; seule la partie premiers secours diffère. C'est probablement une erreur de saisie : vérifie dans le PDF officiel. |
-| 🔎 | **60** et **62** | Même vérification « Ouvrez et refermez le coffre, puis vérifiez sa bonne fermeture. », mais les questions de sécurité routière et de premiers secours sont différentes. Peut-être voulu ; à vérifier dans le PDF. |
-| 🔎 | **99** (et 63) | « Montrez le voyant indiquant une baisse de pression d’air d’un pneumatique ? » : « ? » sur une consigne. La jumelle 63 dit « Montrez sur le tableau de bord le voyant […] pneumatique. » |
-| 🔎 | **1** (et 65) | « Montrez la commande **De** réglage de hauteur des feux. » : majuscule parasite. La 65 l'écrit correctement. |
-| 🔎 | **100** (et 66) | « Montrez où se situent les gicleurs de lave-glace avant **?** » : « ? » au lieu du point de la fiche 66. |
-| 🔎 | **65** | La réponse de premiers secours n'a pas de point final (« …éviter un sur-accident »), alors que le même texte en a un dans les fiches 1, 38 et 86. |
-
-## 3. Coquilles
-
-| | Fiches | Texte | Proposition |
+| | Fiche | Texte de l'outil | Texte officiel (PDF) |
 |---|---|---|---|
-| ⚠️ | **7, 32, 71, 84** | Premiers secours : « …où **doitelle** être déplacée ? » | « doit-elle » |
-| 🔎 | **5**, **69** | « Faites fonctionner les essuie-glaces **avants**… » | « essuie-glaces avant » (invariable) |
-| 🔎 | **60** | Réponse sécurité routière : « …la hauteur des feux **avants**. » | « feux avant » |
-| 🔎 | **38**, **86** | « …pour les pneumatiques **arrières**, véhicule chargé. » | « pneumatiques arrière » |
-| 🔎 | **3** (réponse), **67** (question) | « …l'accompagnateur **gène** la manipulation… » | « gêne » |
-| 🔎 | **61** | « Indiquez où **se situe** les attaches de type Isofix… » | « se situent » |
-| 🔎 | **80** | « …par **Le** Signal d’Alerte et d’Information aux Populations… » | « le Signal » (comme en 22, 58, 98) |
-| 🔎 | **24** | Premiers secours : « Car les lésions du cerveau**,** surviennent… » | sans virgule (comme en 50) |
-| 🔎 | **19** | La réponse de sécurité routière commence par « Citez deux exemples. », qui ressemble à la consigne de la question. | à vérifier dans le PDF |
-| 🔎 | **7, 8, 20, 70, 71, 78** | « Le terme **" gilet jaune"** peut être utilisé… » : espace après le guillemet ouvrant | « "gilet jaune" » |
+| ⚠️ | **90** (question) | « Avec l'assistance de Vérification des feux, propres, en l'accompagnateur, bon état et fonctionnent contrôlez l'état, la propreté et le (toute anomalie doit être fonctionnement des feux de stop. » | « Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop. » |
+| ⚠️ | **90** (réponse) | « signalée). » | « Vérification des feux, propres, en bon état et fonctionnent (toute anomalie doit être signalée). » |
+| ⚠️ | **7, 32, 71, 84** (premiers secours) | « …où **doitelle** être déplacée ? » | « …où **doit-elle** être déplacée ? » |
 
-Certaines de ces formulations figurent peut-être telles quelles dans le
-document officiel : dans ce cas, garde-les.
+**Pour corriger :** modifie ces fiches dans l'outil moniteur, puis lance ici
+`npm run import:fiches -- --commit <nouveau sha>`. Mets ensuite à jour la liste
+des fiches sans réponse dans `tests/unit/donnees.test.ts` : la fiche 90 aura
+alors une réponse.
 
-## 4. Réponses de vérification absentes (55 fiches)
+## 2. Réponses en image dans le document officiel (désormais affichées)
 
-Ces fiches n'ont **pas de réponse écrite** pour la vérification dans la source,
-le plus souvent parce que la réponse est un geste (montrer, actionner, ouvrir) :
+Pour **22 vérifications intérieures**, la réponse officielle n'est pas un texte
+mais le **pictogramme du voyant ou de la commande**. C'est pour cela que l'outil
+moniteur, extrait en texte, avait une réponse vide pour ces fiches :
 
-5, 10, 11, 13, 15, 17, 23, 25, 27, 29, 31, 32, 33, 34, 35, 37, 38, 39, 41, 42,
-43, 45, 47, 48, 49, 51, 53, 54, 55, 57, 58, 59, 60, 62, 64, 66, 69, 73, 75, 77,
-81, 83, 84, 85, 86, 87, 88, 89, 91, 93, 94, 95, 97, 98, 100.
+13, 15, 23, 25, 27, 29, 33, 37, 39, 43, 47, 51, 55, 57, 73, 75, 81, 83, 87, 89, 91, 95.
+
+Ces pictogrammes sont maintenant extraits du PDF (`npm run pictogrammes`) et
+affichés comme réponse sur le site. En entraînement QCU, ils servent aussi de
+choix. Les 33 autres vérifications sans réponse écrite n'ont pas de réponse non
+plus dans le PDF officiel :
+
+5, 10, 11, 17, 31, 32, 34, 35, 38, 41, 42, 45, 48, 49, 53, 54, 58, 59, 60, 62,
+64, 66, 69, 77, 84, 85, 86, 88, 93, 94, 97, 98, 100.
 
 Sur le site, elles affichent « Pas de réponse écrite pour cette vérification :
-il faut la faire ou la montrer sur la voiture. » Si le PDF officiel contient une
-réponse pour certaines d'entre elles, ajoute-la dans l'outil moniteur, puis
-réimporte. Le test d'intégrité vérifie la liste exacte : il faudra aussi la
-mettre à jour dans `tests/unit/donnees.test.ts`.
+il faut la faire ou la montrer sur la voiture », accompagné, quand il existe,
+d'un repère propre à la Clio 5 de l'auto-école.
 
-## 5. Fiches jumelles qui divergent légèrement
+## 3. Particularités du document officiel (conformes, à garder ou non)
 
-Même vérification, mais un autre texte de la fiche diffère un peu. Ce n'est pas
-forcément une erreur ; à harmoniser si tu le souhaites :
+Ces points figurent **dans le PDF officiel** : le site les reproduit tels quels.
 
-- **Réponses de vérification :** 7/71 (« indiquer » / « montrer ») ; 14/74 (une virgule) ; 52/92 (« et qui fonctionnent » / « et fonctionnent »).
-- **Questions de sécurité routière :** 15/75 (« contrôler » / « compléter le niveau d'huile ») ; 21/79 (« . » / « ? »).
-- **Premiers secours :** 14/74 (« conditions » / « précautions ») ; 26/82 (« Le déplacement de la victime » / « Ce déplacement ») ; 25/81 (« Hors autoroute… » / « En général… »).
+| | Fiches | Particularité |
+|---|---|---|
+| ℹ️ | **55** (avec 25 et 81) | Même vérification que 25 et 81, avec un point au lieu du « ? » ; la question de sécurité routière est aussi la même. |
+| ℹ️ | **60** et **62** | Même vérification « Ouvrez et refermez le coffre… », mais les autres questions diffèrent. |
+| 🔎 | **3** et **67** | La phrase « Si le rétroviseur de l'accompagnateur gène la manipulation du dispositif, l'explication suffit. » est une consigne pour l'examinateur (en bleu dans le PDF), placée dans la colonne de la question. Dans l'outil, elle est au début de la **réponse** pour la fiche 3 et dans la **question** pour la 67. |
+| ℹ️ | 1 | « Montrez la commande **De** réglage… » (majuscule) |
+| ℹ️ | 5, 69 / 60 / 38, 86 | « essuie-glaces **avants** » / « feux **avants** » / « pneumatiques **arrières** » |
+| ℹ️ | 3, 67 | « **gène** » pour « gêne » |
+| ℹ️ | 61 | « où **se situe** les attaches » |
+| ℹ️ | 80 | « par **Le** Signal d’Alerte… » |
+| ℹ️ | 99, 100 | Consigne terminée par « ? » |
+| ℹ️ | 65 | Réponse de premiers secours sans point final |
+| ℹ️ | 24 | « Car les lésions du cerveau**,** surviennent… » |
+| ℹ️ | 19 | Réponse de sécurité routière commençant par « Citez deux exemples. » |
+| ℹ️ | 7, 8, 20, 70, 71, 78 | « Le terme **" gilet jaune"** » : espace après le guillemet ouvrant |
 
-## 6. Pour information (normal)
+Recommandation : garder le texte officiel. Le corriger éloignerait le site de ce
+que l'élève peut lire ailleurs.
 
-- ℹ️ Les fiches **impaires** sont toutes des vérifications intérieures et les
-  **paires** des extérieures (50 / 50).
-- ℹ️ En ignorant majuscules et ponctuation finale, 32 vérifications
-  apparaissent deux fois (8 = 70, 12 = 72, 22 = 80…), une trois fois (25 / 55 /
-  81) et 33 une seule fois. Une même zone sert aux fiches jumelles.
-- ℹ️ Typographie hétérogène, probablement d'origine :
-  - consignes « Citez… » finissant tantôt par « . », tantôt par « ? » ;
-  - apostrophes droites et courbes mélangées ;
-  - « Qu’est ce qu’ » (sans trait d'union) ;
-  - « pare brise », « essuie glace » ;
-  - « ALERTER: » sans espace ;
-  - « A » sans accent en début de phrase.
+## 4. Pour information
+
+- ℹ️ Les fiches **impaires** sont toutes des vérifications intérieures, les **paires** des extérieures.
+- ℹ️ En ignorant majuscules et ponctuation finale, 32 vérifications apparaissent deux fois (8 = 70, 12 = 72, 22 = 80…), une trois fois (25 / 55 / 81) et 33 une seule fois.
+- ℹ️ Fiches jumelles avec de petites différences de rédaction (officielles) : réponses 7/71, 14/74, 52/92 ; questions de sécurité 15/75, 21/79 ; premiers secours 14/74, 25/81, 26/82.

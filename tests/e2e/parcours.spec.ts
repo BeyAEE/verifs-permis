@@ -127,3 +127,44 @@ test.describe('examen blanc', () => {
     await expect(page.getByText('Fiche 100 · question 1 sur 3')).toBeVisible();
   });
 });
+
+test.describe('QCU et pictogrammes', () => {
+  test('entraînement en QCU : 3 choix, bonne ou mauvaise réponse, bilan', async ({ page }) => {
+    await page.goto('entrainement/');
+    await choisirVoiture(page, 'Je ne sais pas encore');
+    await page.getByRole('radio', { name: 'QCU · 3 choix' }).check();
+    await page.getByRole('button', { name: /10 fiches au hasard/ }).click();
+
+    let qcuVus = 0;
+    for (let i = 0; i < 30; i++) {
+      const choix = page.locator('.choix-qcu');
+      const voir = page.getByRole('button', { name: 'Voir la réponse' });
+      await expect(choix.first().or(voir)).toBeVisible();
+      if (await choix.first().isVisible()) {
+        await expect(choix).toHaveCount(3);
+        await choix.nth(i % 3).click();
+        await expect(page.locator('.qcu-retour .verdict')).toBeVisible();
+        await expect(page.locator('.choix-qcu.juste')).toHaveCount(1);
+        await expect(page.locator('.choix-qcu[disabled]')).toHaveCount(3);
+        qcuVus++;
+        await page.locator('[data-suite]').click();
+      } else {
+        await voir.click();
+        await page.getByRole('button', { name: 'Je savais' }).click();
+      }
+    }
+    // Sécurité routière + premiers secours sont toujours en QCU : au moins 20 sur 30.
+    expect(qcuVus).toBeGreaterThanOrEqual(20);
+    await expect(page.getByRole('heading', { name: /sur 30/ })).toBeVisible();
+  });
+
+  test('fiche 51 : la réponse officielle est le pictogramme du voyant des feux de route', async ({ page }) => {
+    await page.goto('fiche/51/');
+    await choisirVoiture(page, 'Je ne sais pas encore');
+    await page.getByRole('button', { name: 'Voir la réponse' }).first().click();
+    const img = page.getByRole('img', { name: /Voyant bleu des feux de route/ });
+    await expect(img).toBeVisible();
+    await expect.poll(() => img.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth > 0)).toBe(true);
+    await expect(page.getByText('Pas de réponse écrite')).toHaveCount(0);
+  });
+});

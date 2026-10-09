@@ -1,0 +1,142 @@
+{
+  "schema": "verifs-permis/pictogrammes@1",
+  "source": {
+    "document": "Banque des vérifications techniques, questions de sécurité routière et de premiers secours — DSR, 1er janvier 2018",
+    "fichier": "banque-verifications-2018.pdf",
+    "sha256": "84bcd2ebbcccca02a8522e48c39a632534ac19444f61f49408de6e9618314603"
+  },
+  "pictogrammes": [
+    {
+      "fiche": 13,
+      "fichier": "degivrage-lunette-arriere.png",
+      "alt": "Pictogramme orange du dégivrage de la lunette arrière : un rectangle et trois flèches ondulées vers le haut",
+      "page": 6
+    },
+    {
+      "fiche": 15,
+      "fichier": "pression-huile.png",
+      "alt": "Voyant rouge de pression d’huile : une burette d’huile avec une goutte",
+      "page": 7
+    },
+    {
+      "fiche": 23,
+      "fichier": "batterie.png",
+      "alt": "Voyant rouge de charge de la batterie : une batterie avec les signes moins et plus",
+      "page": 10
+    },
+    {
+      "fiche": 25,
+      "fichier": "freinage.png",
+      "alt": "Voyant rouge du système de freinage : un point d’exclamation dans un cercle, entre deux parenthèses",
+      "page": 11
+    },
+    {
+      "fiche": 27,
+      "fichier": "temperature-refroidissement.png",
+      "alt": "Voyant rouge de température du liquide de refroidissement : un thermomètre au-dessus de vagues",
+      "page": 12
+    },
+    {
+      "fiche": 29,
+      "fichier": "porte-ouverte.png",
+      "alt": "Voyant rouge de portière ouverte : une voiture vue de dessus, portières ouvertes",
+      "page": 12
+    },
+    {
+      "fiche": 33,
+      "fichier": "regulateur-vitesse.png",
+      "alt": "Pictogramme du régulateur de vitesse : un compteur de vitesse avec une flèche",
+      "page": 14
+    },
+    {
+      "fiche": 37,
+      "fichier": "airbag-passager.png",
+      "alt": "Étiquette de l’airbag passager : position OFF avec siège enfant dos à la route autorisé, position ON avec siège enfant dos à la route interdit",
+      "page": 15
+    },
+    {
+      "fiche": 39,
+      "fichier": "ceinture.png",
+      "alt": "Voyant rouge de ceinture non bouclée : un personnage assis avec sa ceinture de sécurité",
+      "page": 16
+    },
+    {
+      "fiche": 43,
+      "fichier": "brouillard-arriere.png",
+      "alt": "Voyant orange du feu de brouillard arrière : un demi-cercle et des traits horizontaux traversés d’une ligne",
+      "page": 18
+    },
+    {
+      "fiche": 47,
+      "fichier": "brouillard-arriere.png",
+      "alt": "Voyant orange du feu de brouillard arrière : un demi-cercle et des traits horizontaux traversés d’une ligne",
+      "page": 19
+    },
+    {
+      "fiche": 51,
+      "fichier": "feux-de-route.png",
+      "alt": "Voyant bleu des feux de route : un phare avec des traits horizontaux",
+      "page": 21
+    },
+    {
+      "fiche": 55,
+      "fichier": "freinage-55.png",
+      "alt": "Voyant rouge du système de freinage : un point d’exclamation dans un cercle, entre deux parenthèses",
+      "page": 22
+    },
+    {
+      "fiche": 57,
+      "fichier": "limiteur-vitesse.png",
+      "alt": "Pictogramme du limiteur de vitesse : un compteur avec une flèche et un repère de limite",
+      "page": 23
+    },
+    {
+      "fiche": 73,
+      "fichier": "degivrage-lunette-arriere.png",
+      "alt": "Pictogramme orange du dégivrage de la lunette arrière : un rectangle et trois flèches ondulées vers le haut",
+      "page": 29
+    },
+    {
+      "fiche": 75,
+      "fichier": "pression-huile.png",
+      "alt": "Voyant rouge de pression d’huile : une burette d’huile avec une goutte",
+      "page": 30
+    },
+    {
+      "fiche": 81,
+      "fichier": "freinage.png",
+      "alt": "Voyant rouge du système de freinage : un point d’exclamation dans un cercle, entre deux parenthèses",
+      "page": 32
+    },
+    {
+      "fiche": 83,
+      "fichier": "temperature-refroidissement.png",
+      "alt": "Voyant rouge de température du liquide de refroidissement : un thermomètre au-dessus de vagues",
+      "page": 32
+    },
+    {
+      "fiche": 87,
+      "fichier": "airbag-passager.png",
+      "alt": "Étiquette de l’airbag passager : position OFF avec siège enfant dos à la route autorisé, position ON avec siège enfant dos à la route interdit",
+      "page": 34
+    },
+    {
+      "fiche": 89,
+      "fichier": "ceinture.png",
+      "alt": "Voyant rouge de ceinture non bouclée : un personnage assis avec sa ceinture de sécurité",
+      "page": 35
+    },
+    {
+      "fiche": 91,
+      "fichier": "brouillard-arriere.png",
+      "alt": "Voyant orange du feu de brouillard arrière : un demi-cercle et des traits horizontaux traversés d’une ligne",
+      "page": 36
+    },
+    {
+      "fiche": 95,
+      "fichier": "feux-de-route.png",
+      "alt": "Voyant bleu des feux de route : un phare avec des traits horizontaux",
+      "page": 37
+    }
+  ]
+}

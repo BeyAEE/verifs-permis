@@ -1,16 +1,39 @@
 // Contenu d'une réponse (classique ou après « Trouve l'élément »).
 import type { Fiche, Partie } from '../lib/fiches';
+import type { Pictogramme } from '../lib/qcu';
 import { icone } from '../lib/icones';
+import donneesPictos from '../data/pictogrammes.json';
 import { echapper } from './commun';
 
 export const SANS_REPONSE = 'Pas de réponse écrite pour cette vérification : il faut la faire ou la montrer sur la voiture.';
 export const RAPPEL_MONITEUR = 'Sur la voiture de l’auto-école, demande à ton moniteur de te montrer.';
+export const PICTOGRAMMES: Pictogramme[] = donneesPictos.pictogrammes;
+
+const BASE_PICTOS = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'pictogrammes/';
+
+export function urlPictogramme(p: Pictogramme): string {
+  return BASE_PICTOS + p.fichier;
+}
+
+/** Pictogramme officiel de la réponse (voyant, commande), s'il y en a un. */
+export function pictogrammeDe(fiche: number): Pictogramme | undefined {
+  return PICTOGRAMMES.find((p) => p.fiche === fiche);
+}
+
+export function htmlPictogramme(p: Pictogramme): string {
+  return `<figure class="pictogramme">
+    <img src="${urlPictogramme(p)}" alt="${echapper(p.alt)}" loading="lazy" decoding="async">
+    <figcaption>Pictogramme de la fiche officielle</figcaption>
+  </figure>`;
+}
 
 export function htmlReponse(fiche: Fiche, partie: Partie, rappel: boolean): string {
   const texte = fiche[partie].reponse;
-  const corps = texte.trim()
-    ? `<p class="reponse-texte">${echapper(texte)}</p>`
-    : `<p class="reponse-texte reponse-absente">${SANS_REPONSE}</p>`;
+  const picto = partie === 'verification' ? pictogrammeDe(fiche.numero) : undefined;
+  let corps = '';
+  if (picto) corps += htmlPictogramme(picto);
+  if (texte.trim()) corps += `<p class="reponse-texte">${echapper(texte)}</p>`;
+  else if (!picto) corps += `<p class="reponse-texte reponse-absente">${SANS_REPONSE}</p>`;
   const note = partie === 'verification' && rappel ? `<p class="rappel">${icone('info')}<span>${RAPPEL_MONITEUR}</span></p>` : '';
   return corps + note;
 }
