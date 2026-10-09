@@ -37,7 +37,7 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
       </div>
     </header>
 
-    <button type="button" class="bouton bouton-contour tout" data-tout aria-pressed="false" data-sans-js>
+    <button type="button" class="bouton bouton-contour tout" data-tout data-sans-js>
       <Icone nom="oeil" /><span>Tout afficher</span>
     </button>
 
@@ -94,6 +94,9 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
   .voisines :global(svg) {
     width: 20px;
     height: 20px;
+  }
+  .fiche-entete p {
+    text-wrap: balance;
   }
   .fiche-entete {
     display: flex;

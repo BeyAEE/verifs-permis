@@ -28,7 +28,10 @@
   --bouton-vert: #0c7a3b;
   --entete: #0a2a57;
   --ombre: 0 1px 2px rgb(10 42 87 / 6%), 0 10px 30px rgb(10 42 87 / 8%);
-  --focus: #db1418;
+  --focus: #124483;
+  --bouton: #124483;
+  --bouton-survol: #0f3a70;
+  --bordure-bouton: #aab7cc;
 
   --rayon: 24px;
   --rayon-s: 16px;
@@ -62,9 +65,12 @@
     --vert-texte: #3dd27f;
     --vert-pale: #0f3326;
     --bouton-vert: #0c7a3b;
-    --entete: #050f22;
+    --entete: #0a2a57;
     --ombre: 0 1px 2px rgb(0 0 0 / 30%), 0 10px 30px rgb(0 0 0 / 25%);
-    --focus: #ff6b6e;
+    --focus: #8fb8ff;
+    --bouton: #1f5fbf;
+    --bouton-survol: #2a6ad0;
+    --bordure-bouton: #3a5c8c;
     color-scheme: dark;
   }
 }
@@ -82,6 +88,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-padding-top: 80px;
+  scroll-padding-bottom: calc(var(--nav-bas) + var(--saib) + 12px);
 }
 body {
   margin: 0;
@@ -110,6 +117,7 @@ h3 {
 }
 h1 {
   font-size: clamp(1.75rem, 6vw, 2.5rem);
+  text-wrap: balance;
 }
 h2 {
   font-size: 1.3rem;
@@ -181,6 +189,9 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+.entete :focus-visible {
+  outline-color: #fff;
 }
 .marque {
   display: flex;
@@ -300,7 +311,7 @@ main:focus {
 }
 .pied a {
   color: inherit;
-  display: inline-block;
+  display: inline;
   padding: 12px 6px;
 }
 
@@ -334,48 +345,37 @@ main:focus {
   flex-shrink: 0;
 }
 .bouton-principal {
-  background: var(--marine);
+  background: var(--bouton);
   color: #fff;
   box-shadow: 0 6px 18px rgb(18 68 131 / 28%);
-}
-.bouton-principal:hover {
-  background: #0f3a70;
 }
 .bouton-rouge {
   background: var(--rouge);
   color: #fff;
   box-shadow: 0 6px 18px rgb(219 20 24 / 25%);
 }
-.bouton-rouge:hover {
-  background: #bd1115;
-}
+
 .bouton-vert {
   background: var(--bouton-vert);
   color: #fff;
 }
-.bouton-vert:hover {
-  background: #096531;
-}
+
 .bouton-contour {
   background: var(--surface);
   color: var(--texte);
-  border-color: var(--bordure);
-}
-.bouton-contour:hover {
-  border-color: var(--lien);
+  border-color: var(--bordure-bouton);
 }
 .bouton-a-revoir {
   background: var(--surface);
   color: var(--rouge-texte);
   border-color: currentColor;
 }
-.bouton-a-revoir:hover {
-  background: var(--rouge-pale);
-}
+
 .bouton-large {
   width: 100%;
 }
-.bouton[disabled] {
+.bouton[disabled],
+.bouton[aria-disabled='true'] {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
@@ -431,7 +431,7 @@ main:focus {
   height: 48px;
   padding: 0 8px;
   border-radius: 16px;
-  background: var(--marine);
+  background: var(--bouton);
   color: #fff;
   font-weight: 700;
   font-size: 1.1rem;
@@ -494,7 +494,7 @@ main:focus {
   transition: background-color var(--vitesse);
 }
 .segments input:checked + span {
-  background: var(--marine);
+  background: var(--bouton);
   color: #fff;
 }
 .segments input:focus-visible + span {
@@ -530,9 +530,10 @@ main:focus {
   font-size: 1.12rem;
   font-weight: 600;
   line-height: 1.4;
+  text-wrap: pretty;
 }
 .reponse {
-  border-radius: var(--rayon-s);
+  border-radius: 6px var(--rayon-s) var(--rayon-s) 6px;
   background: var(--surface-2);
   border-left: 5px solid var(--marine);
   padding: 14px 16px;
@@ -587,6 +588,7 @@ main:focus {
   overflow: hidden;
 }
 .progression > div {
+  min-width: 12px;
   height: 100%;
   background: linear-gradient(90deg, var(--marine), var(--rouge));
   border-radius: inherit;
@@ -629,6 +631,12 @@ main:focus {
 }
 
 @media (min-width: 900px) {
+  :root {
+    --largeur: 860px;
+  }
+  .entete-interieur {
+    max-width: calc(var(--largeur) - 32px);
+  }
   .nav-bas {
     display: none;
   }
@@ -638,6 +646,9 @@ main:focus {
   main {
     padding-bottom: 48px;
     padding-top: 36px;
+  }
+  html {
+    scroll-padding-bottom: 0;
   }
   .pied {
     padding-bottom: 32px;
@@ -724,6 +735,25 @@ main:focus {
 .carte-voiture small {
   color: var(--texte-doux);
   font-size: 0.85rem;
+}
+
+/* ── Survols : seulement avec une souris ou un pavé ───────────────────── */
+@media (hover: hover) {
+  .bouton-principal:hover {
+    background: var(--bouton-survol);
+  }
+  .bouton-rouge:hover {
+    background: #bd1115;
+  }
+  .bouton-vert:hover {
+    background: #096531;
+  }
+  .bouton-contour:hover {
+    border-color: var(--lien);
+  }
+  .bouton-a-revoir:hover {
+    background: var(--rouge-pale);
+  }
 }
 
 /* ── Animations désactivées sur demande ───────────────────────────────── */

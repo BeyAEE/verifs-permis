@@ -10,9 +10,9 @@ import '../../styles/exercices.css';
   actif="examen"
 >
   <div class="pile" data-examen>
+    <h1>Examen blanc</h1>
     <section class="pile" data-vue="depart">
       <div class="pile intro">
-        <h1>Examen blanc</h1>
         <p class="doux">Comme le jour&nbsp;J : la fiche dépend des 2 derniers chiffres du compteur. 3 questions, 1 point chacune.</p>
       </div>
 
@@ -57,7 +57,7 @@ import '../../styles/exercices.css';
           />
           <button type="submit" class="bouton bouton-principal">C’est parti</button>
         </div>
-        <p class="erreur" id="deux-chiffres-erreur" data-erreur hidden></p>
+        <p class="erreur" id="deux-chiffres-erreur" data-erreur role="alert" hidden></p>
       </form>
     </section>
 
@@ -65,7 +65,7 @@ import '../../styles/exercices.css';
       <div class="barre-serie">
         <div class="barre-serie-haut">
           <p class="etiquette" data-titre-examen></p>
-          <button type="button" class="lien-discret" data-abandonner>Abandonner l’examen</button>
+          <button type="button" class="lien-discret" data-abandonner aria-label="Abandonner l’examen">Abandonner</button>
         </div>
         <div class="progression" role="progressbar" aria-label="Progression de l’examen" aria-valuemin="0" aria-valuemax="3" data-progression>
           <div style="width:0%"></div>
@@ -77,7 +77,7 @@ import '../../styles/exercices.css';
     <section class="pile" data-vue="resultat" hidden aria-labelledby="resultat-titre" tabindex="-1">
       <div class="carte bilan">
         <p class="surtitre" data-resultat-fiche></p>
-        <h2 id="resultat-titre" class="score"><span data-score>0</span><span class="sur"> / 3 points</span></h2>
+        <h2 id="resultat-titre" class="score"><span aria-hidden="true"><span data-score>0</span><span class="sur"> / 3 points</span></span><span class="visuellement-cache" data-score-texte></span></h2>
         <p class="message" data-message></p>
       </div>
       <h2>Les bonnes réponses</h2>
@@ -148,6 +148,12 @@ import '../../styles/exercices.css';
   }
   .barre-serie-haut .lien-discret {
     padding: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .barre-serie-haut .etiquette {
+    text-wrap: balance;
   }
   section[data-vue='resultat']:focus {
     outline: none;

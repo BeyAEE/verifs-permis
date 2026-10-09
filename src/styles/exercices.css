@@ -129,8 +129,10 @@
   width: 22px;
   height: 22px;
 }
-.vis-bouton:hover {
-  border-color: var(--lien);
+@media (hover: hover) {
+  .vis-bouton:hover {
+    border-color: var(--lien);
+  }
 }
 
 /* Plein écran (fonctionne aussi sur iPhone, sans l'API Fullscreen) */
@@ -239,12 +241,12 @@ html.vis-plein-ecran {
 }
 .verdict {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   padding: 14px 16px;
   border-radius: var(--rayon-s);
-  font-weight: 700;
-  font-size: 1.05rem;
+  font-weight: 600;
+  font-size: 1rem;
 }
 .verdict svg {
   width: 26px;
@@ -280,6 +282,25 @@ html.vis-plein-ecran {
 }
 
 /* ── Questions ────────────────────────────────────────────────────────── */
+.question [data-corps] {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.auto-eval .rangee > .bouton {
+  flex: 1 1 0;
+  padding-inline: 12px;
+  gap: 8px;
+  white-space: nowrap;
+}
+@media (min-width: 900px) {
+  .gros-plan img {
+    max-height: 340px;
+    width: auto;
+    max-width: 100%;
+    align-self: flex-start;
+  }
+}
 .question .position {
   margin-left: auto;
   font-weight: 600;

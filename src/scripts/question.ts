@@ -4,7 +4,7 @@ import { libellePartie, type Fiche, type Partie } from '../lib/fiches';
 import { icone } from '../lib/icones';
 import type { Resultat } from '../lib/score';
 import type { Exercice } from '../lib/vehicules';
-import { annoncer, echapper } from './commun';
+import { annoncer, defilement, echapper } from './commun';
 import { htmlReponse } from './reponses';
 import { trouverElement } from './trouve';
 
@@ -41,7 +41,7 @@ export function afficherQuestion(o: OptionsQuestion): void {
   const corps = o.conteneur.querySelector<HTMLElement>('[data-corps]')!;
   const titre = o.conteneur.querySelector<HTMLElement>('#question-titre')!;
   titre.focus({ preventScroll: true });
-  o.conteneur.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  o.conteneur.scrollIntoView({ behavior: defilement(), block: 'start' });
 
   const zone = partie === 'verification' && o.exercice.mode === 'zone' ? o.exercice : null;
   if (zone) {
@@ -58,6 +58,7 @@ export function afficherQuestion(o: OptionsQuestion): void {
       surClassique: () => {
         trouve.detruire();
         modeClassique(corps, o);
+        corps.querySelector<HTMLButtonElement>('[data-voir]')?.focus();
       },
     });
     return;
@@ -91,7 +92,7 @@ function modeClassique(corps: HTMLElement, o: OptionsQuestion): void {
     voir.setAttribute('aria-expanded', 'true');
     annoncer('Réponse : ' + (reponse.textContent ?? '').trim());
     corps.querySelector<HTMLButtonElement>('[data-ok]')!.focus({ preventScroll: true });
-    autoEval.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    autoEval.scrollIntoView({ behavior: defilement(), block: 'nearest' });
   });
 
   const finir = (ok: boolean) => o.surFin({ fiche: fiche.numero, partie, ok, mode: 'auto' });

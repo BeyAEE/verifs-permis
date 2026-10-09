@@ -17,9 +17,9 @@ const series = [
   actif="entrainement"
 >
   <div class="pile" data-entrainement>
+    <h1>S’entraîner</h1>
     <section class="pile" data-vue="choix">
       <div class="pile intro">
-        <h1>S’entraîner</h1>
         <p class="doux">Pour chaque question, réponds dans ta tête ou à voix haute, regarde la réponse, puis sois honnête avec toi-même.</p>
       </div>
 
@@ -54,7 +54,7 @@ const series = [
       <div class="barre-serie">
         <div class="barre-serie-haut">
           <p class="etiquette" data-nom-serie></p>
-          <button type="button" class="lien-discret" data-arreter>Arrêter la série</button>
+          <button type="button" class="lien-discret" data-arreter aria-label="Arrêter la série">Arrêter</button>
         </div>
         <div class="progression" role="progressbar" aria-label="Progression de la série" aria-valuemin="0" data-progression>
           <div style="width:0%"></div>
@@ -66,7 +66,7 @@ const series = [
     <section class="pile" data-vue="bilan" hidden aria-labelledby="bilan-titre" tabindex="-1">
       <div class="carte bilan">
         <p class="surtitre">Ton score</p>
-        <h2 id="bilan-titre" class="score"><span data-score>0</span><span class="sur"> / <span data-total>0</span></span></h2>
+        <h2 id="bilan-titre" class="score"><span aria-hidden="true"><span data-score>0</span><span class="sur"> / <span data-total>0</span></span></span><span class="visuellement-cache" data-score-texte></span></h2>
         <p class="message" data-message></p>
       </div>
       <div class="pile" data-a-revoir-bloc>
@@ -172,6 +172,12 @@ const series = [
   }
   .barre-serie-haut .lien-discret {
     padding: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .barre-serie-haut .etiquette {
+    text-wrap: balance;
   }
   section[data-vue='bilan']:focus {
     outline: none;

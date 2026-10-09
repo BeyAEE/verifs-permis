@@ -4,7 +4,7 @@ test.describe('changement de voiture', () => {
   test('demandée au premier lancement, mémorisée, modifiable depuis la pastille', async ({ page }) => {
     await page.goto('./');
     await choisirVoiture(page, 'Yaris');
-    const pastille = page.locator('header').getByRole('button', { name: /Ta voiture : Yaris/ });
+    const pastille = page.locator('header').getByRole('button', { name: /Yaris, boîte automatique/ });
     await expect(pastille).toBeVisible();
 
     await page.reload();
@@ -13,7 +13,7 @@ test.describe('changement de voiture', () => {
 
     await pastille.click();
     await choisirVoiture(page, 'Clio 5');
-    await expect(page.locator('header').getByRole('button', { name: /Ta voiture : Clio 5/ })).toBeVisible();
+    await expect(page.locator('header').getByRole('button', { name: /Clio 5, boîte manuelle/ })).toBeVisible();
     expect(await page.evaluate(() => localStorage.getItem('verifs-permis:v1'))).toContain('clio5');
   });
 });
@@ -73,7 +73,7 @@ test.describe('entraînement', () => {
     await page.getByRole('button', { name: /10 fiches au hasard/ }).click();
 
     let i = 0;
-    const bilan = page.getByRole('heading', { name: /\/ 30/ });
+    const bilan = page.getByRole('heading', { name: /sur 30/ });
     while (!(await bilan.isVisible())) {
       const trouve = page.locator('.trouve');
       if (await trouve.isVisible()) {
@@ -94,7 +94,7 @@ test.describe('entraînement', () => {
     expect(aRevoir).toBeGreaterThanOrEqual(10);
 
     await page.getByRole('button', { name: 'Recommencer seulement celles à revoir' }).click();
-    await expect(page.getByText(new RegExp(`Questions à revoir · 1/${aRevoir}`))).toBeVisible();
+    await expect(page.getByText(new RegExp(`À revoir · 1/${aRevoir}`))).toBeVisible();
   });
 });
 
@@ -115,7 +115,7 @@ test.describe('examen blanc', () => {
       await page.getByRole('button', { name: 'Voir la réponse' }).click();
       await page.getByRole('button', { name: q === 1 ? 'À revoir' : 'Je savais' }).click();
     }
-    await expect(page.getByRole('heading', { name: /2\s*\/ 3 points/ })).toBeVisible();
+    await expect(page.getByRole('heading', { name: '2 points sur 3' })).toBeVisible();
     await expect(page.locator('.recap-item')).toHaveCount(3);
     await expect(page.getByRole('link', { name: `Voir la fiche ${numero}` })).toBeVisible();
   });

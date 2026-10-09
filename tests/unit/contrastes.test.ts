@@ -55,7 +55,8 @@ const paires: Array<[string, string, number]> = [
   ['focus', 'fond', 3],
 ];
 const surBlanc: Array<[string, number]> = [
-  ['marine', 4.5], // boutons principaux, numéros
+  ['marine', 4.5],
+  ['bouton', 4.5], // boutons principaux, numéros, segment actif (plus vif en sombre)
   ['rouge', 4.5], // bouton Examen blanc
   ['bouton-vert', 4.5], // « Je savais »
   ['entete', 4.5],

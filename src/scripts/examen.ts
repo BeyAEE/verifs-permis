@@ -6,7 +6,7 @@ import { icone } from '../lib/icones';
 import { bilanExamen, messageExamen, type Resultat } from '../lib/score';
 import { lireVoiture, lireSession, ecrireSession, effacerSession } from '../lib/stockage';
 import { exercicePour } from '../lib/vehicules';
-import { BASE, animationsReduites, annoncer, chargerFiches, chargerVehicules, echapper, libelleVoiture, type DonneesClient } from './commun';
+import { BASE, animationsReduites, annoncer, chargerFiches, chargerVehicules, defilement, echapper, libelleVoiture, type DonneesClient } from './commun';
 import { afficherQuestion } from './question';
 import { htmlReponse } from './reponses';
 import { animerScore } from './series';
@@ -72,8 +72,11 @@ function animerCompteur(km: number): Promise<void> {
   });
 }
 
+let tirageEnCours = false;
 async function tirer(): Promise<void> {
-  lancer.disabled = true;
+  if (tirageEnCours) return;
+  tirageEnCours = true;
+  lancer.setAttribute('aria-disabled', 'true');
   commencer.hidden = true;
   $('[data-tirage-resultat]').textContent = '';
   const km = compteurAleatoire();
@@ -81,7 +84,8 @@ async function tirer(): Promise<void> {
   await animerCompteur(km);
   $('[data-tirage-resultat]').innerHTML = `${formaterKm(km)} → c’est la <strong>fiche ${numero}</strong>&nbsp;!`;
   examen = { km, fiche: numero, index: 0, resultats: [] };
-  lancer.disabled = false;
+  tirageEnCours = false;
+  lancer.removeAttribute('aria-disabled');
   lancer.innerHTML = `${icone('compteur')}Relancer le compteur`;
   lancer.classList.replace('bouton-rouge', 'bouton-contour');
   lancer.classList.remove('bouton-geant');
@@ -139,6 +143,7 @@ function afficherResultat(): void {
   effacerSession(SESSION);
   montrerVue('resultat');
   $('[data-resultat-fiche]').textContent = examen.km !== null ? `Fiche ${fiche.numero} · compteur ${formaterKm(examen.km)}` : `Fiche ${fiche.numero}`;
+  $('[data-score-texte]').textContent = `${bilan.points} point${bilan.points > 1 ? 's' : ''} sur 3`;
   animerScore($('[data-score]'), bilan.points);
   const message = messageExamen(bilan.points);
   $('[data-message]').textContent = message;
@@ -158,7 +163,7 @@ function afficherResultat(): void {
   $<HTMLAnchorElement>('[data-lien-fiche]').textContent = `Voir la fiche ${fiche.numero}`;
   annoncer(`Résultat : ${bilan.points} point${bilan.points > 1 ? 's' : ''} sur 3. ${message}`);
   vues.resultat.focus({ preventScroll: true });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: defilement() });
 }
 
 function reinitialiser(): void {

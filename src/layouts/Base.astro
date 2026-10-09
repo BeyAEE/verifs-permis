@@ -65,12 +65,12 @@ const liens = [
     <a class="lien-evitement" href="#contenu">Aller au contenu</a>
     <header class="entete">
       <div class="entete-interieur">
-        <a class="marque" href={url()} aria-label={`${NOM_SITE}, ${ECOLE} — accueil`}>
+        <a class="marque" href={url()}>
           <picture>
             <source srcset={url('img/logo-ecf-80.webp')} type="image/webp" />
             <img src={url('img/logo-ecf-80.png')} alt="" width="40" height="40" />
           </picture>
-          <span class="marque-texte"><strong>Vérifs permis</strong><span>{ECOLE}</span></span>
+          <span class="marque-texte"><strong>Vérifs permis</strong><span>{ECOLE}<span class="visuellement-cache">, accueil</span></span></span>
         </a>
         <nav class="nav-haut" aria-label="Navigation principale">
           {liens.map((l) => <a href={l.href} aria-current={actif === l.id ? 'page' : undefined}>{l.libelle}</a>)}

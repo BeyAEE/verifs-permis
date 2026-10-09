@@ -49,6 +49,11 @@ export function animationsReduites(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+/** Comportement de défilement : jamais animé si l'utilisateur réduit les animations. */
+export function defilement(): ScrollBehavior {
+  return animationsReduites() ? 'auto' : 'smooth';
+}
+
 export function libelleVoiture(choix: ChoixVoiture | null): string {
   switch (choix) {
     case 'clio5':

@@ -3,7 +3,7 @@ import { pointDansPolygone, type Point } from '../lib/geometrie';
 import { icone } from '../lib/icones';
 import type { Fiche } from '../lib/fiches';
 import { bonneReponse, type Exercice } from '../lib/vehicules';
-import { annoncer, echapper } from './commun';
+import { annoncer, defilement, echapper } from './commun';
 import { htmlReponse } from './reponses';
 import { Visionneuse } from './visionneuse';
 
@@ -44,7 +44,7 @@ export function trouverElement(o: OptionsTrouve): { detruire: () => void } {
   const racine = document.createElement('div');
   racine.className = 'trouve';
   racine.innerHTML = `
-    <p class="consigne">${icone('doigt')}<span>Touche l’endroit sur la photo de ta <strong>${echapper(o.nomVoiture)}</strong>, puis valide. Tu peux zoomer avec deux doigts.</span></p>
+    <p class="consigne" tabindex="-1">${icone('doigt')}<span>Touche l’endroit sur la photo de ta <strong>${echapper(o.nomVoiture)}</strong>, puis valide. Tu peux zoomer avec deux doigts.</span></p>
     <div data-vis></div>
     <button type="button" class="bouton bouton-principal bouton-large" data-valider disabled>Valider</button>
     ${
@@ -110,10 +110,13 @@ export function trouverElement(o: OptionsTrouve): { detruire: () => void } {
       o.surPremierResultat(ok);
     }
 
-    const message = ok ? 'Bravo, c’est bien là !' : 'Pas tout à fait. La bonne zone est en surbrillance verte.';
+    const bonnes = [...new Set(exercice.zonesBonnes.map((z) => z.libelle))].join(' ou ');
+    const message = ok
+      ? 'Bravo, c’est bien là !'
+      : `Pas tout à fait. La bonne zone est en surbrillance verte. Il fallait trouver : ${bonnes}.`;
     const peutReessayer = !ok && !o.tentativeUnique;
     resultat.innerHTML = `
-      <p class="verdict ${ok ? 'verdict-bon' : 'verdict-faux'}">${icone(ok ? 'check' : 'croix')}<span>${message}</span></p>
+      <p class="verdict ${ok ? 'verdict-bon' : 'verdict-faux'}">${icone(ok ? 'check' : 'croix')}<span>${echapper(message)}</span></p>
       ${exercice.grosPlan ? htmlPhoto(exercice.grosPlan, exercice.zone.libelle) : `<p class="libelle-zone">${echapper(exercice.zone.libelle)}</p>`}
       <div class="reponse"><p class="surtitre">Réponse officielle</p>${htmlReponse(o.fiche, 'verification', false)}</div>
       <div class="rangee">
@@ -124,7 +127,7 @@ export function trouverElement(o: OptionsTrouve): { detruire: () => void } {
     resultat.classList.add('apparait');
     annoncer(message);
     resultat.focus({ preventScroll: true });
-    resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    resultat.scrollIntoView({ behavior: defilement(), block: 'nearest' });
   }
 
   valider.addEventListener('click', () => {
@@ -157,7 +160,8 @@ export function trouverElement(o: OptionsTrouve): { detruire: () => void } {
       valider.disabled = true;
       racine.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => (r.checked = false));
       annoncer('Nouvel essai : touche la photo puis valide.');
-      vis.scene.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      racine.querySelector<HTMLElement>('.consigne')!.focus({ preventScroll: true });
+      vis.scene.scrollIntoView({ behavior: defilement(), block: 'center' });
     }
   });
 

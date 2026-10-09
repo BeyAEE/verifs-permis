@@ -22,7 +22,7 @@ function montrer(bouton: HTMLButtonElement, oui: boolean, annonce = true): void 
     reponse.classList.remove('apparait');
     void reponse.offsetWidth; // relance l'animation
     reponse.classList.add('apparait');
-    if (annonce) annoncer('Réponse : ' + (reponse.textContent ?? '').trim());
+    if (annonce) annoncer('Réponse : ' + (reponse.querySelector('.reponse-texte')?.textContent ?? '').trim());
     if (bouton.dataset.voir === 'verification') void afficherZone();
   }
   majTout();
@@ -30,13 +30,13 @@ function montrer(bouton: HTMLButtonElement, oui: boolean, annonce = true): void 
 
 function majTout(): void {
   const toutes = boutons.every((b) => b.getAttribute('aria-expanded') === 'true');
-  tout.setAttribute('aria-pressed', String(toutes));
+  tout.dataset.ouvert = String(toutes);
   tout.querySelector('span')!.textContent = toutes ? 'Tout masquer' : 'Tout afficher';
 }
 
 boutons.forEach((b) => b.addEventListener('click', () => montrer(b, b.getAttribute('aria-expanded') !== 'true')));
 tout.addEventListener('click', () => {
-  const ouvrir = tout.getAttribute('aria-pressed') !== 'true';
+  const ouvrir = tout.dataset.ouvert !== 'true';
   boutons.forEach((b) => montrer(b, ouvrir, false));
   annoncer(ouvrir ? 'Les 3 réponses sont affichées.' : 'Les réponses sont masquées.');
 });

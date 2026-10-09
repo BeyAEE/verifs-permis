@@ -43,8 +43,24 @@ export class Visionneuse {
   private marqueur: Point | null = null;
   private actif = true;
   private observateur: ResizeObserver;
-  private quitterPleinEcran = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') this.pleinEcran(false);
+  /** En plein écran : Échap pour sortir, Tab reste dans la visionneuse. */
+  private clavierPleinEcran = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      this.pleinEcran(false);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const focusables = [...this.racine.querySelectorAll<HTMLElement>('button:not([disabled])')];
+    if (!focusables.length) return;
+    const premier = focusables[0];
+    const dernier = focusables[focusables.length - 1];
+    if (e.shiftKey && (document.activeElement === premier || !this.racine.contains(document.activeElement))) {
+      e.preventDefault();
+      dernier.focus();
+    } else if (!e.shiftKey && (document.activeElement === dernier || !this.racine.contains(document.activeElement))) {
+      e.preventDefault();
+      premier.focus();
+    }
   };
 
   constructor(
@@ -71,7 +87,7 @@ export class Visionneuse {
         <button type="button" class="vis-bouton" data-zoom="plus" aria-label="Zoomer">${icone('zoom-plus')}</button>
         <button type="button" class="vis-bouton" data-zoom="moins" aria-label="Dézoomer">${icone('zoom-moins')}</button>
         <button type="button" class="vis-bouton" data-zoom="reset" aria-label="Revenir à la photo entière">${icone('recadrer')}</button>
-        <button type="button" class="vis-bouton" data-plein-ecran aria-label="Afficher en plein écran" aria-pressed="false">${icone('plein-ecran')}</button>
+        <button type="button" class="vis-bouton" data-plein-ecran aria-label="Afficher en plein écran">${icone('plein-ecran')}</button>
       </div>`;
     conteneur.append(this.racine);
     this.scene = this.racine.querySelector('.vis-scene')!;
@@ -90,7 +106,7 @@ export class Visionneuse {
       if (b.dataset.zoom === 'plus') this.zoomer(1.6);
       else if (b.dataset.zoom === 'moins') this.zoomer(1 / 1.6);
       else if (b.dataset.zoom === 'reset') this.appliquer({ s: 1, tx: 0, ty: 0 });
-      else if (b.hasAttribute('data-plein-ecran')) this.pleinEcran(!this.racine.classList.contains('plein-ecran'));
+      else if (b.hasAttribute('data-plein-ecran')) this.pleinEcran(!this.estPleinEcran);
     });
     this.observateur = new ResizeObserver(() => this.appliquer(this.t));
     this.observateur.observe(this.scene);
@@ -148,21 +164,25 @@ export class Visionneuse {
     this.appliquer(zoomerAutour(this.t, facteur, cx ?? r.width / 2, cy ?? r.height / 2, r.width, r.height));
   }
 
-  pleinEcran(oui: boolean): void {
+  get estPleinEcran(): boolean {
+    return this.racine.classList.contains('plein-ecran');
+  }
+
+  pleinEcran(oui: boolean, deplacerFocus = true): void {
+    if (oui === this.estPleinEcran) return;
     this.racine.classList.toggle('plein-ecran', oui);
     document.documentElement.classList.toggle('vis-plein-ecran', oui);
     const bouton = this.racine.querySelector<HTMLButtonElement>('[data-plein-ecran]')!;
-    bouton.setAttribute('aria-pressed', String(oui));
     bouton.setAttribute('aria-label', oui ? 'Quitter le plein écran' : 'Afficher en plein écran');
     bouton.innerHTML = icone(oui ? 'reduire' : 'plein-ecran');
-    if (oui) document.addEventListener('keydown', this.quitterPleinEcran);
-    else document.removeEventListener('keydown', this.quitterPleinEcran);
-    bouton.focus();
+    if (oui) document.addEventListener('keydown', this.clavierPleinEcran);
+    else document.removeEventListener('keydown', this.clavierPleinEcran);
+    if (deplacerFocus) bouton.focus();
     this.appliquer({ s: 1, tx: 0, ty: 0 });
   }
 
   detruire(): void {
-    this.pleinEcran(false);
+    if (this.estPleinEcran) this.pleinEcran(false, false);
     this.observateur.disconnect();
     this.racine.remove();
   }

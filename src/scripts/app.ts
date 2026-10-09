@@ -9,11 +9,14 @@ const fenetre = document.getElementById('choix-voiture') as HTMLDialogElement | 
 function majPastilles(): void {
   const choix = lireVoiture();
   const texte = libelleVoiture(choix);
-  const detail = choix === 'clio5' || choix === 'yaris' ? ` (${VOITURES[choix].boite.toLowerCase()})` : '';
+  const etiquette =
+    choix === 'clio5' || choix === 'yaris'
+      ? `${texte}, ${VOITURES[choix].boite.toLowerCase()} : changer de voiture`
+      : choix === 'inconnue'
+        ? `${texte} Pas encore choisie : choisir ta voiture`
+        : `${texte} : choisir ta voiture`;
   document.querySelectorAll<HTMLElement>('[data-voiture-nom]').forEach((el) => (el.textContent = texte));
-  document.querySelectorAll<HTMLButtonElement>('[data-ouvrir-voiture]').forEach((b) => {
-    b.setAttribute('aria-label', choix ? `Ta voiture : ${texte}${detail}. Changer de voiture` : 'Choisir ta voiture');
-  });
+  document.querySelectorAll<HTMLButtonElement>('[data-ouvrir-voiture]').forEach((b) => b.setAttribute('aria-label', etiquette));
 }
 
 function ouvrirChoix(): void {

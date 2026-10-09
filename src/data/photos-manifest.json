@@ -1,1 +1,95 @@
-{}
+{
+  "clio5": {
+    "clio5-moteur-lave-glace": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-moteur-liquide-frein-batterie": {
+      "largeur": 4284,
+      "hauteur": 5712,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-moteur-liquide-refroidissement": {
+      "largeur": 4284,
+      "hauteur": 5712,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-moteur-remplissage-huile": {
+      "largeur": 4284,
+      "hauteur": 5712,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-moteur-vue-ensemble": {
+      "largeur": 2000,
+      "hauteur": 1500,
+      "largeurs": [
+        800,
+        1400,
+        2000
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-phare-avant-droit": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-phare-avant-gauche": {
+      "largeur": 4284,
+      "hauteur": 5712,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    }
+  }
+}

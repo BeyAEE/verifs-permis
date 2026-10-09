@@ -48,19 +48,9 @@ Vérifications extérieures qui demandent de **montrer, indiquer, désigner ou o
 | État | Fiches |
 |---|---|
 | ✅ Couvertes (zone validée, photo publiée) | — |
-| ✏️ Zone en brouillon, à valider dans l’éditeur | — |
+| ✏️ Zone en brouillon, à valider dans l’éditeur | 2, 8, 12, 22, 24, 36, 50, 56, 70, 72, 80, 96 |
 | 🖼️ Zone validée mais photo pas encore publiée | — |
-| 📷 Pas encore de photo ni de zone | 2, 8, 12, 22, 24, 32, 34, 36, 42, 50, 56, 58, 66, 70, 72, 80, 84, 88, 96, 98, 100 |
-
-**Photos déclarées mais pas encore publiées** (à déposer dans `photos-source/clio5/` puis `npm run images`) :
-
-- `clio5-moteur-vue-ensemble.jpg` — Compartiment moteur de la Clio 5 de l'auto-école, capot ouvert, vu de face
-- `clio5-moteur-liquide-refroidissement.jpg` — Gros plan du vase d'expansion du liquide de refroidissement de la Clio 5
-- `clio5-moteur-remplissage-huile.jpg` — Gros plan du bouchon de remplissage d'huile moteur de la Clio 5
-- `clio5-moteur-lave-glace.jpg` — Gros plan du bouchon du réservoir de lave-glace de la Clio 5
-- `clio5-moteur-liquide-frein-batterie.jpg` — Gros plan du bocal de liquide de frein, à côté de la batterie de la Clio 5
-- `clio5-phare-ampoule-avant-1.jpg` — Arrière d'un bloc optique avant de la Clio 5, accès aux ampoules
-- `clio5-phare-ampoule-avant-2.jpg` — Arrière d'un bloc optique avant de la Clio 5, autre angle
+| 📷 Pas encore de photo ni de zone | 32, 34, 42, 58, 66, 84, 88, 98, 100 |
 
 **Photos à prendre** (une vue d’ensemble où l’élève cherche, + un gros plan par élément si possible) :
 

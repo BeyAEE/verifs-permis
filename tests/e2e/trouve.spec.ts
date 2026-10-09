@@ -74,7 +74,7 @@ test.describe('Trouve l’élément', () => {
     await expect(page.locator('.vis-scene')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Voir la réponse' })).toBeVisible();
 
-    await page.locator('header').getByRole('button', { name: /Ta voiture/ }).click();
+    await page.locator('header').getByRole('button', { name: /changer de voiture/ }).click();
     await choisirVoiture(page, 'Je ne sais pas encore');
     await examenSurFiche(page, '08');
     await expect(page.locator('.vis-scene')).toHaveCount(0);

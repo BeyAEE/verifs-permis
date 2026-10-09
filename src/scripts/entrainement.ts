@@ -4,7 +4,7 @@ import { bilanSerie, messageSerie, type Item, type Resultat } from '../lib/score
 import { lireVoiture, lireSession, ecrireSession, effacerSession } from '../lib/stockage';
 import { exercicePour } from '../lib/vehicules';
 import type { Fiche } from '../lib/fiches';
-import { BASE, annoncer, chargerFiches, chargerVehicules, libelleVoiture, type DonneesClient } from './commun';
+import { BASE, annoncer, chargerFiches, chargerVehicules, defilement, libelleVoiture, type DonneesClient } from './commun';
 import { afficherQuestion } from './question';
 import { NOMS_SERIES, animerScore, htmlARevoir, itemsSerie, type TypeSerie } from './series';
 
@@ -88,6 +88,7 @@ function afficherBilan(): void {
   const bilan = bilanSerie(serie.resultats);
   effacerSession(SESSION);
   montrerVue('bilan');
+  $('[data-score-texte]').textContent = `${bilan.points} sur ${bilan.total}`;
   animerScore($('[data-score]'), bilan.points);
   $('[data-total]').textContent = String(bilan.total);
   $('[data-message]').textContent = bilan.total ? messageSerie(bilan.points, bilan.total) : 'Aucune question répondue pour cette série.';
@@ -96,7 +97,7 @@ function afficherBilan(): void {
   $<HTMLButtonElement>('[data-recommencer-revoir]').hidden = bilan.aRevoir.length === 0;
   annoncer(`Série terminée : ${bilan.points} sur ${bilan.total}. ${$('[data-message]').textContent}`);
   vues.bilan.focus({ preventScroll: true });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: defilement() });
   serie = { ...serie, items: bilan.aRevoir, index: 0, resultats: [] }; // prêt pour « recommencer »
 }
 
@@ -115,6 +116,7 @@ racine.addEventListener('click', (e) => {
   } else if (cible.hasAttribute('data-abandonner')) {
     effacerSession(SESSION);
     majReprise();
+    racine.querySelector<HTMLButtonElement>('[data-serie]')?.focus();
   } else if (cible.hasAttribute('data-arreter')) {
     afficherBilan();
   } else if (cible.hasAttribute('data-recommencer-revoir') && serie?.items.length) {
@@ -124,6 +126,7 @@ racine.addEventListener('click', (e) => {
     majReprise();
     montrerVue('choix');
     window.scrollTo({ top: 0 });
+    racine.querySelector<HTMLButtonElement>('[data-serie]')?.focus();
   }
 });
 

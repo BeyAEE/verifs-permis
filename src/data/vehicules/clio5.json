@@ -1,42 +1,131 @@
 {
   "schema": "verifs-permis/vehicule@1",
-  "vehicule": { "id": "clio5", "nom": "Clio 5", "boite": "manuelle" },
+  "vehicule": {
+    "id": "clio5",
+    "nom": "Clio 5",
+    "boite": "manuelle"
+  },
   "photos": [
     {
       "fichier": "clio5-moteur-vue-ensemble.jpg",
-      "alt": "Compartiment moteur de la Clio 5 de l'auto-école, capot ouvert, vu de face",
+      "alt": "Compartiment moteur de la Clio 5 de l’auto-école, capot ouvert, vu de face",
       "role": "vue-ensemble"
     },
     {
       "fichier": "clio5-moteur-liquide-refroidissement.jpg",
-      "alt": "Gros plan du vase d'expansion du liquide de refroidissement de la Clio 5",
+      "alt": "Gros plan du vase d’expansion du liquide de refroidissement de la Clio 5, avec le repère MAX",
       "role": "gros-plan"
     },
     {
       "fichier": "clio5-moteur-remplissage-huile.jpg",
-      "alt": "Gros plan du bouchon de remplissage d'huile moteur de la Clio 5",
+      "alt": "Gros plan du bouchon jaune d’huile moteur de la Clio 5 : remplissage et contrôle du niveau au même endroit",
       "role": "gros-plan"
     },
     {
       "fichier": "clio5-moteur-lave-glace.jpg",
-      "alt": "Gros plan du bouchon du réservoir de lave-glace de la Clio 5",
+      "alt": "Gros plan du bouchon jaune du réservoir de lave-glace de la Clio 5",
       "role": "gros-plan"
     },
     {
       "fichier": "clio5-moteur-liquide-frein-batterie.jpg",
-      "alt": "Gros plan du bocal de liquide de frein, à côté de la batterie de la Clio 5",
+      "alt": "Gros plan du bocal de liquide de frein (bouchon DOT 4) de la Clio 5, avec la batterie et son cache rouge juste à côté",
       "role": "gros-plan"
     },
     {
-      "fichier": "clio5-phare-ampoule-avant-1.jpg",
-      "alt": "Arrière d'un bloc optique avant de la Clio 5, accès aux ampoules",
+      "fichier": "clio5-phare-avant-droit.jpg",
+      "alt": "Arrière du phare avant droit de la Clio 5 (à gauche quand tu es face au moteur) : accès aux ampoules",
       "role": "gros-plan"
     },
     {
-      "fichier": "clio5-phare-ampoule-avant-2.jpg",
-      "alt": "Arrière d'un bloc optique avant de la Clio 5, autre angle",
+      "fichier": "clio5-phare-avant-gauche.jpg",
+      "alt": "Arrière du phare avant gauche de la Clio 5 (à droite quand tu es face au moteur) : accès aux ampoules",
       "role": "gros-plan"
     }
   ],
-  "zones": []
+  "zones": [
+    {
+      "id": "vase-expansion",
+      "fiches": [
+        12,
+        72
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[5.5,28.33], [9.25,28], [10.25,31.67], [13.25,33.33], [13.75,42.67], [11.5,46.67], [4.75,47], [3.1,43.33], [3.5,36], [5,32]],
+      "libelle": "Vase d’expansion (liquide de refroidissement)",
+      "grosPlan": "clio5-moteur-liquide-refroidissement.jpg",
+      "statut": "brouillon"
+    },
+    {
+      "id": "bouchon-huile",
+      "fiches": [
+        22,
+        36,
+        80
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[33.25,48.13], [33.9,46], [35.35,45.2], [36.85,46], [37.5,48.13], [36.85,50.13], [35.35,51], [33.9,50.13]],
+      "libelle": "Bouchon d’huile moteur (remplissage et contrôle du niveau)",
+      "grosPlan": "clio5-moteur-remplissage-huile.jpg",
+      "statut": "brouillon"
+    },
+    {
+      "id": "liquide-frein",
+      "fiches": [
+        8,
+        70
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[62.5,22], [66.75,21.33], [67.25,25.33], [67.25,31.33], [65,32], [63.1,31.33], [62.4,28]],
+      "libelle": "Bocal de liquide de frein",
+      "grosPlan": "clio5-moteur-liquide-frein-batterie.jpg",
+      "statut": "brouillon"
+    },
+    {
+      "id": "batterie",
+      "fiches": [
+        24
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[67.6,24.67], [76,22.67], [84.5,23], [85,40], [77,42.67], [77,46.67], [67.6,46.67], [67.6,34.67]],
+      "libelle": "Batterie",
+      "grosPlan": "clio5-moteur-liquide-frein-batterie.jpg",
+      "statut": "brouillon"
+    },
+    {
+      "id": "lave-glace",
+      "fiches": [
+        2,
+        50
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[17.5,65.67], [18.6,63.87], [20.5,63.33], [22.25,64.67], [23.5,67.33], [23.5,69.67], [21.5,70.67], [19.25,70.33], [17.75,68.67]],
+      "libelle": "Réservoir de lave-glace",
+      "grosPlan": "clio5-moteur-lave-glace.jpg",
+      "statut": "brouillon"
+    },
+    {
+      "id": "phare-avant-droit",
+      "fiches": [
+        56,
+        96
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[5.5,54.67], [13,56], [15,60], [14.5,66], [11.5,69.33], [6.5,67.33], [5,62]],
+      "libelle": "Phare avant droit (accès aux ampoules)",
+      "grosPlan": "clio5-phare-avant-droit.jpg",
+      "statut": "brouillon"
+    },
+    {
+      "id": "phare-avant-gauche",
+      "fiches": [
+        56,
+        96
+      ],
+      "photo": "clio5-moteur-vue-ensemble.jpg",
+      "polygone": [[85,58.67], [91,57.33], [98,60], [98.5,66], [92.5,67.33], [86.5,66.67], [84.5,62.67]],
+      "libelle": "Phare avant gauche (accès aux ampoules)",
+      "grosPlan": "clio5-phare-avant-gauche.jpg",
+      "statut": "brouillon"
+    }
+  ]
 }

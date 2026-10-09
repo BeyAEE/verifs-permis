@@ -9,9 +9,9 @@ export type TypeSerie = 'hasard' | 'toutes' | 'interieures' | 'exterieures' | 'r
 export const NOMS_SERIES: Record<TypeSerie, string> = {
   hasard: '10 fiches au hasard',
   toutes: 'Toutes les fiches',
-  interieures: 'Vérifications intérieures',
-  exterieures: 'Vérifications extérieures',
-  revoir: 'Questions à revoir',
+  interieures: 'Intérieures',
+  exterieures: 'Extérieures',
+  revoir: 'À revoir',
 };
 
 export function itemsSerie(type: Exclude<TypeSerie, 'revoir'>, fiches: Fiche[], aleatoire: () => number = Math.random): Item[] {
