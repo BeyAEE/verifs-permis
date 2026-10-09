@@ -1,0 +1,114 @@
+---
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '@fontsource/poppins/latin-700.css';
+import poppins400 from '@fontsource/poppins/files/poppins-latin-400-normal.woff2?url';
+import poppins700 from '@fontsource/poppins/files/poppins-latin-700-normal.woff2?url';
+import '../styles/global.css';
+import Icone from '../components/Icone.astro';
+import ChoixVoiture from '../components/ChoixVoiture.astro';
+import { NOM_SITE, ECOLE, url } from '../lib/site';
+
+interface Props {
+  titre: string;
+  description: string;
+  actif?: 'accueil' | 'fiches' | 'entrainement' | 'examen' | null;
+  noindex?: boolean;
+  /** Ouvre le choix de la voiture au premier lancement. */
+  demanderVoiture?: boolean;
+}
+
+const { titre, description, actif = null, noindex = false, demanderVoiture = true } = Astro.props;
+const canonique = new URL(Astro.url.pathname, Astro.site).href;
+const image = new URL(url('og.png'), Astro.site).href;
+const liens = [
+  { id: 'accueil', href: url(), libelle: 'Accueil', icone: 'accueil' },
+  { id: 'fiches', href: url('fiches/'), libelle: 'Fiches', icone: 'liste' },
+  { id: 'entrainement', href: url('entrainement/'), libelle: 'S’entraîner', icone: 'cible' },
+  { id: 'examen', href: url('examen/'), libelle: 'Examen blanc', icone: 'compteur' },
+];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{titre}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonique} />}
+    <meta name="theme-color" content="#0a2a57" />
+    <link rel="manifest" href={url('manifest.webmanifest')} />
+    <link rel="icon" type="image/png" sizes="32x32" href={url('icones/favicon-32.png')} />
+    <link rel="apple-touch-icon" href={url('icones/apple-touch-icon.png')} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Vérifs permis" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="preload" href={poppins700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={poppins400} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={`${NOM_SITE} — ${ECOLE}`} />
+    <meta property="og:title" content={titre} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonique} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vérifs permis B — les 100 fiches de vérification, ECF Albi" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <noscript><style>[data-reponse][hidden]{display:flex!important}[data-sans-js]{display:none!important}</style></noscript>
+  </head>
+  <body data-demander-voiture={demanderVoiture ? 'oui' : undefined}>
+    <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+    <header class="entete">
+      <div class="entete-interieur">
+        <a class="marque" href={url()} aria-label={`${NOM_SITE}, ${ECOLE} — accueil`}>
+          <picture>
+            <source srcset={url('img/logo-ecf-80.webp')} type="image/webp" />
+            <img src={url('img/logo-ecf-80.png')} alt="" width="40" height="40" />
+          </picture>
+          <span class="marque-texte"><strong>Vérifs permis</strong><span>{ECOLE}</span></span>
+        </a>
+        <nav class="nav-haut" aria-label="Navigation principale">
+          {liens.map((l) => <a href={l.href} aria-current={actif === l.id ? 'page' : undefined}>{l.libelle}</a>)}
+        </nav>
+        <button type="button" class="pastille-voiture" data-ouvrir-voiture aria-haspopup="dialog">
+          <Icone nom="voiture" />
+          <span data-voiture-nom>Ma voiture</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="contenu" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="pied">
+      <p>
+        Questions et réponses : fiches officielles de vérification du permis B (2018).
+        <a href={url('mentions-legales/')}>Mentions légales</a>
+      </p>
+    </footer>
+
+    <nav class="nav-bas" aria-label="Navigation principale (mobile)">
+      {
+        liens.map((l) => (
+          <a href={l.href} aria-current={actif === l.id ? 'page' : undefined}>
+            <Icone nom={l.icone} />
+            <span>{l.libelle}</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <ChoixVoiture />
+    <div id="annonce" class="visuellement-cache" aria-live="polite" aria-atomic="true"></div>
+
+    <script>
+      import '../scripts/app';
+    </script>
+  </body>
+</html>

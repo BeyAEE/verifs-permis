@@ -1,0 +1,37 @@
+---
+import { SILHOUETTE, icone } from '../lib/icones';
+const options = [
+  { id: 'clio5', nom: 'Clio 5', detail: 'Boîte manuelle' },
+  { id: 'yaris', nom: 'Yaris', detail: 'Boîte automatique' },
+];
+---
+
+<dialog class="fenetre" id="choix-voiture" aria-labelledby="choix-voiture-titre" aria-describedby="choix-voiture-aide">
+  <div class="fenetre-corps">
+    <p class="surtitre">Ta voiture</p>
+    <h2 id="choix-voiture-titre">Tu apprends sur quelle voiture&nbsp;?</h2>
+    <p id="choix-voiture-aide" class="doux">
+      Les photos des vérifications s’adaptent à ta voiture. Tu peux changer quand tu veux avec la pastille en haut.
+    </p>
+    <div class="choix-voitures">
+      {
+        options.map((o) => (
+          <button type="button" class="carte-voiture" data-choix-voiture={o.id} aria-pressed="false">
+            <span class="silhouette" set:html={SILHOUETTE} />
+            <span>
+              <strong>{o.nom}</strong>
+              <small>{o.detail}</small>
+            </span>
+          </button>
+        ))
+      }
+      <button type="button" class="carte-voiture" data-choix-voiture="inconnue" aria-pressed="false">
+        <span class="silhouette" set:html={icone('info')} />
+        <span>
+          <strong>Je ne sais pas encore</strong>
+          <small>Tu pourras choisir plus tard</small>
+        </span>
+      </button>
+    </div>
+  </div>
+</dialog>

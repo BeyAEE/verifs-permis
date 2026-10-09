@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import { url } from '../lib/site';
+---
+
+<Base titre="Page introuvable | Vérifs permis B" description="Cette page n’existe pas. Retrouve les 100 fiches de vérification du permis B." noindex demanderVoiture={false}>
+  <div class="pile introuvable">
+    <p class="code" aria-hidden="true">404</p>
+    <h1>Mauvaise route&nbsp;!</h1>
+    <p class="doux">Cette page n’existe pas ou a changé d’adresse. Pas de panique, on te remet sur le bon chemin.</p>
+    <div class="rangee">
+      <a class="bouton bouton-principal" href={url()}><Icone nom="accueil" />Accueil</a>
+      <a class="bouton bouton-contour" href={url('fiches/')}><Icone nom="liste" />Les 100 fiches</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .introuvable {
+    text-align: center;
+    align-items: center;
+    padding-top: 24px;
+  }
+  .code {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(90deg, var(--marine), var(--rouge));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .rangee {
+    width: 100%;
+    max-width: 420px;
+  }
+</style>

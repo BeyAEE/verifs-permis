@@ -1,0 +1,25 @@
+{
+  "clio5": {
+    "test-frein": {
+      "largeur": 800,
+      "hauteur": 600,
+      "largeurs": [
+        800
+      ],
+      "formats": [
+        "webp"
+      ]
+    },
+    "test-moteur": {
+      "largeur": 1600,
+      "hauteur": 1200,
+      "largeurs": [
+        800,
+        1400
+      ],
+      "formats": [
+        "webp"
+      ]
+    }
+  }
+}

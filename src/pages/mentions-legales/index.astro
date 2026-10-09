@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  titre="Mentions légales | Vérifs permis B"
+  description="Mentions légales du site Vérifs permis B de l’auto-école ECF Albi : éditeur, hébergeur, sources et données personnelles."
+  demanderVoiture={false}
+>
+  <article class="pile texte">
+    <h1>Mentions légales</h1>
+
+    <section class="carte pile">
+      <h2>Éditeur</h2>
+      <!-- À compléter par l'auto-école -->
+      <dl>
+        <dt>Raison sociale</dt>
+        <dd>[À compléter : nom de la société exploitant ECF Picco / Pechberty]</dd>
+        <dt>Adresse</dt>
+        <dd>[À compléter : adresse du siège, Albi]</dd>
+        <dt>SIRET</dt>
+        <dd>[À compléter]</dd>
+        <dt>Numéro d’agrément</dt>
+        <dd>[À compléter : agrément préfectoral de l’établissement]</dd>
+        <dt>Directeur de la publication</dt>
+        <dd>[À compléter]</dd>
+        <dt>Contact</dt>
+        <dd>[À compléter : téléphone ou e-mail de l’auto-école]</dd>
+      </dl>
+    </section>
+
+    <section class="carte pile">
+      <h2>Hébergeur</h2>
+      <p>GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+    </section>
+
+    <section class="carte pile">
+      <h2>Sources</h2>
+      <p>
+        Les questions et réponses sont reprises des <strong>fiches officielles de vérification de l’épreuve pratique du permis B (2018)</strong>, sans modification.
+      </p>
+      <p>
+        Les photos des véhicules sont celles des voitures de l’auto-école. Les emplacements indiqués valent pour ces voitures : sur un autre modèle, ils peuvent être différents.
+      </p>
+    </section>
+
+    <section class="carte pile">
+      <h2>Données personnelles et cookies</h2>
+      <p>
+        Ce site ne demande aucun compte, n’utilise ni cookie ni outil de mesure d’audience, et n’envoie aucune donnée personnelle. Le seul réglage enregistré est le choix de ta voiture, stocké sur ton téléphone (stockage local du navigateur). Tu peux l’effacer à tout moment en vidant les données du site dans ton navigateur.
+      </p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 4px 16px;
+  }
+  dt {
+    font-weight: 600;
+  }
+  dd {
+    margin: 0 0 8px;
+    color: var(--texte-doux);
+  }
+  @media (min-width: 640px) {
+    dl {
+      grid-template-columns: max-content 1fr;
+    }
+    dd {
+      margin: 0;
+    }
+  }
+</style>

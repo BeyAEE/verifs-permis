@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import { FICHES, libelleType } from '../../lib/fiches';
+import { texteIndexe } from '../../lib/recherche';
+import { url } from '../../lib/site';
+---
+
+<Base
+  titre="Les 100 fiches de vérification du permis B | Vérifs permis"
+  description="Toutes les questions de vérification du permis B : vérifications intérieures et extérieures, sécurité routière, premiers secours. Recherche instantanée."
+  actif="fiches"
+>
+  <div class="pile">
+    <h1>Les 100 fiches</h1>
+
+    <form class="outils carte" role="search" data-recherche>
+      <div class="champ">
+        <label for="recherche">Rechercher dans les fiches</label>
+        <input id="recherche" class="saisie" type="search" placeholder="Ex. : liquide de frein, éthylotest…" autocomplete="off" enterkeyhint="search" />
+      </div>
+      <fieldset class="segments" aria-label="Type de vérification">
+        <label><input type="radio" name="type" value="toutes" checked /><span>Toutes</span></label>
+        <label><input type="radio" name="type" value="interieure" /><span>Intérieures</span></label>
+        <label><input type="radio" name="type" value="exterieure" /><span>Extérieures</span></label>
+      </fieldset>
+      <div class="aller">
+        <label for="aller-numero" class="etiquette">Aller à la fiche n°</label>
+        <div class="aller-rangee">
+          <input id="aller-numero" class="saisie" type="number" inputmode="numeric" min="1" max="100" placeholder="1 à 100" />
+          <button type="button" class="bouton bouton-principal" data-aller>Ouvrir</button>
+        </div>
+      </div>
+    </form>
+
+    <p class="compte doux" role="status" data-compte>100 fiches</p>
+
+    <ol class="liste" role="list">
+      {
+        FICHES.map((f) => (
+          <li data-fiche={f.numero} data-type={f.type} data-texte={texteIndexe(f)}>
+            <a href={url(`fiche/${f.numero}/`)}>
+              <span class="numero">{f.numero}</span>
+              <span class="corps">
+                <span class="type">
+                  <Icone nom={f.type === 'interieure' ? 'volant' : 'exterieur'} />
+                  {libelleType(f.type)}
+                </span>
+                <span class="q">{f.verification.question}</span>
+              </span>
+              <Icone nom="fleche-droite" classe="chevron" />
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="vide doux" hidden data-vide>Aucune fiche ne correspond. Essaie un autre mot.</p>
+  </div>
+</Base>
+
+<style>
+  .outils {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  fieldset {
+    margin: 0;
+    min-width: 0;
+  }
+  .aller {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .aller-rangee {
+    display: flex;
+    gap: 8px;
+  }
+  .aller-rangee .saisie {
+    flex: 1;
+    min-width: 0;
+  }
+  .liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .liste a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--bordure);
+    color: var(--texte);
+    text-decoration: none;
+    box-shadow: var(--ombre);
+    transition:
+      transform var(--vitesse) var(--courbe),
+      border-color var(--vitesse);
+  }
+  .liste a:hover {
+    border-color: var(--lien);
+  }
+  .liste a:active {
+    transform: scale(0.985);
+  }
+  .corps {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .type {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--texte-doux);
+  }
+  .type :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  .q {
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .liste :global(.chevron) {
+    width: 20px;
+    height: 20px;
+    color: var(--texte-doux);
+    flex-shrink: 0;
+  }
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<script>
+  import '../../scripts/fiches';
+</script>

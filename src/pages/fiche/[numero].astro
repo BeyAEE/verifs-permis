@@ -1,0 +1,129 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import { FICHES, PARTIES, libellePartie, voisines, type Fiche } from '../../lib/fiches';
+import { htmlReponse } from '../../scripts/reponses';
+import { url } from '../../lib/site';
+import '../../styles/exercices.css';
+
+export function getStaticPaths() {
+  return FICHES.map((f) => ({ params: { numero: String(f.numero) }, props: { fiche: f } }));
+}
+
+interface Props {
+  fiche: Fiche;
+}
+const { fiche } = Astro.props;
+const n = fiche.numero;
+const { precedente, suivante } = voisines(n);
+const tronquer = (t: string, max: number) => (t.length <= max ? t : t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…');
+const typeLong = fiche.type === 'interieure' ? 'Vérification intérieure' : 'Vérification extérieure';
+const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterieur', securite: 'securite', secours: 'secours' };
+---
+
+<Base
+  titre={`Fiche ${n} : ${tronquer(fiche.verification.question, 58)} | Vérifs permis B`}
+  description={tronquer(`Fiche ${n} des vérifications du permis B. ${fiche.verification.question} Avec la question de sécurité routière, de premiers secours et les réponses.`, 158)}
+  actif="fiches"
+>
+  <div class="pile" data-fiche-page data-numero={n} data-type={fiche.type}>
+    <a class="lien-fleche retour" href={url('fiches/')}><Icone nom="fleche-gauche" />Toutes les fiches</a>
+
+    <header class="fiche-entete">
+      <span class="numero grand" aria-hidden="true">{n}</span>
+      <div>
+        <h1>Fiche {n}</h1>
+        <p class="doux">{typeLong} · 3 questions · 3 points</p>
+      </div>
+    </header>
+
+    <button type="button" class="bouton bouton-contour tout" data-tout aria-pressed="false" data-sans-js>
+      <Icone nom="oeil" /><span>Tout afficher</span>
+    </button>
+
+    {
+      PARTIES.map((partie, i) => (
+        <section class="carte question" aria-labelledby={`q-${partie}`}>
+          <div class="question-entete">
+            <span class="question-index" aria-hidden="true">
+              {i + 1}
+            </span>
+            <span class="pastille">
+              <Icone nom={icones[partie]} />
+              {libellePartie(partie, fiche.type)}
+            </span>
+          </div>
+          <h2 class="question-texte" id={`q-${partie}`}>
+            {fiche[partie].question}
+          </h2>
+          <button
+            type="button"
+            class="bouton bouton-contour bouton-large"
+            data-voir={partie}
+            aria-expanded="false"
+            aria-controls={`r-${partie}`}
+            data-sans-js
+          >
+            <Icone nom="oeil" />
+            <span>Voir la réponse</span>
+          </button>
+          <div class="reponse" id={`r-${partie}`} hidden data-reponse={partie} tabindex="-1">
+            {partie === 'verification' && <div data-zone-photo />}
+            <Fragment set:html={htmlReponse(fiche, partie, partie === 'verification')} />
+          </div>
+        </section>
+      ))
+    }
+
+    <nav class="voisines" aria-label="Autres fiches">
+      <a class="bouton bouton-contour" href={url(`fiche/${precedente}/`)} rel="prev">
+        <Icone nom="fleche-gauche" />Fiche {precedente}
+      </a>
+      <a class="bouton bouton-contour" href={url(`fiche/${suivante}/`)} rel="next">
+        Fiche {suivante}<Icone nom="fleche-droite" />
+      </a>
+    </nav>
+  </div>
+</Base>
+
+<style>
+  .retour {
+    align-self: flex-start;
+  }
+  .retour :global(svg),
+  .voisines :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+  .fiche-entete {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .grand {
+    min-width: 72px;
+    height: 72px;
+    font-size: 1.8rem;
+    border-radius: 22px;
+    box-shadow: 0 8px 20px rgb(18 68 131 / 25%);
+  }
+  .tout {
+    align-self: flex-start;
+  }
+  .voisines {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .voisines .bouton {
+    flex: 1;
+  }
+  .question :global(.pastille svg) {
+    width: 16px;
+    height: 16px;
+  }
+</style>
+
+<script>
+  import '../../scripts/fiche';
+</script>

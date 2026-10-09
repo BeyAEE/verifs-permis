@@ -36,6 +36,11 @@ export interface DonneesVehicule {
   zones: Zone[];
 }
 
+/** Vrai si le point (en %) touche une des bonnes zones de l'exercice. */
+export function bonneReponse(point: Point, zones: Zone[], pointDans: (p: Point, poly: Point[]) => boolean): boolean {
+  return zones.some((z) => pointDans(point, z.polygone));
+}
+
 /** Une photo telle que produite par scripts/build-images.mjs. */
 export interface PhotoConstruite {
   largeur: number;
@@ -66,7 +71,15 @@ export interface ChoixZone {
 export type RaisonClassique = 'interieure' | 'voiture-inconnue' | 'pas-localisable' | 'pas-de-zone' | 'pas-de-photo';
 
 export type Exercice =
-  | { mode: 'zone'; zone: Zone; photo: PhotoPublique; grosPlan: PhotoPublique | null; choix: ChoixZone[] }
+  | {
+      mode: 'zone';
+      zone: Zone;
+      /** Toutes les zones validées de la même photo qui répondent à la fiche (ex. phare gauche ET droit). */
+      zonesBonnes: Zone[];
+      photo: PhotoPublique;
+      grosPlan: PhotoPublique | null;
+      choix: ChoixZone[];
+    }
   | { mode: 'classique'; raison: RaisonClassique };
 
 export const VOITURES: Record<IdVoiture, { nom: string; boite: string }> = {
@@ -156,6 +169,7 @@ export function exercicePour(
     return {
       mode: 'zone',
       zone,
+      zonesBonnes: memesPhoto.filter((z) => z.fiches.includes(fiche.numero)),
       photo: photoPublique(base, voiture, photo, construite),
       grosPlan: gp && gpConstruite ? photoPublique(base, voiture, gp, gpConstruite) : null,
       choix,

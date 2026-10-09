@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import { url } from '../lib/site';
+---
+
+<Base
+  titre="Questions de vérification permis B : les 100 fiches | ECF Albi"
+  description="Révise les 100 questions de vérification du permis B (intérieures, extérieures, sécurité routière, premiers secours) et entraîne-toi comme le jour de l’examen. Gratuit, sans compte, même hors connexion."
+  actif="accueil"
+>
+  <div class="pile accueil">
+    <section class="hero">
+      <h1>Questions de vérification du permis&nbsp;B</h1>
+      <p class="accroche">Les 100 fiches officielles, et un examen blanc comme le jour&nbsp;J.</p>
+    </section>
+
+    <section class="carte epreuve" aria-labelledby="epreuve-titre">
+      <h2 id="epreuve-titre">L’épreuve en 10 secondes</h2>
+      <ul class="points" role="list">
+        <li>
+          <span class="chiffre" aria-hidden="true">3</span>
+          <span><strong>3 questions</strong> : 1 vérification, 1 de sécurité routière, 1 de premiers secours.</span>
+        </li>
+        <li>
+          <span class="chiffre" aria-hidden="true">3</span>
+          <span><strong>3 points sur 31</strong>. Une erreur n’est pas éliminatoire.</span>
+        </li>
+        <li>
+          <span class="chiffre chiffre-compteur" aria-hidden="true"><Icone nom="compteur" /></span>
+          <span class="avec-exemple">
+            <span><strong>La fiche dépend du compteur</strong> : ses 2 derniers chiffres.</span>
+            <span class="exemple" role="img" aria-label="Exemple : 54 726 kilomètres au compteur, c’est la fiche 26.">
+              <span class="mini-compteur" aria-hidden="true"
+                ><span>5</span><span>4</span><span>7</span><span class="cle">2</span><span class="cle">6</span></span
+              >
+              <span aria-hidden="true">→ fiche <strong>26</strong></span>
+            </span>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="actions">
+      <a class="bouton bouton-principal action" href={url('entrainement/')}>
+        <Icone nom="cible" /><span>S’entraîner</span>
+      </a>
+      <a class="bouton bouton-rouge action" href={url('examen/')}>
+        <Icone nom="compteur" /><span>Examen blanc</span>
+      </a>
+    </div>
+
+    <a class="lien-fleche secondaire" href={url('fiches/')}>
+      Voir les 100 fiches <Icone nom="fleche-droite" />
+    </a>
+
+    <p class="rassurance doux">
+      <Icone nom="hors_ligne" />
+      Gratuit, sans compte, et ça marche même hors connexion une fois le site ouvert.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .accueil {
+    gap: 16px;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+  .accroche {
+    font-size: 1.02rem;
+    color: var(--texte-doux);
+  }
+  .epreuve {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+  }
+  .points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+  .points li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .chiffre {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    background: var(--marine);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chiffre-compteur {
+    background: var(--rouge);
+  }
+  .chiffre-compteur :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+  .avec-exemple {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .exemple {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+  }
+  .exemple strong {
+    font-size: 1.25rem;
+  }
+  .mini-compteur {
+    display: inline-flex;
+    gap: 3px;
+    padding: 4px;
+    border-radius: 10px;
+    background: #050f22;
+  }
+  .mini-compteur span {
+    width: 22px;
+    height: 30px;
+    border-radius: 5px;
+    background: #16233b;
+    color: #e6edf8;
+    font-weight: 700;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .mini-compteur .cle {
+    background: var(--rouge);
+    color: #fff;
+  }
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .action {
+    flex-direction: column;
+    gap: 6px;
+    min-height: 96px;
+    border-radius: 24px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .action :global(svg) {
+    width: 30px;
+    height: 30px;
+  }
+  .secondaire {
+    align-self: center;
+  }
+  .secondaire :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+  .rassurance {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.88rem;
+    justify-content: center;
+  }
+  .rassurance :global(svg) {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+</style>

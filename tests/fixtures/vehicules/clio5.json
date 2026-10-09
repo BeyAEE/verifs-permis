@@ -1,0 +1,46 @@
+{
+  "schema": "verifs-permis/vehicule@1",
+  "vehicule": { "id": "clio5", "nom": "Clio 5", "boite": "manuelle" },
+  "photos": [
+    { "fichier": "test-moteur.jpg", "alt": "Photo de test : compartiment moteur stylisé", "role": "vue-ensemble" },
+    { "fichier": "test-frein.jpg", "alt": "Photo de test : gros plan du bocal de liquide de frein", "role": "gros-plan" }
+  ],
+  "zones": [
+    {
+      "id": "liquide-frein",
+      "fiches": [8, 70],
+      "photo": "test-moteur.jpg",
+      "polygone": [[12,18], [30,18], [30,38], [12,38]],
+      "libelle": "Bocal de liquide de frein",
+      "grosPlan": "test-frein.jpg",
+      "statut": "valide"
+    },
+    {
+      "id": "lave-glace",
+      "fiches": [2, 50],
+      "photo": "test-moteur.jpg",
+      "polygone": [[62,16], [84,16], [84,40], [62,40]],
+      "libelle": "Réservoir de lave-glace",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "huile",
+      "fiches": [36],
+      "photo": "test-moteur.jpg",
+      "polygone": [[40,50], [58,50], [58,68], [40,68]],
+      "libelle": "Bouchon de remplissage d'huile",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "refroidissement-brouillon",
+      "fiches": [12, 72],
+      "photo": "test-moteur.jpg",
+      "polygone": [[68,58], [88,58], [88,80], [68,80]],
+      "libelle": "Vase d'expansion",
+      "grosPlan": null,
+      "statut": "brouillon"
+    }
+  ]
+}

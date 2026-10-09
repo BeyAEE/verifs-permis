@@ -1,0 +1,183 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import '../../styles/exercices.css';
+
+const series = [
+  { id: 'hasard', titre: '10 fiches au hasard', detail: '30 questions, idéal pour une session rapide', icone: 'cible' },
+  { id: 'toutes', titre: 'Toutes les fiches, dans l’ordre', detail: 'Les 100 fiches, de 1 à 100', icone: 'liste' },
+  { id: 'interieures', titre: 'Seulement les intérieures', detail: '50 fiches : commandes, voyants, équipements', icone: 'volant' },
+  { id: 'exterieures', titre: 'Seulement les extérieures', detail: '50 fiches : capot, feux, pneus', icone: 'exterieur' },
+];
+---
+
+<Base
+  titre="S’entraîner aux vérifications du permis B | Vérifs permis"
+  description="Entraîne-toi sur les questions de vérification du permis B : 10 fiches au hasard, toutes les fiches, ou seulement les intérieures ou les extérieures. Score et questions à revoir."
+  actif="entrainement"
+>
+  <div class="pile" data-entrainement>
+    <section class="pile" data-vue="choix">
+      <div class="pile intro">
+        <h1>S’entraîner</h1>
+        <p class="doux">Pour chaque question, réponds dans ta tête ou à voix haute, regarde la réponse, puis sois honnête avec toi-même.</p>
+      </div>
+
+      <div class="carte reprise" data-reprise hidden>
+        <p><strong>Tu as une série en cours</strong> <span class="doux" data-reprise-detail></span></p>
+        <div class="rangee">
+          <button type="button" class="bouton bouton-principal" data-reprendre>Reprendre</button>
+          <button type="button" class="bouton bouton-contour" data-abandonner>Nouvelle série</button>
+        </div>
+      </div>
+
+      <h2 class="visuellement-cache">Choisis ta série</h2>
+      <div class="choix-series">
+        {
+          series.map((s) => (
+            <button type="button" class="carte-serie" data-serie={s.id}>
+              <span class="carte-serie-icone">
+                <Icone nom={s.icone} />
+              </span>
+              <span class="carte-serie-texte">
+                <strong>{s.titre}</strong>
+                <small>{s.detail}</small>
+              </span>
+              <Icone nom="fleche-droite" classe="chevron" />
+            </button>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="pile" data-vue="question" hidden>
+      <div class="barre-serie">
+        <div class="barre-serie-haut">
+          <p class="etiquette" data-nom-serie></p>
+          <button type="button" class="lien-discret" data-arreter>Arrêter la série</button>
+        </div>
+        <div class="progression" role="progressbar" aria-label="Progression de la série" aria-valuemin="0" data-progression>
+          <div style="width:0%"></div>
+        </div>
+      </div>
+      <div data-question></div>
+    </section>
+
+    <section class="pile" data-vue="bilan" hidden aria-labelledby="bilan-titre" tabindex="-1">
+      <div class="carte bilan">
+        <p class="surtitre">Ton score</p>
+        <h2 id="bilan-titre" class="score"><span data-score>0</span><span class="sur"> / <span data-total>0</span></span></h2>
+        <p class="message" data-message></p>
+      </div>
+      <div class="pile" data-a-revoir-bloc>
+        <h2>À revoir</h2>
+        <ul class="liste-revoir" role="list" data-a-revoir></ul>
+      </div>
+      <div class="rangee">
+        <button type="button" class="bouton bouton-rouge" data-recommencer-revoir>
+          <Icone nom="recadrer" />Recommencer seulement celles à revoir
+        </button>
+        <button type="button" class="bouton bouton-contour" data-nouvelle>Nouvelle série</button>
+      </div>
+    </section>
+
+    <noscript><p class="carte">L’entraînement a besoin de JavaScript. Tu peux quand même réviser toutes les fiches depuis la liste.</p></noscript>
+  </div>
+</Base>
+
+<style>
+  .intro {
+    gap: 8px;
+  }
+  .reprise {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-color: var(--marine);
+  }
+  .choix-series {
+    display: grid;
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .choix-series {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .carte-serie {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 88px;
+    padding: 16px;
+    text-align: left;
+    border-radius: var(--rayon);
+    border: 1px solid var(--bordure);
+    background: var(--surface);
+    box-shadow: var(--ombre);
+    transition:
+      transform var(--vitesse) var(--courbe),
+      border-color var(--vitesse);
+  }
+  .carte-serie:hover {
+    border-color: var(--lien);
+  }
+  .carte-serie:active {
+    transform: scale(0.98);
+  }
+  .carte-serie-icone {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: var(--marine);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .carte-serie-icone :global(svg) {
+    width: 26px;
+    height: 26px;
+  }
+  .carte-serie-texte {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .carte-serie-texte strong {
+    font-size: 1.05rem;
+  }
+  .carte-serie-texte small {
+    color: var(--texte-doux);
+    font-size: 0.85rem;
+  }
+  .carte-serie :global(.chevron) {
+    width: 20px;
+    height: 20px;
+    color: var(--texte-doux);
+  }
+  .barre-serie {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .barre-serie-haut {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .barre-serie-haut .lien-discret {
+    padding: 0;
+  }
+  section[data-vue='bilan']:focus {
+    outline: none;
+  }
+</style>
+
+<script>
+  import '../../scripts/entrainement';
+</script>
