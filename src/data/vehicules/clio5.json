@@ -142,8 +142,8 @@
         3,
         67
       ],
-      "texte": "Bascule la petite manette au bas du rétroviseur intérieur. S’il n’y en a pas, ton rétroviseur passe tout seul en position nuit quand une voiture t’éblouit.",
-      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Rétroviseurs »"
+      "texte": "Bascule la petite manette au bas du rétroviseur intérieur.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Rétroviseurs » ; Auto-école ECF Albi (Raphaël, octobre 2026)"
     },
     {
       "fiches": [
@@ -199,8 +199,8 @@
         21,
         79
       ],
-      "texte": "Dans les commandes de chauffage, sous l’écran central : tourne la molette de répartition de l’air sur le pictogramme du pare-brise. Avec la climatisation automatique, appuie sur le bouton du pare-brise.",
-      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Climatisation manuelle, chauffage » et « Climatisation automatique »"
+      "texte": "Dans les commandes de chauffage, sous l’écran central : tourne la molette de répartition de l’air sur le pictogramme du pare-brise.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Climatisation manuelle, chauffage » ; Auto-école ECF Albi (Raphaël, octobre 2026)"
     },
     {
       "fiches": [
@@ -277,6 +277,33 @@
       ],
       "texte": "Aux places arrière, à la jonction entre le dossier et l’assise (et sur le siège passager avant selon la version). Un pictogramme ISOFIX les signale.",
       "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Fixation par le système ISOFIX »"
+    },
+    {
+      "fiches": [
+        7,
+        71
+      ],
+      "texte": "Dans la boîte à gants, côté passager.",
+      "source": "Auto-école ECF Albi (Raphaël, octobre 2026)"
+    },
+    {
+      "fiches": [
+        9,
+        17,
+        41,
+        53,
+        77
+      ],
+      "texte": "Dans la boîte à gants, côté passager.",
+      "source": "Auto-école ECF Albi (Raphaël, octobre 2026)"
+    },
+    {
+      "fiches": [
+        37,
+        87
+      ],
+      "texte": "Ouvre la porte passager : le verrou est sur le côté de la planche de bord. Contact coupé, enfonce-le et tourne-le sur OFF ; un voyant le confirme au tableau de bord.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Sécurité enfants : désactivation de l’airbag passager » ; Auto-école ECF Albi (Raphaël, octobre 2026)"
     }
   ]
 }
