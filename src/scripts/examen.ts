@@ -178,6 +178,10 @@ function reinitialiser(): void {
 lancer.addEventListener('click', () => void tirer());
 commencer.addEventListener('click', demarrer);
 racine.querySelector('[data-recommencer]')!.addEventListener('click', reinitialiser);
+racine.querySelector('[data-abandonner]')!.addEventListener('click', () => {
+  reinitialiser();
+  annoncer('Examen abandonné. Tu peux en relancer un quand tu veux.');
+});
 
 const champ = document.getElementById('deux-chiffres') as HTMLInputElement;
 const erreur = $('[data-erreur]');
@@ -188,6 +192,7 @@ champ.addEventListener('input', () => {
 });
 $<HTMLFormElement>('[data-saisie]').addEventListener('submit', (e) => {
   e.preventDefault();
+  if (!fiches.length) return;
   if (!/^\d{1,2}$/.test(champ.value)) {
     erreur.textContent = 'Saisis 1 ou 2 chiffres, par exemple 26 (ou 00 pour la fiche 100).';
     erreur.hidden = false;
@@ -201,12 +206,16 @@ $<HTMLFormElement>('[data-saisie]').addEventListener('submit', (e) => {
   demarrer();
 });
 
-// Chargement : boutons inactifs tant que les fiches ne sont pas là.
+// Chargement : boutons inactifs tant que les fiches ne sont pas là (4G lente).
+const envoyer = racine.querySelector<HTMLButtonElement>('[data-saisie] button[type="submit"]')!;
 lancer.disabled = true;
+envoyer.disabled = true;
 Promise.all([chargerFiches(), chargerVehicules().catch(() => null)]).then(([f, v]) => {
   fiches = f;
   vehicules = v;
   lancer.disabled = false;
+  envoyer.disabled = false;
+  racine.dataset.pret = 'oui';
   const enCours = lireSession<Examen>(SESSION);
   if (enCours && enCours.index < 3) {
     examen = enCours;

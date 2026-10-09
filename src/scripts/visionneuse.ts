@@ -20,6 +20,8 @@ export interface OptionsVisionneuse {
   surTouche?: (p: Point) => void;
   /** Laisse passer les gestes sur un sommet (éditeur). */
   ignorerCible?: (cible: EventTarget | null) => boolean;
+  /** Appelé après chaque zoom ou déplacement (éditeur : repositionner les poignées). */
+  surTransformation?: () => void;
   legende?: string;
 }
 
@@ -58,7 +60,7 @@ export class Visionneuse {
         <div class="vis-calque">
           <picture>
             ${photo.srcset.avif ? `<source type="image/avif" srcset="${photo.srcset.avif}" sizes="(min-width: 900px) 760px, 100vw">` : ''}
-            <source type="image/webp" srcset="${photo.srcset.webp}" sizes="(min-width: 900px) 760px, 100vw">
+            ${photo.srcset.webp ? `<source type="image/webp" srcset="${photo.srcset.webp}" sizes="(min-width: 900px) 760px, 100vw">` : ''}
             <img src="${photo.src}" alt="${echapper(photo.alt)}" width="${photo.largeur}" height="${photo.hauteur}" loading="lazy" decoding="async" draggable="false">
           </picture>
           <svg class="vis-zones" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
@@ -138,6 +140,7 @@ export class Visionneuse {
     this.calque.style.transform = `translate(${this.t.tx}px, ${this.t.ty}px) scale(${this.t.s})`;
     this.scene.classList.toggle('vis-zoomee', this.t.s > 1.001);
     this.majMarqueur();
+    this.options.surTransformation?.();
   }
 
   zoomer(facteur: number, cx?: number, cy?: number): void {

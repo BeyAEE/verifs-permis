@@ -41,18 +41,20 @@ self.addEventListener('fetch', (event) => {
 
 async function servirSite(requete, url) {
   const cache = await caches.open(CACHE_SITE);
-  const trouve = await cache.match(requete, { ignoreSearch: true });
+  // ignoreVary : les scripts modules et les polices partent avec un en-tête Origin
+  // que la requête de pré-cache n'avait pas ; sans cela, « Vary » empêche la correspondance.
+  const trouve = await cache.match(requete, { ignoreSearch: true, ignoreVary: true });
   if (trouve) return trouve;
   // « /fiche/26 » (sans barre finale) → « /fiche/26/ »
   if (requete.mode === 'navigate' && !url.pathname.endsWith('/') && !/\.[a-z0-9]+$/i.test(url.pathname)) {
-    const avecBarre = await cache.match(url.pathname + '/');
+    const avecBarre = await cache.match(url.pathname + '/', { ignoreVary: true });
     if (avecBarre) return avecBarre;
   }
   try {
     return await fetch(requete);
   } catch (erreur) {
     if (requete.mode === 'navigate') {
-      const page404 = await cache.match(BASE + '404.html');
+      const page404 = await cache.match(BASE + '404.html', { ignoreVary: true });
       if (page404) return page404;
     }
     throw erreur;
@@ -65,7 +67,7 @@ async function servirPhoto(requete, url) {
   const actif = await caches.has(nomCache);
   const cache = actif ? await caches.open(nomCache) : null;
   if (cache) {
-    const trouve = await cache.match(requete);
+    const trouve = await cache.match(requete, { ignoreVary: true });
     if (trouve) return trouve;
   }
   try {
@@ -77,7 +79,7 @@ async function servirPhoto(requete, url) {
     if (cache) {
       const racine = url.pathname.replace(/-\d+\.(webp|avif|jpe?g|png)$/i, '-');
       for (const cle of await cache.keys()) {
-        if (new URL(cle.url).pathname.startsWith(racine)) return cache.match(cle);
+        if (new URL(cle.url).pathname.startsWith(racine)) return cache.match(cle, { ignoreVary: true });
       }
     }
     throw erreur;

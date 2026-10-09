@@ -134,4 +134,5 @@ Promise.all([chargerFiches(), chargerVehicules().catch(() => null)]).then(([f, v
   vehicules = v;
   racine.querySelectorAll<HTMLButtonElement>('[data-serie]').forEach((b) => (b.disabled = false));
   majReprise();
+  racine.dataset.pret = 'oui';
 });

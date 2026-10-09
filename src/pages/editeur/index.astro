@@ -1,0 +1,185 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import '../../styles/exercices.css';
+---
+
+<Base titre="Éditeur de zones | Vérifs permis" description="Outil interne de placement des zones sur les photos des voitures." noindex demanderVoiture={false}>
+  <div class="pile editeur" data-editeur>
+    <div class="pile">
+      <p class="surtitre">Outil réservé à l’auto-école</p>
+      <h1>Éditeur de zones</h1>
+      <p class="doux">
+        Les zones en <strong>brouillon</strong> ne sont jamais montrées aux élèves. Passe une zone en <strong>valide</strong> seulement après l’avoir testée.
+      </p>
+    </div>
+
+    <p class="carte alerte" data-alerte hidden role="status"></p>
+
+    <section class="carte pile" aria-labelledby="ed-donnees">
+      <h2 id="ed-donnees">1. Voiture et fichier</h2>
+      <div class="champ">
+        <label for="ed-voiture">Voiture</label>
+        <select id="ed-voiture" class="saisie">
+          <option value="clio5">Clio 5</option>
+          <option value="yaris">Yaris</option>
+        </select>
+      </div>
+      <p class="doux etat" data-etat aria-live="polite"></p>
+      <div class="rangee">
+        <label class="bouton bouton-contour fichier">
+          <input type="file" accept="application/json,.json" data-importer class="visuellement-cache" />
+          Importer un JSON
+        </label>
+        <button type="button" class="bouton bouton-principal" data-exporter><Icone nom="telechargement" />Exporter</button>
+        <button type="button" class="bouton bouton-contour" data-copier><Icone nom="copier" />Copier</button>
+      </div>
+      <button type="button" class="lien-discret" data-reinitialiser>Abandonner mes modifications et revenir aux données du site</button>
+    </section>
+
+    <section class="carte pile" aria-labelledby="ed-photo">
+      <h2 id="ed-photo">2. Photo et fiche</h2>
+      <div class="champ">
+        <label for="ed-photo-choix">Photo</label>
+        <select id="ed-photo-choix" class="saisie" data-photo></select>
+      </div>
+      <label class="lien-discret fichier-local">
+        <input type="file" accept="image/*" data-image-locale class="visuellement-cache" />
+        Ou ouvrir une image de mon appareil (pour dessiner avant de publier la photo)
+      </label>
+      <div class="champ">
+        <label for="ed-fiche">Fiche</label>
+        <select id="ed-fiche" class="saisie" data-fiche></select>
+      </div>
+      <p class="question-fiche" data-question-fiche></p>
+    </section>
+
+    <section class="carte pile" aria-labelledby="ed-zone">
+      <h2 id="ed-zone">3. Zone</h2>
+      <fieldset class="segments" aria-label="Mode">
+        <label><input type="radio" name="ed-mode" value="dessin" checked /><span>Dessiner</span></label>
+        <label><input type="radio" name="ed-mode" value="test" /><span>Tester comme un élève</span></label>
+      </fieldset>
+      <p class="doux aide" data-aide-mode>Touche la photo pour ajouter des points. Fais glisser un point pour l’ajuster. Pince pour zoomer.</p>
+      <div data-zone-photo class="zone-photo"><p class="doux">Choisis une photo.</p></div>
+      <div class="rangee outils-dessin" data-outils-dessin>
+        <button type="button" class="bouton bouton-contour" data-annuler-point>Retirer le dernier point</button>
+        <button type="button" class="bouton bouton-contour" data-effacer>Effacer le tracé</button>
+      </div>
+      <p class="resultat-test" data-resultat-test aria-live="polite"></p>
+
+      <div class="pile formulaire" data-formulaire>
+        <div class="champ">
+          <label for="ed-libelle">Libellé (ce que voit l’élève dans la liste)</label>
+          <input id="ed-libelle" class="saisie" type="text" placeholder="Ex. : Bocal de liquide de frein" />
+        </div>
+        <div class="champ">
+          <label for="ed-fiches">Fiches concernées (séparées par des virgules)</label>
+          <input id="ed-fiches" class="saisie" type="text" inputmode="numeric" placeholder="8, 70" />
+        </div>
+        <div class="champ">
+          <label for="ed-gros-plan">Gros plan associé</label>
+          <select id="ed-gros-plan" class="saisie"></select>
+        </div>
+        <fieldset class="segments" aria-label="Statut de la zone">
+          <label><input type="radio" name="ed-statut" value="brouillon" checked /><span>Brouillon</span></label>
+          <label><input type="radio" name="ed-statut" value="valide" /><span>Valide</span></label>
+        </fieldset>
+        <div class="rangee">
+          <button type="button" class="bouton bouton-principal" data-enregistrer>Enregistrer la zone</button>
+          <button type="button" class="bouton bouton-contour" data-nouvelle>Nouvelle zone</button>
+        </div>
+        <button type="button" class="bouton bouton-a-revoir" data-supprimer hidden>Supprimer cette zone</button>
+      </div>
+    </section>
+
+    <section class="carte pile" aria-labelledby="ed-liste">
+      <h2 id="ed-liste">Zones de cette photo</h2>
+      <ul class="zones-liste" role="list" data-zones></ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .alerte {
+    border-color: var(--rouge);
+    color: var(--rouge-texte);
+    font-weight: 600;
+  }
+  .fichier {
+    cursor: pointer;
+  }
+  .fichier:focus-within,
+  .fichier-local:focus-within {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+  .fichier-local {
+    cursor: pointer;
+  }
+  .question-fiche {
+    font-weight: 600;
+  }
+  .aide {
+    font-size: 0.9rem;
+  }
+  .zone-photo {
+    position: relative;
+  }
+  .resultat-test {
+    font-weight: 600;
+    min-height: 1.5em;
+  }
+  .zones-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .zones-liste :global(button) {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: var(--cible);
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--bordure);
+    background: var(--surface);
+  }
+  .zones-liste :global(button[aria-current='true']) {
+    border-color: var(--marine);
+    box-shadow: inset 0 0 0 1px var(--marine);
+  }
+  .zones-liste :global(.statut) {
+    margin-left: auto;
+  }
+  .zones-liste :global(.statut-valide) {
+    color: var(--vert-texte);
+  }
+  :global(.poignee) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    margin: -13px 0 0 -13px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #4c8dff;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 40%);
+    touch-action: none;
+    cursor: grab;
+    z-index: 2;
+  }
+  :global(.poignee.premiere) {
+    border-color: #ffd24d;
+  }
+</style>
+
+<script>
+  import '../../scripts/editeur';
+</script>

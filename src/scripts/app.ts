@@ -42,7 +42,8 @@ async function mettreEnCachePhotos(choix: ChoixVoiture): Promise<void> {
       const largeur = p.role === 'gros-plan' ? construite.largeurs[0] : construite.largeurs[Math.min(1, construite.largeurs.length - 1)];
       return [urlPhoto(BASE, choix, p.fichier, largeur, 'webp')];
     });
-    await Promise.all(urls.map((u) => cache.add(u).catch(() => undefined)));
+    // Seulement les photos manquantes : rien n'est retéléchargé inutilement.
+    await Promise.all(urls.map(async (u) => ((await cache.match(u)) ? undefined : cache.add(u).catch(() => undefined))));
   } catch {
     /* hors ligne ou stockage indisponible : on réessaiera au prochain choix */
   }
@@ -69,6 +70,13 @@ majPastilles();
 
 if (document.body.dataset.demanderVoiture === 'oui' && lireVoiture() === null) {
   ouvrirChoix();
+}
+
+// Rattrapage : si une mise en cache a été interrompue (page quittée trop tôt),
+// on complète en arrière-plan, uniquement en ligne.
+const choixActuel = lireVoiture();
+if (choixActuel && choixActuel !== 'inconnue' && navigator.onLine) {
+  window.setTimeout(() => void mettreEnCachePhotos(choixActuel), 1500);
 }
 
 if ('serviceWorker' in navigator && import.meta.env.PROD) {

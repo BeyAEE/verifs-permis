@@ -63,7 +63,10 @@ import '../../styles/exercices.css';
 
     <section class="pile" data-vue="question" hidden>
       <div class="barre-serie">
-        <p class="etiquette" data-titre-examen></p>
+        <div class="barre-serie-haut">
+          <p class="etiquette" data-titre-examen></p>
+          <button type="button" class="lien-discret" data-abandonner>Abandonner l’examen</button>
+        </div>
         <div class="progression" role="progressbar" aria-label="Progression de l’examen" aria-valuemin="0" aria-valuemax="3" data-progression>
           <div style="width:0%"></div>
         </div>
@@ -136,6 +139,15 @@ import '../../styles/exercices.css';
     display: flex;
     flex-direction: column;
     gap: 6px;
+  }
+  .barre-serie-haut {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .barre-serie-haut .lien-discret {
+    padding: 0;
   }
   section[data-vue='resultat']:focus {
     outline: none;

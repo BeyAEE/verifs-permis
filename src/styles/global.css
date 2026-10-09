@@ -17,6 +17,7 @@
   --texte: #0a2a57;
   --texte-doux: #51607a;
   --bordure: #d6deeb;
+  --bordure-champ: #76839b;
   --accent: #124483;
   --accent-texte: #ffffff;
   --lien: #124483;
@@ -52,6 +53,7 @@
     --texte: #eaf0fa;
     --texte-doux: #a9b9d3;
     --bordure: #24406a;
+    --bordure-champ: #6a86b0;
     --accent: #124483;
     --accent-texte: #ffffff;
     --lien: #8fb8ff;
@@ -453,7 +455,7 @@ main:focus {
   min-height: 52px;
   padding: 12px 16px;
   border-radius: 16px;
-  border: 2px solid var(--bordure);
+  border: 2px solid var(--bordure-champ);
   background: var(--surface);
   font-size: 1rem;
 }
@@ -467,7 +469,7 @@ main:focus {
   padding: 5px;
   border-radius: var(--pilule);
   background: var(--surface);
-  border: 1px solid var(--bordure);
+  border: 1.5px solid var(--bordure-champ);
 }
 .segments label {
   flex: 1;

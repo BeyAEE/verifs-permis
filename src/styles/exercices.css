@@ -118,7 +118,7 @@
   width: var(--cible);
   height: var(--cible);
   border-radius: 14px;
-  border: 1px solid var(--bordure);
+  border: 1.5px solid var(--bordure-champ);
   background: var(--surface);
   color: var(--texte);
   display: inline-flex;
@@ -210,7 +210,7 @@ html.vis-plein-ecran {
   padding: 8px 12px;
   border-radius: 14px;
   background: var(--surface);
-  border: 1px solid var(--bordure);
+  border: 1.5px solid var(--bordure-champ);
   cursor: pointer;
 }
 .option-liste input {
