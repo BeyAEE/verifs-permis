@@ -1,0 +1,42 @@
+{
+  "schema": "verifs-permis/vehicule@1",
+  "vehicule": { "id": "clio5", "nom": "Clio 5", "boite": "manuelle" },
+  "photos": [
+    {
+      "fichier": "clio5-moteur-vue-ensemble.jpg",
+      "alt": "Compartiment moteur de la Clio 5 de l'auto-école, capot ouvert, vu de face",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "clio5-moteur-liquide-refroidissement.jpg",
+      "alt": "Gros plan du vase d'expansion du liquide de refroidissement de la Clio 5",
+      "role": "gros-plan"
+    },
+    {
+      "fichier": "clio5-moteur-remplissage-huile.jpg",
+      "alt": "Gros plan du bouchon de remplissage d'huile moteur de la Clio 5",
+      "role": "gros-plan"
+    },
+    {
+      "fichier": "clio5-moteur-lave-glace.jpg",
+      "alt": "Gros plan du bouchon du réservoir de lave-glace de la Clio 5",
+      "role": "gros-plan"
+    },
+    {
+      "fichier": "clio5-moteur-liquide-frein-batterie.jpg",
+      "alt": "Gros plan du bocal de liquide de frein, à côté de la batterie de la Clio 5",
+      "role": "gros-plan"
+    },
+    {
+      "fichier": "clio5-phare-ampoule-avant-1.jpg",
+      "alt": "Arrière d'un bloc optique avant de la Clio 5, accès aux ampoules",
+      "role": "gros-plan"
+    },
+    {
+      "fichier": "clio5-phare-ampoule-avant-2.jpg",
+      "alt": "Arrière d'un bloc optique avant de la Clio 5, autre angle",
+      "role": "gros-plan"
+    }
+  ],
+  "zones": []
+}

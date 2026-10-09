@@ -1,0 +1,7 @@
+{
+  "depot": "BeyAEE/outil-moniteur",
+  "commit": "b186ea3e61c4ed8679d0b7dfb1ce6acde0370e2d",
+  "fichier": "remc-moniteur.html",
+  "bloc": "const FICHES=[ … ];",
+  "sha256": "b867b28c50b6c7c9e4bd9eebfecd7b5f921a94e116f17ad0e526f5b293a54ae8"
+}

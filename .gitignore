@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-test/
+.astro/
+test-results/
+playwright-report/
+lighthouse/
+.DS_Store
+
+# Photos d'origine : elles contiennent les métadonnées EXIF (dont la position GPS
+# des iPhone). Seules les versions nettoyées de public/photos/ sont publiées.
+photos-source/

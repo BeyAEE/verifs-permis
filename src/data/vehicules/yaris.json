@@ -1,0 +1,6 @@
+{
+  "schema": "verifs-permis/vehicule@1",
+  "vehicule": { "id": "yaris", "nom": "Yaris", "boite": "automatique" },
+  "photos": [],
+  "zones": []
+}
