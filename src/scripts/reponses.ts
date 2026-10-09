@@ -3,6 +3,7 @@ import type { Fiche, Partie } from '../lib/fiches';
 import type { Pictogramme } from '../lib/qcu';
 import { icone } from '../lib/icones';
 import donneesPictos from '../data/pictogrammes.json';
+import donneesNotes from '../data/notes.json';
 import { echapper } from './commun';
 
 export const SANS_REPONSE = 'Pas de réponse écrite pour cette vérification : il faut la faire ou la montrer sur la voiture.';
@@ -27,6 +28,11 @@ export function htmlPictogramme(p: Pictogramme): string {
   </figure>`;
 }
 
+/** « Bon à savoir » : information complémentaire, la même pour tous les élèves. */
+export function noteDe(fiche: number): string | undefined {
+  return donneesNotes.notes.find((n) => n.fiches.includes(fiche))?.texte;
+}
+
 /** Repère propre à la voiture choisie, affiché à la place du rappel générique. */
 export interface RepereAffiche {
   texte: string;
@@ -44,6 +50,8 @@ export function htmlReponse(fiche: Fiche, partie: Partie, rappel: boolean, reper
   if (picto) corps += htmlPictogramme(picto);
   if (texte.trim()) corps += `<p class="reponse-texte">${echapper(texte)}</p>`;
   else if (!picto) corps += `<p class="reponse-texte reponse-absente">${SANS_REPONSE}</p>`;
+  const bonASavoir = partie === 'verification' ? noteDe(fiche.numero) : undefined;
+  if (bonASavoir) corps += `<p class="bon-a-savoir">${icone('info')}<span><strong>Bon à savoir :</strong> ${echapper(bonASavoir)}</span></p>`;
   const note =
     partie !== 'verification' || !rappel ? '' : repere ? htmlRepere(repere) : `<p class="rappel">${icone('info')}<span>${RAPPEL_MONITEUR}</span></p>`;
   return corps + note;

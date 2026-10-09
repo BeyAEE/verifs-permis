@@ -47,8 +47,8 @@ Vérifications extérieures qui demandent de **montrer, indiquer, désigner ou o
 
 | État | Fiches |
 |---|---|
-| ✅ Couvertes (zone validée, photo publiée) | — |
-| ✏️ Zone en brouillon, à valider dans l’éditeur | 2, 8, 12, 22, 24, 36, 50, 56, 70, 72, 80, 96 |
+| ✅ Couvertes (zone validée, photo publiée) | 2, 8, 12, 22, 24, 36, 50, 56, 70, 72, 80, 96 |
+| ✏️ Zone en brouillon, à valider dans l’éditeur | — |
 | 🖼️ Zone validée mais photo pas encore publiée | — |
 | 📷 Pas encore de photo ni de zone | 32, 34, 42, 58, 66, 84, 88, 98, 100 |
 
@@ -64,8 +64,8 @@ Vérifications extérieures qui demandent de **montrer, indiquer, désigner ou o
 
 | État | Fiches |
 |---|---|
-| ✅ Couvertes (zone validée, photo publiée) | — |
-| ✏️ Zone en brouillon, à valider dans l’éditeur | 2, 8, 12, 22, 36, 50, 56, 70, 72, 80, 96 |
+| ✅ Couvertes (zone validée, photo publiée) | 2, 8, 12, 22, 36, 50, 56, 70, 72, 80, 96 |
+| ✏️ Zone en brouillon, à valider dans l’éditeur | — |
 | 🖼️ Zone validée mais photo pas encore publiée | — |
 | 📷 Pas encore de photo ni de zone | 24, 32, 34, 42, 58, 66, 84, 88, 98, 100 |
 

@@ -1,5 +1,7 @@
 // Service worker — généré au build par scripts/integrations/service-worker.mjs.
 // Site : pré-caché en entier à l'installation (cache « site-<version> »).
+// Pages et données : réseau d'abord (toujours la dernière version en ligne),
+// cache seulement hors connexion. Fichiers versionnés (JS, CSS, polices) : cache d'abord.
 // Photos : uniquement celles de la voiture choisie. La page crée le cache
 // « photos-<voiture> » au moment du choix ; ici on le remplit et on le sert.
 const VERSION = '__VERSION__';
@@ -12,7 +14,8 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
       .open(CACHE_SITE)
-      .then((cache) => cache.addAll(PRECACHE))
+      // Un fichier qui échoue ne doit pas bloquer la mise à jour de tout le site.
+      .then((cache) => Promise.all(PRECACHE.map((u) => cache.add(u).catch(() => undefined))))
       .then(() => self.skipWaiting()),
   );
 });
@@ -36,8 +39,28 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(servirPhoto(requete, url));
     return;
   }
+  if (requete.mode === 'navigate' || url.pathname.endsWith('.json') || url.pathname.endsWith('/')) {
+    event.respondWith(reseauDabord(requete, url));
+    return;
+  }
   event.respondWith(servirSite(requete, url));
 });
+
+const DELAI_RESEAU = 5000; // 4G faible : au-delà, on sert la copie hors ligne
+
+async function reseauDabord(requete, url) {
+  const cache = await caches.open(CACHE_SITE);
+  try {
+    const controle = new AbortController();
+    const minuteur = setTimeout(() => controle.abort(), DELAI_RESEAU);
+    const reponse = await fetch(requete, { signal: controle.signal });
+    clearTimeout(minuteur);
+    if (reponse.ok) cache.put(url.pathname.endsWith('/') || url.pathname.endsWith('.json') ? url.pathname : requete, reponse.clone());
+    return reponse;
+  } catch (erreur) {
+    return servirSite(requete, url);
+  }
+}
 
 async function servirSite(requete, url) {
   const cache = await caches.open(CACHE_SITE);

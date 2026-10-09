@@ -1,0 +1,11 @@
+{
+  "schema": "verifs-permis/notes@1",
+  "statut": "Notes « Bon à savoir » validées par l'auto-école. Elles s'ajoutent à la fiche officielle sans la modifier.",
+  "notes": [
+    {
+      "fiches": [41],
+      "texte": "Depuis le 1er avril 2024, la vignette verte sur le pare-brise et la carte verte ne sont plus obligatoires : l’assurance du véhicule est vérifiée dans le Fichier des véhicules assurés (FVA).",
+      "source": "Décret n° 2023-1152 du 8 décembre 2023 ; economie.gouv.fr, « Assurance automobile : suppression de la carte verte » (29/03/2024)"
+    }
+  ]
+}

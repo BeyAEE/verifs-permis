@@ -85,3 +85,14 @@ describe('fichiers voiture', () => {
     for (const d of [clio5, yaris]) for (const z of d.zones as any[]) for (const n of z.fiches) expect(ok.has(n), `zone ${z.id} fiche ${n}`).toBe(true);
   });
 });
+
+describe('notes « Bon à savoir »', () => {
+  it('visent des fiches existantes et citent une source', async () => {
+    const notes = (await import('../../src/data/notes.json')).default.notes;
+    for (const n of notes) {
+      for (const f of n.fiches) expect(f >= 1 && f <= 100, `fiche ${f}`).toBe(true);
+      expect(n.texte.length).toBeGreaterThan(20);
+      expect(n.source.length).toBeGreaterThan(10);
+    }
+  });
+});
