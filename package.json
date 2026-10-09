@@ -15,7 +15,8 @@
     "og": "node scripts/og-image.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check": "astro check"
+    "check": "astro check",
+    "couverture": "node scripts/couverture.mjs"
   },
   "engines": {
     "node": ">=20"
