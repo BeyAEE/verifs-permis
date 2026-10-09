@@ -2,9 +2,11 @@
 // la voiture choisie avec la zone en surbrillance quand elle existe.
 import type { Fiche } from '../lib/fiches';
 import { lireVoiture } from '../lib/stockage';
-import { exercicePour } from '../lib/vehicules';
+import { exercicePour, repereDe } from '../lib/vehicules';
 import { BASE, annoncer, chargerVehicules, libelleVoiture } from './commun';
 import { htmlPhoto } from './trouve';
+import { RAPPEL_MONITEUR, htmlRepere } from './reponses';
+import { icone } from '../lib/icones';
 import { Visionneuse } from './visionneuse';
 
 const page = document.querySelector<HTMLElement>('[data-fiche-page]')!;
@@ -71,7 +73,27 @@ async function afficherZone(): Promise<void> {
   if (rappel) rappel.hidden = true;
 }
 
+/** Rappel générique ↔ repère de la voiture choisie (ex. « manette au bas du rétroviseur »). */
+async function majRepere(): Promise<void> {
+  const note = page.querySelector<HTMLElement>('[data-reponse="verification"] .rappel, [data-reponse="verification"] .repere');
+  if (!note) return;
+  const choix = lireVoiture();
+  let texte: string | undefined;
+  if (choix && choix !== 'inconnue') {
+    try {
+      texte = repereDe((await chargerVehicules()).vehicules[choix], fiche.numero)?.texte;
+    } catch {
+      /* hors ligne sans données : rappel générique */
+    }
+  }
+  // On ne remplace que si le type change (évite d'écraser un rappel masqué par la photo de zone).
+  if (texte) note.outerHTML = htmlRepere({ texte, nomVoiture: libelleVoiture(choix) });
+  else if (note.classList.contains('repere')) note.outerHTML = `<p class="rappel">${icone('info')}<span>${RAPPEL_MONITEUR}</span></p>`;
+}
+void majRepere();
+
 document.addEventListener('voiture:changee', () => {
+  void majRepere();
   const ouverte = page.querySelector<HTMLButtonElement>('[data-voir="verification"]')?.getAttribute('aria-expanded') === 'true';
   if (ouverte) void afficherZone();
 });

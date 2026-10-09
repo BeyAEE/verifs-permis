@@ -168,3 +168,19 @@ test.describe('QCU et pictogrammes', () => {
     await expect(page.getByText('Pas de réponse écrite')).toHaveCount(0);
   });
 });
+
+test.describe('repères de la voiture', () => {
+  test('la Clio affiche son repère, sinon le rappel générique', async ({ page }) => {
+    await page.goto('fiche/1/');
+    await choisirVoiture(page, 'Clio 5');
+    await page.getByRole('button', { name: 'Voir la réponse' }).first().click();
+    await expect(page.getByText('Sur ta Clio 5 :')).toBeVisible();
+    await expect(page.getByText('Repère de test : bouton à gauche du volant.')).toBeVisible();
+    await expect(page.getByText('demande à ton moniteur de te montrer')).toHaveCount(0);
+
+    await page.locator('header').getByRole('button', { name: /changer de voiture/ }).click();
+    await choisirVoiture(page, 'Je ne sais pas encore');
+    await expect(page.getByText('demande à ton moniteur de te montrer')).toBeVisible();
+    await expect(page.getByText('Sur ta Clio 5 :')).toHaveCount(0);
+  });
+});

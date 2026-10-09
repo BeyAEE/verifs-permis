@@ -27,13 +27,24 @@ export function htmlPictogramme(p: Pictogramme): string {
   </figure>`;
 }
 
-export function htmlReponse(fiche: Fiche, partie: Partie, rappel: boolean): string {
+/** Repère propre à la voiture choisie, affiché à la place du rappel générique. */
+export interface RepereAffiche {
+  texte: string;
+  nomVoiture: string;
+}
+
+export function htmlRepere(r: RepereAffiche): string {
+  return `<p class="repere">${icone('voiture')}<span><strong>Sur ta ${echapper(r.nomVoiture)} :</strong> ${echapper(r.texte)}</span></p>`;
+}
+
+export function htmlReponse(fiche: Fiche, partie: Partie, rappel: boolean, repere?: RepereAffiche): string {
   const texte = fiche[partie].reponse;
   const picto = partie === 'verification' ? pictogrammeDe(fiche.numero) : undefined;
   let corps = '';
   if (picto) corps += htmlPictogramme(picto);
   if (texte.trim()) corps += `<p class="reponse-texte">${echapper(texte)}</p>`;
   else if (!picto) corps += `<p class="reponse-texte reponse-absente">${SANS_REPONSE}</p>`;
-  const note = partie === 'verification' && rappel ? `<p class="rappel">${icone('info')}<span>${RAPPEL_MONITEUR}</span></p>` : '';
+  const note =
+    partie !== 'verification' || !rappel ? '' : repere ? htmlRepere(repere) : `<p class="rappel">${icone('info')}<span>${RAPPEL_MONITEUR}</span></p>`;
   return corps + note;
 }

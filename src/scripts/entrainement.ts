@@ -2,7 +2,7 @@
 // La série en cours vit en mémoire de session (sessionStorage).
 import { bilanSerie, messageSerie, type Item, type Resultat } from '../lib/score';
 import { lireVoiture, lireSession, ecrireSession, effacerSession } from '../lib/stockage';
-import { exercicePour } from '../lib/vehicules';
+import { exercicePour, repereDe } from '../lib/vehicules';
 import type { Fiche } from '../lib/fiches';
 import { BASE, annoncer, chargerFiches, chargerVehicules, defilement, libelleVoiture, type DonneesClient } from './commun';
 import { afficherQuestion } from './question';
@@ -57,6 +57,12 @@ function demarrer(type: TypeSerie, items: Item[], qcu = modeChoisi()): void {
   afficherCourante();
 }
 
+function repereAffiche(numero: number) {
+  const choix = lireVoiture();
+  const r = choix && choix !== 'inconnue' ? repereDe(vehicules?.vehicules[choix], numero) : undefined;
+  return r ? { texte: r.texte, nomVoiture: libelleVoiture(choix) } : undefined;
+}
+
 function afficherCourante(): void {
   if (!serie) return;
   if (serie.index >= serie.items.length) return afficherBilan();
@@ -86,6 +92,7 @@ function afficherCourante(): void {
     mode: 'entrainement',
     libelleSuite: serie.index + 1 < serie.items.length ? 'Question suivante' : 'Voir mon score',
     qcu: serie.qcu ? { fiches } : undefined,
+    repere: repereAffiche(fiche.numero),
     surFin: (r) => {
       serie!.resultats.push(r);
       serie!.index++;

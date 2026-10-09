@@ -48,11 +48,23 @@ export function validerVehicule(objet: unknown): Validation {
     if (!STATUTS.includes(z?.statut)) erreurs.push(`${nom} : statut « brouillon » ou « valide » attendu.`);
   });
 
+  if (o.reperes !== undefined) {
+    if (!Array.isArray(o.reperes)) erreurs.push('« reperes » doit être une liste.');
+    else
+      o.reperes.forEach((r, i) => {
+        if (!Array.isArray(r?.fiches) || r.fiches.length === 0 || !r.fiches.every((n) => Number.isInteger(n) && n >= 1 && n <= 100))
+          erreurs.push(`Repère ${i + 1} : « fiches » doit lister des numéros de 1 à 100.`);
+        if (!r?.texte?.trim()) erreurs.push(`Repère ${i + 1} : texte manquant.`);
+        if (!r?.source?.trim()) erreurs.push(`Repère ${i + 1} : source manquante.`);
+      });
+  }
+
   return erreurs.length ? { ok: false, erreurs } : { ok: true, donnees: normaliser(o as DonneesVehicule) };
 }
 
 /** Forme canonique (ordre des clés, arrondi au centième de %). */
 export function normaliser(d: DonneesVehicule): DonneesVehicule {
+  const reperes = d.reperes?.map((r) => ({ fiches: [...r.fiches].sort((a, b) => a - b), texte: r.texte.trim(), source: r.source.trim() }));
   return {
     schema: 'verifs-permis/vehicule@1',
     vehicule: { id: d.vehicule.id, nom: d.vehicule.nom, boite: d.vehicule.boite },
@@ -66,6 +78,7 @@ export function normaliser(d: DonneesVehicule): DonneesVehicule {
       grosPlan: z.grosPlan ?? null,
       statut: z.statut,
     })),
+    ...(reperes ? { reperes } : {}),
   };
 }
 

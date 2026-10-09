@@ -9,7 +9,7 @@ import {
   type Point,
   type Rect,
 } from '../../src/lib/geometrie';
-import { exercicePour, donneesPubliques, type DonneesVehicule, type Manifeste } from '../../src/lib/vehicules';
+import { exercicePour, donneesPubliques, repereDe, type DonneesVehicule, type Manifeste } from '../../src/lib/vehicules';
 import { importerVehicule, exporterVehicule, nouvelId } from '../../src/lib/editeur-io';
 import { fiche } from '../../src/lib/fiches';
 
@@ -192,5 +192,29 @@ describe('éditeur : import / export', () => {
   it('génère des identifiants lisibles et uniques', () => {
     expect(nouvelId('Bocal de liquide de frein', [])).toBe('bocal-de-liquide-de-frein');
     expect(nouvelId('Batterie', ['batterie', 'batterie-2'])).toBe('batterie-3');
+  });
+});
+
+describe('repères propres à la voiture', () => {
+  const avecReperes = (reperes: unknown) => ({ ...donnees([zoneFrein]), reperes }) as DonneesVehicule;
+
+  it('sont conservés par l’aller-retour de l’éditeur', () => {
+    const d = avecReperes([{ fiches: [65, 1], texte: ' Bouton à gauche du volant. ', source: 'Notice' }]);
+    const v = importerVehicule(exporterVehicule(d));
+    expect(v.ok).toBe(true);
+    if (v.ok) expect(v.donnees.reperes).toEqual([{ fiches: [1, 65], texte: 'Bouton à gauche du volant.', source: 'Notice' }]);
+  });
+
+  it('sont refusés s’ils sont incomplets', () => {
+    const v = importerVehicule(JSON.stringify(avecReperes([{ fiches: [0], texte: '', source: '' }])));
+    expect(v.ok).toBe(false);
+    if (!v.ok) expect(v.erreurs.join(' ')).toMatch(/Repère 1 : « fiches »[\s\S]*texte manquant[\s\S]*source manquante/);
+  });
+
+  it('sont envoyés au navigateur et retrouvés par fiche', () => {
+    const pub = donneesPubliques(avecReperes([{ fiches: [3, 67], texte: 'Manette au bas du rétroviseur.', source: 'Notice' }]), manifeste);
+    expect(repereDe(pub, 67)?.texte).toBe('Manette au bas du rétroviseur.');
+    expect(repereDe(pub, 5)).toBeUndefined();
+    expect(repereDe(undefined, 3)).toBeUndefined();
   });
 });

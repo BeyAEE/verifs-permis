@@ -42,5 +42,8 @@
       "grosPlan": null,
       "statut": "brouillon"
     }
+  ],
+  "reperes": [
+    { "fiches": [1, 65], "texte": "Repère de test : bouton à gauche du volant.", "source": "Fixture de test" }
   ]
 }

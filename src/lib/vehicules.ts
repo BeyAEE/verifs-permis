@@ -29,11 +29,28 @@ export interface Zone {
   statut: StatutZone;
 }
 
+/**
+ * Repère propre à la voiture pour une vérification (« la manette est au bas du
+ * rétroviseur »). Il complète la fiche officielle sans jamais la modifier.
+ */
+export interface Repere {
+  fiches: number[];
+  texte: string;
+  /** D'où vient l'information (notice constructeur, moniteur…). */
+  source: string;
+}
+
 export interface DonneesVehicule {
   schema: 'verifs-permis/vehicule@1';
   vehicule: { id: IdVoiture; nom: string; boite: 'manuelle' | 'automatique' };
   photos: PhotoVehicule[];
   zones: Zone[];
+  reperes?: Repere[];
+}
+
+/** Repère de la voiture pour une fiche, s'il existe. */
+export function repereDe(donnees: DonneesVehicule | undefined, fiche: number): Repere | undefined {
+  return donnees?.reperes?.find((r) => r.fiches.includes(fiche));
 }
 
 /** Vrai si le point (en %) touche une des bonnes zones de l'exercice. */

@@ -601,3 +601,23 @@ html.vis-plein-ecran {
 .qcu-retour:focus {
   outline: none;
 }
+
+/* ── Repère propre à la voiture choisie ───────────────────────────────── */
+.repere {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.repere svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--lien);
+}

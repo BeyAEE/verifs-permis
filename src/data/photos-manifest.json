@@ -91,5 +91,20 @@
         "webp"
       ]
     }
+  },
+  "yaris": {
+    "yaris-moteur-vue-ensemble": {
+      "largeur": 4032,
+      "hauteur": 3024,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    }
   }
 }

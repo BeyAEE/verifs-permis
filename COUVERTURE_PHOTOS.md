@@ -65,13 +65,12 @@ Vérifications extérieures qui demandent de **montrer, indiquer, désigner ou o
 | État | Fiches |
 |---|---|
 | ✅ Couvertes (zone validée, photo publiée) | — |
-| ✏️ Zone en brouillon, à valider dans l’éditeur | — |
+| ✏️ Zone en brouillon, à valider dans l’éditeur | 2, 8, 12, 22, 36, 50, 56, 70, 72, 80, 96 |
 | 🖼️ Zone validée mais photo pas encore publiée | — |
-| 📷 Pas encore de photo ni de zone | 2, 8, 12, 22, 24, 32, 34, 36, 42, 50, 56, 58, 66, 70, 72, 80, 84, 88, 96, 98, 100 |
+| 📷 Pas encore de photo ni de zone | 24, 32, 34, 42, 58, 66, 84, 88, 98, 100 |
 
 **Photos à prendre** (une vue d’ensemble où l’élève cherche, + un gros plan par élément si possible) :
 
-- **Compartiment moteur, capot ouvert, pris de face (vue d'ensemble)** — pour : Bocal de lave-glace (remplissage), Bocal de liquide de frein, Vase d'expansion (liquide de refroidissement), Jauge à huile, Batterie, Bouchon de remplissage d'huile, Orifice de remplissage du lave-glace, Accès aux ampoules avant (fiches 2, 8, 12, 22, 24, 36, 50, 56, 70, 72, 80, 96)
 - **Flanc d'un pneu, repère du témoin d'usure (TWI) bien visible** — pour : Repère du témoin d'usure (fiches 32, 84)
 - **Côté de la voiture où se trouve la trappe à carburant** — pour : Trappe à carburant (fiches 34)
 - **Chant d'une portière arrière ouverte, sécurité enfant visible** — pour : Sécurité enfant (fiches 42, 88)

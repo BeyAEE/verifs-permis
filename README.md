@@ -89,6 +89,12 @@ navigateur tant que tu n'as pas exporté.
 Seules les zones **valides** dont la photo est publiée sont envoyées au
 navigateur des élèves. Une zone en brouillon n'apparaît jamais en ligne.
 
+## Pictogrammes, QCU et repères par voiture
+
+- **Pictogrammes officiels.** Pour 22 vérifications intérieures, la réponse du PDF officiel est un voyant dessiné. `npm run pictogrammes` les extrait de `data/source/banque-verifications-2018.pdf` (PyMuPDF requis : `pip install pymupdf`) vers `public/pictogrammes/` et `src/data/pictogrammes.json`.
+- **QCU en entraînement.** Les deux mauvaises réponses sont toujours des réponses officielles d'autres fiches, jamais inventées. Elles excluent les fiches qui posent la même question et les réponses trop proches de la bonne. Les vérifications avec un pictogramme deviennent un QCU de voyants. Les autres vérifications restent en auto-évaluation.
+- **Repères par voiture.** Dans `src/data/vehicules/<voiture>.json`, la liste `reperes` donne pour chaque fiche une indication propre à la voiture (« la manette est au bas du rétroviseur »), avec sa `source`. Quand l'élève a choisi cette voiture, le repère remplace « demande à ton moniteur ». Le texte officiel de la fiche n'est jamais modifié. Pour la Clio 5, les repères viennent de la notice Renault de l'édition 2025-2026.
+
 ## Déployer
 
 Tout `git push` sur `main` lance GitHub Actions

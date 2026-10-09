@@ -6,7 +6,7 @@ import type { Resultat } from '../lib/score';
 import type { Exercice } from '../lib/vehicules';
 import { choixQcu, type ChoixQcu } from '../lib/qcu';
 import { annoncer, defilement, echapper } from './commun';
-import { PICTOGRAMMES, htmlReponse, urlPictogramme } from './reponses';
+import { PICTOGRAMMES, htmlReponse, urlPictogramme, type RepereAffiche } from './reponses';
 import { trouverElement } from './trouve';
 
 export interface OptionsQuestion {
@@ -22,6 +22,8 @@ export interface OptionsQuestion {
   surFin: (r: Resultat) => void;
   /** Entraînement en QCU : toutes les fiches, pour piocher les mauvaises réponses. */
   qcu?: { fiches: Fiche[] };
+  /** Repère de la voiture choisie pour cette vérification (« la manette est… »). */
+  repere?: RepereAffiche;
 }
 
 const ICONES: Record<Partie, (f: Fiche) => string> = {
@@ -106,7 +108,7 @@ function modeQcu(corps: HTMLElement, o: OptionsQuestion, choix: ChoixQcu[]): voi
       const message = ok ? 'Bonne réponse !' : `Raté : la bonne réponse était la ${LETTRES[bonne]}.`;
       retour.innerHTML = `
         <p class="verdict ${ok ? 'verdict-bon' : 'verdict-faux'}">${icone(ok ? 'check' : 'croix')}<span>${message}</span></p>
-        ${partie === 'verification' ? `<div class="reponse">${htmlReponse(fiche, partie, true)}</div>` : ''}
+        ${partie === 'verification' ? `<div class="reponse">${htmlReponse(fiche, partie, true, o.repere)}</div>` : ''}
         <button type="button" class="bouton bouton-principal bouton-large" data-suite>${echapper(o.libelleSuite)}${icone('fleche-droite')}</button>`;
       retour.hidden = false;
       retour.classList.add('apparait');
@@ -126,7 +128,7 @@ function modeClassique(corps: HTMLElement, o: OptionsQuestion): void {
   corps.innerHTML = `
     <p class="consigne doux">${icone('info')}<span>Réponds dans ta tête ou à voix haute, puis regarde la réponse.</span></p>
     <button type="button" class="bouton bouton-contour bouton-large" data-voir aria-expanded="false" aria-controls="reponse-courante">${icone('oeil')}Voir la réponse</button>
-    <div class="reponse" id="reponse-courante" hidden tabindex="-1">${htmlReponse(fiche, partie, true)}</div>
+    <div class="reponse" id="reponse-courante" hidden tabindex="-1">${htmlReponse(fiche, partie, true, o.repere)}</div>
     <div class="auto-eval" hidden>
       <p class="etiquette" id="auto-eval-titre">Tu savais&nbsp;?</p>
       <div class="rangee" role="group" aria-labelledby="auto-eval-titre">

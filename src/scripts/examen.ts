@@ -5,7 +5,7 @@ import { PARTIES, libellePartie, type Fiche } from '../lib/fiches';
 import { icone } from '../lib/icones';
 import { bilanExamen, messageExamen, type Resultat } from '../lib/score';
 import { lireVoiture, lireSession, ecrireSession, effacerSession } from '../lib/stockage';
-import { exercicePour } from '../lib/vehicules';
+import { exercicePour, repereDe } from '../lib/vehicules';
 import { BASE, animationsReduites, annoncer, chargerFiches, chargerVehicules, defilement, echapper, libelleVoiture, type DonneesClient } from './commun';
 import { afficherQuestion } from './question';
 import { htmlReponse } from './reponses';
@@ -101,6 +101,12 @@ function demarrer(): void {
   afficherCourante();
 }
 
+function repereAffiche(numero: number) {
+  const choix = lireVoiture();
+  const r = choix && choix !== 'inconnue' ? repereDe(vehicules?.vehicules[choix], numero) : undefined;
+  return r ? { texte: r.texte, nomVoiture: libelleVoiture(choix) } : undefined;
+}
+
 function afficherCourante(): void {
   if (!examen) return;
   if (examen.index >= 3) return afficherResultat();
@@ -127,6 +133,7 @@ function afficherCourante(): void {
     nomVoiture: libelleVoiture(choix),
     mode: 'examen',
     libelleSuite: examen.index < 2 ? 'Question suivante' : 'Voir mon résultat',
+    repere: repereAffiche(fiche.numero),
     surFin: (r) => {
       examen!.resultats.push(r);
       examen!.index++;
@@ -155,7 +162,7 @@ function afficherResultat(): void {
           <span class="verdict-mini ${r.ok ? 'bon' : 'faux'}">${icone(r.ok ? 'check' : 'croix')}${r.ok ? '1 point' : '0 point'}</span>
         </div>
         <p class="question-texte">${echapper(fiche[r.partie].question)}</p>
-        <div class="reponse">${htmlReponse(fiche, r.partie, r.mode === 'auto')}</div>
+        <div class="reponse">${htmlReponse(fiche, r.partie, r.mode === 'auto', repereAffiche(fiche.numero))}</div>
       </li>`,
     )
     .join('');

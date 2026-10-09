@@ -1,6 +1,100 @@
 {
   "schema": "verifs-permis/vehicule@1",
-  "vehicule": { "id": "yaris", "nom": "Yaris", "boite": "automatique" },
-  "photos": [],
-  "zones": []
+  "vehicule": {
+    "id": "yaris",
+    "nom": "Yaris",
+    "boite": "automatique"
+  },
+  "photos": [
+    {
+      "fichier": "yaris-moteur-vue-ensemble.jpg",
+      "alt": "Compartiment moteur de la Toyota Yaris hybride, capot ouvert, vu de face",
+      "role": "vue-ensemble"
+    }
+  ],
+  "zones": [
+    {
+      "id": "vase-expansion",
+      "fiches": [
+        12,
+        72
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[24.5,59], [28,58.33], [30,60], [30.25,65.67], [24.75,66.33]],
+      "libelle": "Vase d’expansion (liquide de refroidissement)",
+      "grosPlan": null,
+      "statut": "brouillon"
+    },
+    {
+      "id": "bouchon-huile",
+      "fiches": [
+        36
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[30.75,45], [32,44], [33.75,44.13], [34.5,46], [34,48], [32.25,48.33], [31,47.2]],
+      "libelle": "Bouchon de remplissage d’huile",
+      "grosPlan": null,
+      "statut": "brouillon"
+    },
+    {
+      "id": "jauge-huile",
+      "fiches": [
+        22,
+        80
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[41.25,49.67], [41.9,47.87], [43.1,47.33], [44.4,48.13], [44.75,49.87], [44,51.47], [42.6,51.87], [41.6,51.07]],
+      "libelle": "Jauge de contrôle du niveau d’huile",
+      "grosPlan": null,
+      "statut": "brouillon"
+    },
+    {
+      "id": "liquide-frein",
+      "fiches": [
+        8,
+        70
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[64,40], [66,37.87], [68.25,38], [70,40], [69.75,44.33], [65,44.67]],
+      "libelle": "Bocal de liquide de frein",
+      "grosPlan": null,
+      "statut": "brouillon"
+    },
+    {
+      "id": "lave-glace",
+      "fiches": [
+        2,
+        50
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[17.25,54.33], [19,53.33], [20.75,54.33], [21,57.33], [20.25,64], [18,64.33], [17.5,57.33]],
+      "libelle": "Réservoir de lave-glace",
+      "grosPlan": null,
+      "statut": "brouillon"
+    },
+    {
+      "id": "phare-avant-droit",
+      "fiches": [
+        56,
+        96
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[7.5,43.33], [13,42], [15,46.67], [14.5,53.33], [11,54.67], [8,50.67]],
+      "libelle": "Phare avant droit (accès aux ampoules)",
+      "grosPlan": null,
+      "statut": "brouillon"
+    },
+    {
+      "id": "phare-avant-gauche",
+      "fiches": [
+        56,
+        96
+      ],
+      "photo": "yaris-moteur-vue-ensemble.jpg",
+      "polygone": [[82,43.33], [88,42], [90.5,46.67], [89.5,53.33], [85,54.67], [82.5,50.67]],
+      "libelle": "Phare avant gauche (accès aux ampoules)",
+      "grosPlan": null,
+      "statut": "brouillon"
+    }
+  ]
 }

@@ -127,5 +127,156 @@
       "grosPlan": "clio5-phare-avant-gauche.jpg",
       "statut": "brouillon"
     }
+  ],
+  "reperes": [
+    {
+      "fiches": [
+        1,
+        65
+      ],
+      "texte": "À gauche du volant : un bouton avec le pictogramme d’un projecteur. Appuie dessus ou relève-le pour choisir une position de 0 à 4 ; elle s’affiche quelques secondes au tableau de bord.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Réglage de la portée des projecteurs » et « Poste de conduite »"
+    },
+    {
+      "fiches": [
+        3,
+        67
+      ],
+      "texte": "Bascule la petite manette au bas du rétroviseur intérieur. S’il n’y en a pas, ton rétroviseur passe tout seul en position nuit quand une voiture t’éblouit.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Rétroviseurs »"
+    },
+    {
+      "fiches": [
+        5,
+        69
+      ],
+      "texte": "Manette à droite du volant : abaisse-la jusqu’au dernier cran, c’est le balayage rapide. Contact mis.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Essuie-vitres »"
+    },
+    {
+      "fiches": [
+        11
+      ],
+      "texte": "Au tableau de bord, derrière le volant : la jauge avec le pictogramme d’une pompe à carburant.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Ordinateur de bord »"
+    },
+    {
+      "fiches": [
+        13,
+        73
+      ],
+      "texte": "Dans les commandes de chauffage, sous l’écran central : appuie sur le bouton de la lunette arrière (moteur tournant). Le voyant du bouton s’allume.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Climatisation manuelle, chauffage »"
+    },
+    {
+      "fiches": [
+        15,
+        75,
+        23,
+        25,
+        55,
+        81,
+        27,
+        83,
+        29,
+        39,
+        89,
+        63,
+        99
+      ],
+      "texte": "Les voyants sont au tableau de bord, derrière le volant. Astuce : certains s’allument quelques secondes quand tu mets le contact, c’est le moment de les repérer.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Témoins d’alerte »"
+    },
+    {
+      "fiches": [
+        19
+      ],
+      "texte": "Manette sous la colonne de direction : abaisse-la, place le volant (hauteur et profondeur), puis remonte-la à fond pour le bloquer. Uniquement à l’arrêt.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Volant »"
+    },
+    {
+      "fiches": [
+        21,
+        79
+      ],
+      "texte": "Dans les commandes de chauffage, sous l’écran central : tourne la molette de répartition de l’air sur le pictogramme du pare-brise. Avec la climatisation automatique, appuie sur le bouton du pare-brise.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Climatisation manuelle, chauffage » et « Climatisation automatique »"
+    },
+    {
+      "fiches": [
+        31,
+        85
+      ],
+      "texte": "Bouton avec le triangle rouge, dans la rangée de boutons entre l’écran central et les commandes de chauffage.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Poste de conduite » et « Signalisations sonores et lumineuses »"
+    },
+    {
+      "fiches": [
+        33
+      ],
+      "texte": "Sur la branche gauche du volant : la touche du régulateur, puis + et − pour régler la vitesse à maintenir.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Régulateur de vitesse » et « Poste de conduite »"
+    },
+    {
+      "fiches": [
+        35
+      ],
+      "texte": "Au centre du volant : appuie sur le moyeu pour klaxonner.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Signalisations sonores et lumineuses »"
+    },
+    {
+      "fiches": [
+        43,
+        47,
+        91
+      ],
+      "texte": "Manette à gauche du volant, feux de croisement allumés : tourne la bague du milieu jusqu’au pictogramme du feu de brouillard arrière, puis relâche. Un voyant orange s’allume au tableau de bord.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Éclairages et signalisations extérieurs »"
+    },
+    {
+      "fiches": [
+        45
+      ],
+      "texte": "Appuie sur le bouton à la base de l’appui-tête et fais-le glisser vers le haut ou le bas. Vérifie ensuite qu’il est bien bloqué.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Appuis-tête avant »"
+    },
+    {
+      "fiches": [
+        49,
+        93
+      ],
+      "texte": "Dans les commandes de chauffage, sous l’écran central : le bouton avec une voiture et une flèche en boucle. Son voyant s’allume quand le recyclage est actif.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Climatisation manuelle, chauffage »"
+    },
+    {
+      "fiches": [
+        51,
+        95
+      ],
+      "texte": "Manette à gauche du volant, feux de croisement allumés : pousse-la vers le tableau de bord. Tire-la vers toi pour revenir en croisement. Le voyant est bleu.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Éclairages et signalisations extérieurs »"
+    },
+    {
+      "fiches": [
+        57
+      ],
+      "texte": "Sur la branche gauche du volant : la touche du limiteur, puis + et − pour régler la vitesse à ne pas dépasser (30 km/h minimum).",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Limiteur de vitesse » et « Poste de conduite »"
+    },
+    {
+      "fiches": [
+        59,
+        97
+      ],
+      "texte": "Manette à droite du volant : tourne la bague au bout de la manette jusqu’au pictogramme de l’essuie-glace arrière. Contact mis.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Essuie-vitres »"
+    },
+    {
+      "fiches": [
+        61
+      ],
+      "texte": "Aux places arrière, à la jonction entre le dossier et l’assise (et sur le siège passager avant selon la version). Un pictogramme ISOFIX les signale.",
+      "source": "Notice Renault Clio 5 (édition 15/09/2025 – 16/03/2026), « Fixation par le système ISOFIX »"
+    }
   ]
 }
