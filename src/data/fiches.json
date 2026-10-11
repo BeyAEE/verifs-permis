@@ -2,10 +2,10 @@
   "schema": "verifs-permis/fiches@1",
   "source": {
     "depot": "BeyAEE/outil-moniteur",
-    "commit": "b186ea3e61c4ed8679d0b7dfb1ce6acde0370e2d",
+    "commit": "61325032f04b30d4d8dfdec905544e73cd91999a",
     "fichier": "remc-moniteur.html",
     "bloc": "const FICHES=[ … ];",
-    "sha256": "b867b28c50b6c7c9e4bd9eebfecd7b5f921a94e116f17ad0e526f5b293a54ae8"
+    "sha256": "f31bffb398a0d6935b4d599c6ed39cc7710f3e75e7aaf374ced427ef4156f20f"
   },
   "fiches": [
     {
@@ -116,7 +116,7 @@
         "reponse": "Le triangle de pré-signalisation."
       },
       "secours": {
-        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doitelle être déplacée ?",
+        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doit-elle être déplacée ?",
         "reponse": "Dans un endroit suffisamment éloigné du danger et de ses conséquences."
       }
     },
@@ -516,7 +516,7 @@
         "reponse": "La présence d'un film d'eau entre le pneumatique et la chaussée pouvant entraîner une perte de contrôle du véhicule."
       },
       "secours": {
-        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doitelle être déplacée ?",
+        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doit-elle être déplacée ?",
         "reponse": "Dans un endroit suffisamment éloigné du danger et de ses conséquences."
       }
     },
@@ -1140,7 +1140,7 @@
         "reponse": "Le triangle de pré-signalisation."
       },
       "secours": {
-        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doitelle être déplacée ?",
+        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doit-elle être déplacée ?",
         "reponse": "Dans un endroit suffisamment éloigné du danger et de ses conséquences."
       }
     },
@@ -1348,7 +1348,7 @@
         "reponse": "La présence d'un film d'eau entre le pneumatique et la chaussée pouvant entraîner une perte de contrôle du véhicule."
       },
       "secours": {
-        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doitelle être déplacée ?",
+        "question": "Si un dégagement d'urgence de la victime est nécessaire, où doit-elle être déplacée ?",
         "reponse": "Dans un endroit suffisamment éloigné du danger et de ses conséquences."
       }
     },
@@ -1436,8 +1436,8 @@
       "numero": 90,
       "type": "exterieure",
       "verification": {
-        "question": "Avec l'assistance de Vérification des feux, propres, en l'accompagnateur, bon état et fonctionnent contrôlez l'état, la propreté et le (toute anomalie doit être fonctionnement des feux de stop.",
-        "reponse": "signalée)."
+        "question": "Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop.",
+        "reponse": "Vérification des feux, propres, en bon état et fonctionnent (toute anomalie doit être signalée)."
       },
       "securite": {
         "question": "Quelle est la conséquence en cas de panne des feux de stop ?",

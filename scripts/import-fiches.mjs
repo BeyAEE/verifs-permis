@@ -15,7 +15,7 @@ import { extraireBloc, lireBloc, versSchema, sha256 } from './lib/fiches-source.
 
 const DEPOT = 'BeyAEE/outil-moniteur';
 const FICHIER = 'remc-moniteur.html';
-const COMMIT_EPINGLE = 'b186ea3e61c4ed8679d0b7dfb1ce6acde0370e2d';
+const COMMIT_EPINGLE = '61325032f04b30d4d8dfdec905544e73cd91999a';
 
 const args = process.argv.slice(2);
 const opt = (nom) => {

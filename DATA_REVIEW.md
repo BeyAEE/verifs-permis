@@ -1,33 +1,34 @@
 # Points de données à valider
 
 Les 100 fiches sont reprises **mot pour mot** de l'outil moniteur
-(`beyaee/outil-moniteur`, commit `b186ea3`). Une vérification indépendante a
-confirmé **0 écart sur 4 755 contrôles** entre l'outil, les données du site et
-les 100 pages publiées.
+(`beyaee/outil-moniteur`, commit `6132503`). Le test d'intégrité vérifie à
+chaque build que le texte du site est identique, caractère par caractère, à
+celui de l'outil.
 
 L'outil a ensuite été comparé au **PDF officiel** (banque DSR du 1er janvier 2018,
-copié dans `data/source/banque-verifications-2018.pdf`) : **540 textes sur 545
-sont identiques** au document officiel. Les « coquilles » repérées dans les
+copié dans `data/source/banque-verifications-2018.pdf`) : depuis la correction
+d'octobre 2026, **les 545 textes sont identiques** au document officiel. Les
+« coquilles » repérées dans les
 fiches (« De » majuscule, « avants », « arrières », « gène », fiche 55 en
 triple, fiches 60 et 62 identiques…) figurent **telles quelles dans le
 document officiel** : l'outil les a recopiées fidèlement.
 
-Légende : ⚠️ à corriger dans l'outil moniteur · 🔎 à vérifier · ℹ️ pour information.
+Légende : ✅ corrigé · 🔎 à vérifier · ℹ️ pour information.
 
-## 1. Erreurs d'extraction à corriger dans l'outil moniteur
+## 1. Erreurs d'extraction (corrigées en octobre 2026)
 
-Ce sont les **5 seuls textes** de l'outil qui ne correspondent pas au PDF officiel.
+Ce sont les **5 seuls textes** de l'outil qui ne correspondaient pas au PDF
+officiel. Ils ont été corrigés dans l'outil moniteur (commit `6132503`), puis
+réimportés ici : l'outil et le site affichent maintenant le texte officiel.
 
-| | Fiche | Texte de l'outil | Texte officiel (PDF) |
+| | Fiche | Ancien texte de l'outil | Texte officiel (PDF), repris désormais |
 |---|---|---|---|
-| ⚠️ | **90** (question) | « Avec l'assistance de Vérification des feux, propres, en l'accompagnateur, bon état et fonctionnent contrôlez l'état, la propreté et le (toute anomalie doit être fonctionnement des feux de stop. » | « Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop. » |
-| ⚠️ | **90** (réponse) | « signalée). » | « Vérification des feux, propres, en bon état et fonctionnent (toute anomalie doit être signalée). » |
-| ⚠️ | **7, 32, 71, 84** (premiers secours) | « …où **doitelle** être déplacée ? » | « …où **doit-elle** être déplacée ? » |
+| ✅ | **90** (question) | « Avec l'assistance de Vérification des feux, propres, en l'accompagnateur, bon état et fonctionnent contrôlez l'état, la propreté et le (toute anomalie doit être fonctionnement des feux de stop. » | « Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop. » |
+| ✅ | **90** (réponse) | « signalée). » | « Vérification des feux, propres, en bon état et fonctionnent (toute anomalie doit être signalée). » |
+| ✅ | **7, 32, 71, 84** (premiers secours) | « …où **doitelle** être déplacée ? » | « …où **doit-elle** être déplacée ? » |
 
-**Pour corriger :** modifie ces fiches dans l'outil moniteur, puis lance ici
-`npm run import:fiches -- --commit <nouveau sha>`. Mets ensuite à jour la liste
-des fiches sans réponse dans `tests/unit/donnees.test.ts` : la fiche 90 aura
-alors une réponse.
+Les particularités de la section 3, présentes dans le document officiel
+lui-même, ont été volontairement gardées telles quelles.
 
 ## 2. Réponses en image dans le document officiel (désormais affichées)
 
