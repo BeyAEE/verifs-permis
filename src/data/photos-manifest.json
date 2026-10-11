@@ -93,9 +93,100 @@
     }
   },
   "yaris": {
+    "yaris-moteur-jauge-huile": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-moteur-lave-glace": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-moteur-liquide-frein": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-moteur-liquide-refroidissement": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-moteur-remplissage-huile": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
     "yaris-moteur-vue-ensemble": {
       "largeur": 4032,
       "hauteur": 3024,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-phare-avant-droit": {
+      "largeur": 3024,
+      "hauteur": 4032,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-phare-avant-gauche": {
+      "largeur": 3024,
+      "hauteur": 4032,
       "largeurs": [
         800,
         1400,
