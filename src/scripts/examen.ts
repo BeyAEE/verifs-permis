@@ -5,6 +5,7 @@ import { PARTIES, libellePartie, type Fiche } from '../lib/fiches';
 import { icone } from '../lib/icones';
 import { bilanExamen, messageExamen, type Resultat } from '../lib/score';
 import { lireVoiture, lireSession, ecrireSession, effacerSession } from '../lib/stockage';
+import { enregistrerReponse } from '../lib/progression';
 import { exercicePour, repereDe } from '../lib/vehicules';
 import { BASE, animationsReduites, annoncer, chargerFiches, chargerVehicules, defilement, echapper, libelleVoiture, type DonneesClient } from './commun';
 import { afficherQuestion } from './question';
@@ -135,6 +136,7 @@ function afficherCourante(): void {
     libelleSuite: examen.index < 2 ? 'Question suivante' : 'Voir mon résultat',
     repere: repereAffiche(fiche.numero),
     surFin: (r) => {
+      enregistrerReponse(r, r.ok);
       examen!.resultats.push(r);
       examen!.index++;
       ecrireSession(SESSION, examen);

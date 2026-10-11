@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
+import CarteProgression from '../../components/CarteProgression.astro';
 import '../../styles/exercices.css';
 
 const series = [
@@ -13,7 +14,7 @@ const series = [
 
 <Base
   titre="S’entraîner aux vérifications du permis B | Vérifs permis"
-  description="Entraîne-toi sur les questions de vérification du permis B : 10 fiches au hasard, toutes les fiches, ou seulement les intérieures ou les extérieures. Score et questions à revoir."
+  description="Entraîne-toi sur les questions de vérification du permis B : 10 fiches au hasard, toutes les fiches, ou seulement les intérieures ou les extérieures. Score, questions à revoir et suivi de ta progression."
   actif="entrainement"
 >
   <div class="pile" data-entrainement>
@@ -42,6 +43,16 @@ const series = [
 
       <h2 class="visuellement-cache">Choisis ta série</h2>
       <div class="choix-series">
+        <button type="button" class="carte-serie serie-faibles" data-serie="faibles" id="points-faibles" hidden>
+          <span class="carte-serie-icone">
+            <Icone nom="recadrer" />
+          </span>
+          <span class="carte-serie-texte">
+            <strong>Mes points faibles</strong>
+            <small data-detail-faibles>Les questions ratées la dernière fois</small>
+          </span>
+          <Icone nom="fleche-droite" classe="chevron" />
+        </button>
         {
           series.map((s) => (
             <button type="button" class="carte-serie" data-serie={s.id}>
@@ -57,6 +68,8 @@ const series = [
           ))
         }
       </div>
+
+      <CarteProgression effacer />
     </section>
 
     <section class="pile" data-vue="question" hidden>
@@ -77,6 +90,7 @@ const series = [
         <p class="surtitre">Ton score</p>
         <h2 id="bilan-titre" class="score"><span aria-hidden="true"><span data-score>0</span><span class="sur"> / <span data-total>0</span></span></span><span class="visuellement-cache" data-score-texte></span></h2>
         <p class="message" data-message></p>
+        <p class="doux bilan-progression" data-bilan-progression></p>
       </div>
       <div class="pile" data-a-revoir-bloc>
         <h2>À revoir</h2>
@@ -156,6 +170,9 @@ const series = [
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+  }
+  .serie-faibles .carte-serie-icone {
+    background: var(--rouge);
   }
   .carte-serie-icone :global(svg) {
     width: 26px;

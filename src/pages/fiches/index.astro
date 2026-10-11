@@ -129,6 +129,28 @@ import { url } from '../../lib/site';
     width: 16px;
     height: 16px;
   }
+  .type :global(.etat-fiche) {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 4px;
+    padding: 1px 8px;
+    border-radius: var(--pilule);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .type :global(.etat-fiche svg) {
+    width: 14px;
+    height: 14px;
+  }
+  .type :global(.maitrisee) {
+    background: var(--vert-pale);
+    color: var(--vert-texte);
+  }
+  .type :global(.a-revoir) {
+    background: var(--rouge-pale);
+    color: var(--rouge-texte);
+  }
   .q {
     font-weight: 600;
     line-height: 1.35;

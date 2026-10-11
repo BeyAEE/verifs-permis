@@ -2,11 +2,13 @@
 // La série en cours vit en mémoire de session (sessionStorage).
 import { bilanSerie, messageSerie, type Item, type Resultat } from '../lib/score';
 import { lireVoiture, lireSession, ecrireSession, effacerSession } from '../lib/stockage';
+import { enregistrerReponse, lireProgression, pointsFaibles, resume } from '../lib/progression';
 import { exercicePour, repereDe } from '../lib/vehicules';
 import type { Fiche } from '../lib/fiches';
 import { BASE, annoncer, chargerFiches, chargerVehicules, defilement, libelleVoiture, type DonneesClient } from './commun';
 import { afficherQuestion } from './question';
 import { NOMS_SERIES, animerScore, htmlARevoir, itemsSerie, type TypeSerie } from './series';
+import { EVENEMENT_PROGRESSION, majCarteProgression } from './progression-carte';
 
 interface Serie {
   type: TypeSerie;
@@ -48,6 +50,16 @@ function majReprise(): void {
   const bloc = $('[data-reprise]');
   bloc.hidden = !(enCours && enCours.index < enCours.items.length);
   if (enCours) $('[data-reprise-detail]').textContent = `(${NOMS_SERIES[enCours.type]}, question ${enCours.index + 1} sur ${enCours.items.length})`;
+}
+
+/** Carte « Mes points faibles » et carte de progression, d'après le stockage local. */
+function majProgression(): void {
+  majCarteProgression(racine);
+  const n = resume(lireProgression()).questionsARevoir;
+  const carte = $('[data-serie="faibles"]');
+  carte.hidden = n === 0;
+  $('[data-detail-faibles]').textContent =
+    n > 30 ? `30 des ${n} questions ratées la dernière fois` : `${n} question${n > 1 ? 's' : ''} ratée${n > 1 ? 's' : ''} la dernière fois`;
 }
 
 function demarrer(type: TypeSerie, items: Item[], qcu = modeChoisi()): void {
@@ -94,6 +106,7 @@ function afficherCourante(): void {
     qcu: serie.qcu ? { fiches } : undefined,
     repere: repereAffiche(fiche.numero),
     surFin: (r) => {
+      enregistrerReponse(r, r.ok);
       serie!.resultats.push(r);
       serie!.index++;
       sauver();
@@ -111,6 +124,8 @@ function afficherBilan(): void {
   animerScore($('[data-score]'), bilan.points);
   $('[data-total]').textContent = String(bilan.total);
   $('[data-message]').textContent = bilan.total ? messageSerie(bilan.points, bilan.total) : 'Aucune question répondue pour cette série.';
+  const { maitrisees } = resume(lireProgression());
+  $('[data-bilan-progression]').textContent = `Ta progression : ${maitrisees} fiche${maitrisees > 1 ? 's' : ''} maîtrisée${maitrisees > 1 ? 's' : ''} sur 100.`;
   $('[data-a-revoir]').innerHTML = htmlARevoir(bilan.aRevoir, fiches);
   $('[data-a-revoir-bloc]').hidden = bilan.aRevoir.length === 0;
   $<HTMLButtonElement>('[data-recommencer-revoir]').hidden = bilan.aRevoir.length === 0;
@@ -123,8 +138,11 @@ function afficherBilan(): void {
 racine.addEventListener('click', (e) => {
   const cible = (e.target as HTMLElement).closest<HTMLElement>('button');
   if (!cible || !fiches.length) return;
-  if (cible.dataset.serie) {
-    const type = cible.dataset.serie as Exclude<TypeSerie, 'revoir'>;
+  if (cible.dataset.serie === 'faibles') {
+    const items = pointsFaibles(lireProgression());
+    if (items.length) demarrer('faibles', items);
+  } else if (cible.dataset.serie) {
+    const type = cible.dataset.serie as Exclude<TypeSerie, 'revoir' | 'faibles'>;
     demarrer(type, itemsSerie(type, fiches));
   } else if (cible.hasAttribute('data-reprendre')) {
     serie = lireSession<Serie>(SESSION);
@@ -143,6 +161,7 @@ racine.addEventListener('click', (e) => {
   } else if (cible.hasAttribute('data-nouvelle')) {
     serie = null;
     majReprise();
+    majProgression();
     montrerVue('choix');
     window.scrollTo({ top: 0 });
     racine.querySelector<HTMLButtonElement>('[data-serie]')?.focus();
@@ -166,5 +185,17 @@ Promise.all([chargerFiches(), chargerVehicules().catch(() => null)]).then(([f, v
   vehicules = v;
   racine.querySelectorAll<HTMLButtonElement>('[data-serie]').forEach((b) => (b.disabled = false));
   majReprise();
+  majProgression();
   racine.dataset.pret = 'oui';
+  // Arrivée depuis « Revoir mes points faibles » (page d'accueil).
+  const faibles = $('[data-serie="faibles"]');
+  if (location.hash === '#points-faibles' && !faibles.hidden) {
+    faibles.scrollIntoView({ block: 'center', behavior: defilement() });
+    faibles.focus({ preventScroll: true });
+  }
+});
+
+document.addEventListener(EVENEMENT_PROGRESSION, () => {
+  majProgression();
+  racine.querySelector<HTMLButtonElement>('[data-serie]:not([hidden])')?.focus();
 });

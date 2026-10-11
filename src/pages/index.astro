@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
+import CarteProgression from '../components/CarteProgression.astro';
 import { url } from '../lib/site';
 ---
 
@@ -49,6 +50,8 @@ import { url } from '../lib/site';
         <Icone nom="compteur" /><span>Examen blanc</span>
       </a>
     </div>
+
+    <CarteProgression lienRevoir />
 
     <a class="lien-fleche secondaire" href={url('fiches/')}>
       Voir les 100 fiches <Icone nom="fleche-droite" />
@@ -196,3 +199,8 @@ import { url } from '../lib/site';
     margin-top: 2px;
   }
 </style>
+
+<script>
+  import { majCarteProgression } from '../scripts/progression-carte';
+  majCarteProgression();
+</script>

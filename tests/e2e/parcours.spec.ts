@@ -98,6 +98,66 @@ test.describe('entraînement', () => {
   });
 });
 
+test.describe('progression', () => {
+  test('gardée d’une visite à l’autre : accueil, liste des fiches, points faibles, effacement', async ({ page }) => {
+    await page.goto('entrainement/');
+    await choisirVoiture(page, 'Je ne sais pas encore');
+    await expect(page.locator('[data-entrainement][data-pret="oui"]')).toBeAttached();
+    await expect(page.getByRole('button', { name: /Mes points faibles/ })).toBeHidden();
+    await expect(page.getByText('Ta progression')).toBeHidden();
+
+    // Fiche 1 : 3 bonnes réponses (maîtrisée). Fiche 2 : vérification ratée.
+    await page.getByRole('button', { name: /Toutes les fiches, dans l’ordre/ }).click();
+    for (const reponse of ['Je savais', 'Je savais', 'Je savais', 'À revoir']) {
+      await page.getByRole('button', { name: 'Voir la réponse' }).click();
+      await page.getByRole('button', { name: reponse, exact: true }).click();
+    }
+    await page.getByRole('button', { name: 'Arrêter la série' }).click();
+    await expect(page.getByText('Ta progression : 1 fiche maîtrisée sur 100.')).toBeVisible();
+
+    await page.goto('fiches/');
+    await expect(page.locator('li[data-fiche="1"] .etat-fiche')).toHaveText('Maîtrisée');
+    await expect(page.locator('li[data-fiche="2"] .etat-fiche')).toHaveText('À revoir');
+    await expect(page.locator('li[data-fiche="3"] .etat-fiche')).toHaveCount(0);
+
+    await page.goto('./');
+    const carte = page.locator('[data-carte-progression]');
+    await expect(carte).toContainText('1 / 100 fiches maîtrisées');
+    await expect(carte).toContainText('1 question à revoir · 98 fiches jamais vues');
+    await expect(carte.getByRole('progressbar', { name: 'Fiches maîtrisées' })).toHaveAttribute('aria-valuenow', '1');
+    await carte.getByRole('link', { name: 'Revoir mes points faibles (1)' }).click();
+
+    await expect(page).toHaveURL(/entrainement\/#points-faibles$/);
+    const faibles = page.getByRole('button', { name: /Mes points faibles/ });
+    await expect(faibles).toBeVisible();
+    await expect(faibles).toContainText('1 question ratée la dernière fois');
+    await faibles.click();
+    await expect(page.getByText('Mes points faibles · 1/1')).toBeVisible();
+    await page.getByRole('button', { name: 'Voir la réponse' }).click();
+    await page.getByRole('button', { name: 'Je savais', exact: true }).click();
+    await page.getByRole('button', { name: 'Nouvelle série' }).click();
+    await expect(faibles).toBeHidden();
+
+    page.once('dialog', (d) => d.accept());
+    await page.getByRole('button', { name: 'Effacer ma progression' }).click();
+    await expect(page.getByText('Ta progression', { exact: true })).toBeHidden();
+    expect(await page.evaluate(() => localStorage.getItem('verifs-permis:progression'))).toBeNull();
+  });
+
+  test('l’examen blanc compte aussi dans la progression', async ({ page }) => {
+    await page.goto('./');
+    await choisirVoiture(page, 'Je ne sais pas encore');
+    await examenSurFiche(page, '07');
+    for (let q = 0; q < 3; q++) {
+      await page.getByRole('button', { name: 'Voir la réponse' }).click();
+      await page.getByRole('button', { name: 'Je savais', exact: true }).click();
+    }
+    await expect(page.getByRole('heading', { name: '3 points sur 3' })).toBeVisible();
+    await page.goto('./');
+    await expect(page.locator('[data-carte-progression]')).toContainText('1 / 100 fiches maîtrisées');
+  });
+});
+
 test.describe('examen blanc', () => {
   test('tirage au compteur animé, 3 questions, résultat sur 3', async ({ page }) => {
     await page.goto('examen/');

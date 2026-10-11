@@ -4,7 +4,7 @@ import { melanger, type Item } from '../lib/score';
 import { icone } from '../lib/icones';
 import { BASE, animationsReduites, echapper } from './commun';
 
-export type TypeSerie = 'hasard' | 'toutes' | 'interieures' | 'exterieures' | 'revoir';
+export type TypeSerie = 'hasard' | 'toutes' | 'interieures' | 'exterieures' | 'revoir' | 'faibles';
 
 export const NOMS_SERIES: Record<TypeSerie, string> = {
   hasard: '10 fiches au hasard',
@@ -12,9 +12,10 @@ export const NOMS_SERIES: Record<TypeSerie, string> = {
   interieures: 'Intérieures',
   exterieures: 'Extérieures',
   revoir: 'À revoir',
+  faibles: 'Mes points faibles',
 };
 
-export function itemsSerie(type: Exclude<TypeSerie, 'revoir'>, fiches: Fiche[], aleatoire: () => number = Math.random): Item[] {
+export function itemsSerie(type: Exclude<TypeSerie, 'revoir' | 'faibles'>, fiches: Fiche[], aleatoire: () => number = Math.random): Item[] {
   let choisies: Fiche[];
   if (type === 'hasard') choisies = melanger(fiches, aleatoire).slice(0, 10);
   else if (type === 'interieures') choisies = fiches.filter((f) => f.type === 'interieure');

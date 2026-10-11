@@ -95,6 +95,16 @@ navigateur des élèves. Une zone en brouillon n'apparaît jamais en ligne.
 - **QCU en entraînement.** Les deux mauvaises réponses sont toujours des réponses officielles d'autres fiches, jamais inventées. Elles excluent les fiches qui posent la même question et les réponses trop proches de la bonne. Les vérifications avec un pictogramme deviennent un QCU de voyants. Les autres vérifications restent en auto-évaluation.
 - **Repères par voiture.** Dans `src/data/vehicules/<voiture>.json`, la liste `reperes` donne pour chaque fiche une indication propre à la voiture (« la manette est au bas du rétroviseur »), avec sa `source`. Quand l'élève a choisi cette voiture, le repère remplace « demande à ton moniteur ». Le texte officiel de la fiche n'est jamais modifié. Pour la Clio 5, les repères viennent de la notice Renault de l'édition 2025-2026. Pour la Yaris hybride, ils viennent du manuel du propriétaire Toyota (éditions 2024 et 2026), consultable sur toyota.fr, rubrique « Ma Toyota » puis « Manuel ».
 
+## Progression de l'élève
+
+Chaque réponse, à l'entraînement comme à l'examen blanc, est notée **sur le téléphone de l'élève uniquement** (`localStorage`, clé `verifs-permis:progression`). Rien n'est envoyé, il n'y a pas de compte. Logique dans `src/lib/progression.ts` :
+
+- pour chaque question (fiche × partie), on garde les 3 dernières réponses ; la dernière fait foi ;
+- une fiche est **maîtrisée** quand ses 3 questions ont été réussies la dernière fois ;
+- **Mes points faibles** reprend les questions ratées la dernière fois (30 au plus, mélangées).
+
+On la voit sur l'accueil (carte « Ta progression »), sur la page S'entraîner (série « Mes points faibles », bouton « Effacer ma progression ») et dans la liste des fiches (pastilles « Maîtrisée » / « À revoir »).
+
 ## Déployer
 
 Tout `git push` sur `main` lance GitHub Actions

@@ -1,0 +1,90 @@
+---
+// Carte « Ta progression », remplie côté navigateur (stockage local).
+// Cachée tant que l'élève n'a répondu à aucune question.
+import Icone from './Icone.astro';
+import { url } from '../lib/site';
+
+interface Props {
+  /** Bouton vers la série « Mes points faibles » (page d'accueil). */
+  lienRevoir?: boolean;
+  /** Bouton « Effacer ma progression » (page S'entraîner). */
+  effacer?: boolean;
+}
+const { lienRevoir = false, effacer = false } = Astro.props;
+---
+
+<section class="carte carte-progression" data-carte-progression hidden aria-labelledby="titre-progression">
+  <h2 class="surtitre" id="titre-progression">Ta progression</h2>
+  <p class="chiffre-progression"><strong data-maitrisees>0</strong> / 100 fiches maîtrisées</p>
+  <div
+    class="progression"
+    role="progressbar"
+    aria-label="Fiches maîtrisées"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+    data-barre-maitrise
+  >
+    <div style="width:0%"></div>
+  </div>
+  <p class="doux detail-progression" data-detail-progression></p>
+  {
+    lienRevoir && (
+      <a class="bouton bouton-rouge" href={url('entrainement/#points-faibles')} data-lien-points-faibles hidden>
+        <Icone nom="recadrer" />
+        <span data-libelle-points-faibles>Revoir mes points faibles</span>
+      </a>
+    )
+  }
+  {
+    effacer && (
+      <button type="button" class="effacer-progression" data-effacer-progression>
+        Effacer ma progression
+      </button>
+    )
+  }
+</section>
+
+<style>
+  .carte-progression {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .carte-progression h2 {
+    margin: 0;
+  }
+  .chiffre-progression {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .chiffre-progression strong {
+    font-size: 1.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .carte-progression .progression > div {
+    min-width: 0;
+  }
+  .detail-progression {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  .carte-progression .bouton {
+    align-self: flex-start;
+  }
+  .effacer-progression {
+    align-self: flex-start;
+    min-height: var(--cible);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--texte-doux);
+    font: inherit;
+    font-size: 0.88rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .effacer-progression:hover {
+    color: var(--texte);
+  }
+</style>

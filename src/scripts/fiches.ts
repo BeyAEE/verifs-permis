@@ -1,5 +1,7 @@
 // Liste des fiches : recherche instantanée, filtre de type, accès par numéro.
 import { correspond } from '../lib/recherche';
+import { etatFiche, lireProgression } from '../lib/progression';
+import { icone } from '../lib/icones';
 import { BASE } from './commun';
 
 const formulaire = document.querySelector<HTMLFormElement>('[data-recherche]')!;
@@ -46,6 +48,14 @@ numero.addEventListener('keydown', (e) => {
   }
 });
 document.querySelector('[data-aller]')?.addEventListener('click', allerA);
+
+// Pastille d'état d'après la progression gardée sur l'appareil.
+const progression = lireProgression();
+for (const li of elements) {
+  const etat = etatFiche(progression, Number(li.dataset.fiche));
+  if (etat === 'maitrisee') li.querySelector('.type')?.insertAdjacentHTML('beforeend', `<span class="etat-fiche maitrisee">${icone('check')}Maîtrisée</span>`);
+  else if (etat === 'a-revoir') li.querySelector('.type')?.insertAdjacentHTML('beforeend', '<span class="etat-fiche a-revoir">À revoir</span>');
+}
 
 // Recherche transmise dans l'adresse (?q=…), pratique pour partager.
 const q = new URLSearchParams(location.search).get('q');

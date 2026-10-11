@@ -1,6 +1,5 @@
-// Seule donnée persistante de la V1 : le choix de la voiture.
-// L'état est versionné pour accueillir plus tard une progression
-// (ex. `progression: { [fiche]: { vu, su } }`) sans casser l'existant.
+// Choix de la voiture (stockage local). La progression de l'élève a sa
+// propre clé, voir progression.ts.
 import type { ChoixVoiture } from './vehicules';
 
 const CLE = 'verifs-permis:v1';
