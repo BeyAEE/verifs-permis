@@ -88,11 +88,14 @@ describe('fichiers voiture', () => {
   it.each([
     ['clio5', clio5],
     ['yaris', yaris],
-  ])('les repères de %s visent des vérifications intérieures, une seule fois chacune', (_id, donnees) => {
+  ])('les repères de %s visent chaque fiche une seule fois, et jamais une fiche qui a déjà sa zone', (_id, donnees) => {
+    // Un repère sur une vérification extérieure sert quand la photo ne peut pas
+    // aider (ex. batterie de la Yaris hybride, sous la banquette arrière).
+    const avecZone = new Set((donnees.zones as any[]).flatMap((z) => z.fiches));
     const vues = new Set<number>();
     for (const r of (donnees as any).reperes ?? []) {
       for (const n of r.fiches) {
-        expect(fiches[n - 1].type, `fiche ${n}`).toBe('interieure');
+        if (fiches[n - 1].type === 'exterieure') expect(avecZone.has(n), `fiche ${n} : zone et repère`).toBe(false);
         expect(vues.has(n), `fiche ${n} en double`).toBe(false);
         vues.add(n);
       }
