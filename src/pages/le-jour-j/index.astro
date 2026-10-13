@@ -1,0 +1,239 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import { url } from '../../lib/site';
+
+const etapes = [
+  {
+    titre: 'Accueil',
+    texte: 'L’inspecteur contrôle ton identité, te présente l’épreuve et fait un petit test de vue.',
+  },
+  {
+    titre: 'Installation',
+    texte: 'Tu t’installes au poste de conduite : siège, rétroviseurs, ceinture.',
+  },
+  {
+    titre: 'Conduite',
+    texte: 'Au moins 25 minutes de conduite effective, sur le parcours choisi par l’inspecteur.',
+  },
+  {
+    titre: 'Conduite autonome',
+    texte: 'Environ 5 minutes, parfois en plusieurs fois : tu suis seul un itinéraire que l’inspecteur t’indique.',
+  },
+  {
+    titre: 'Deux manœuvres',
+    texte:
+      'Un freinage pour t’arrêter avec précision, puis une marche arrière choisie par l’inspecteur parmi six : en ligne droite, en arrondi, en créneau, en épi, en bataille ou un demi-tour.',
+  },
+  {
+    titre: 'Vérifications',
+    texte:
+      'À l’arrêt : une vérification à l’intérieur ou à l’extérieur de la voiture, puis une question de sécurité routière et une question de premiers secours. C’est exactement ce que tu révises sur ce site.',
+  },
+];
+
+const eliminatoires = [
+  'Mettre en danger : une situation où la sécurité dépend des réactions des autres usagers.',
+  'Circuler à gauche sur une route à double sens.',
+  'Franchir une ligne continue.',
+  'Ne pas respecter un stop ou un feu rouge.',
+  'Rouler en sens interdit.',
+  'Circuler sur la bande d’arrêt d’urgence ou sur une voie réservée.',
+];
+---
+
+<Base
+  titre="Examen du permis B : le déroulement, étape par étape | ECF Albi"
+  description="Comment se passe l’examen pratique du permis B : 32 minutes, conduite autonome, manœuvres, vérifications, notation sur 31 points, erreurs éliminatoires et résultat."
+  demanderVoiture={false}
+>
+  <article class="pile jour-j">
+    <div class="pile entete-page">
+      <h1>L’examen du permis B, étape par étape</h1>
+      <p class="accroche">Le jour J, l’épreuve pratique dure 32&nbsp;minutes. Voici ce qui t’attend. C’est l’inspecteur qui choisit à quel moment il te demande les manœuvres et les vérifications.</p>
+    </div>
+
+    <ul class="chiffres" role="list">
+      <li class="carte"><strong>32&nbsp;min</strong><span>d’épreuve au total</span></li>
+      <li class="carte"><strong>20&nbsp;points</strong><span>au minimum, sur 31</span></li>
+      <li class="carte"><strong>0</strong><span>erreur éliminatoire</span></li>
+    </ul>
+
+    <section class="carte pile" aria-labelledby="titre-voiture">
+      <h2 id="titre-voiture">Qui est dans la voiture&nbsp;?</h2>
+      <p>
+        Tu es le seul candidat à bord. L’inspecteur s’assoit à côté de toi. Un représentant de l’auto-école, en général ton moniteur, est
+        obligatoirement présent : il s’assoit à l’arrière et reste neutre, il ne peut pas t’aider.
+      </p>
+    </section>
+
+    <section class="pile" aria-labelledby="titre-deroule">
+      <h2 id="titre-deroule">Le déroulé</h2>
+      <ol class="etapes" role="list">
+        {
+          etapes.map((e, i) => (
+            <li class="carte">
+              <span class="numero" aria-hidden="true">{i + 1}</span>
+              <div>
+                <h3>{e.titre}</h3>
+                <p>{e.texte}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="actions">
+        <a class="bouton bouton-principal" href={url('entrainement/')}><Icone nom="cible" /><span>Réviser les vérifications</span></a>
+        <a class="bouton bouton-rouge" href={url('examen/')}><Icone nom="compteur" /><span>Faire un examen blanc</span></a>
+      </div>
+    </section>
+
+    <section class="carte pile" aria-labelledby="titre-note">
+      <h2 id="titre-note">Comment tu es noté</h2>
+      <p>L’inspecteur remplit un <strong>bilan de compétences</strong> :</p>
+      <ul>
+        <li>chaque compétence de conduite est notée de 0 à 3. Le niveau 3 ne veut pas dire « parfait » : l’inspecteur tient compte de ton peu d’expérience&nbsp;;</li>
+        <li>les vérifications rapportent jusqu’à 3 points : 1 pour la vérification, 1 pour la question de sécurité routière, 1 pour la question de premiers secours&nbsp;;</li>
+        <li>1 point pour une conduite économique, et 1 point pour une conduite courtoise, attentive aux autres usagers, surtout les plus fragiles.</li>
+      </ul>
+      <p class="encadre">Pour être reçu : <strong>au moins 20 points sur 31, et aucune erreur éliminatoire.</strong></p>
+    </section>
+
+    <section class="carte pile" aria-labelledby="titre-eliminatoires">
+      <h2 id="titre-eliminatoires">Les erreurs éliminatoires</h2>
+      <p>Une seule suffit pour échouer, même si tu as assez de points. Par exemple :</p>
+      <ul>
+        {eliminatoires.map((e) => <li>{e}</li>)}
+      </ul>
+      <p>
+        Toutes les fautes ne sont pas éliminatoires : une petite erreur te coûte des points, pas forcément l’examen. Si tu en fais une, reste
+        concentré sur la suite.
+      </p>
+    </section>
+
+    <section class="carte pile" aria-labelledby="titre-apres">
+      <h2 id="titre-apres">Après l’examen</h2>
+      <ul>
+        <li>L’inspecteur ne te donne pas le résultat à la fin de l’épreuve.</li>
+        <li>Tu le consultes en ligne, sur le site de réservation des examens (RdvPermis), dès le lendemain.</li>
+        <li>
+          <strong>C’est réussi&nbsp;?</strong> Tu télécharges ton certificat d’examen (CEPC). Avec une pièce d’identité, il te sert de permis pendant
+          4 mois en France, en attendant ton permis définitif.
+        </li>
+        <li><strong>Pas cette fois&nbsp;?</strong> Ton bilan de compétences indique ce qui a manqué et sur quoi progresser. On en parle ensemble à l’auto-école.</li>
+      </ul>
+    </section>
+
+    <section class="carte pile conseils" aria-labelledby="titre-conseils">
+      <h2 id="titre-conseils">Les conseils de l’auto-école</h2>
+      <ul>
+        <li>Arrive en avance, avec ta pièce d’identité.</li>
+        <li>La veille, refais un examen blanc : les vérifications, ce sont 3 points à aller chercher.</li>
+        <li>Pendant la conduite, si tu as un doute sur une consigne, demande à l’inspecteur de la répéter.</li>
+        <li>Une erreur n’est pas la fin de l’examen : respire, et concentre-toi sur la suite.</li>
+      </ul>
+    </section>
+
+    <section class="sources doux" aria-labelledby="titre-sources">
+      <h2 id="titre-sources">Sources</h2>
+      <p>
+        Arrêté du 19 février 2010 relatif aux modalités de l’épreuve pratique du permis B (version en vigueur, <a
+          href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000021897924">Légifrance</a
+        >), Délégation à la sécurité routière (<a href="https://www.securite-routiere.gouv.fr/les-differents-permis-de-conduire/permis-auto-categorie-b/passer-son-permis-b"
+          >securite-routiere.gouv.fr</a
+        >) et <a href="https://www.service-public.fr/particuliers/vosdroits/F2825">service-public.fr</a>. Mis à jour en octobre 2026.
+      </p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .jour-j {
+    gap: 18px;
+  }
+  .entete-page {
+    gap: 6px;
+  }
+  .accroche {
+    color: var(--texte-doux);
+    font-size: 1.02rem;
+    margin: 0;
+  }
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+  ul {
+    margin: 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .chiffres {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .chiffres li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+    padding: 14px 8px;
+  }
+  .chiffres strong {
+    font-size: 1.45rem;
+    line-height: 1.2;
+  }
+  .chiffres span {
+    font-size: 0.82rem;
+    color: var(--texte-doux);
+  }
+  .etapes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .etapes li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  .etapes h3 {
+    font-size: 1.02rem;
+    margin-bottom: 2px;
+  }
+  .etapes p {
+    color: var(--texte-doux);
+    font-size: 0.95rem;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .encadre {
+    padding: 12px 14px;
+    border-radius: var(--rayon-s);
+    background: var(--vert-pale);
+    color: var(--vert-texte);
+  }
+  .sources h2 {
+    font-size: 0.95rem;
+  }
+  .sources p {
+    font-size: 0.85rem;
+  }
+  .sources a {
+    color: var(--lien);
+  }
+</style>

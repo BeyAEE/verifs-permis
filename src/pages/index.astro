@@ -40,6 +40,7 @@ import { url } from '../lib/site';
           </span>
         </li>
       </ul>
+      <a class="lien-fleche" href={url('le-jour-j/')}>Tout le déroulement de l’examen <Icone nom="fleche-droite" /></a>
     </section>
 
     <div class="actions">
@@ -177,6 +178,14 @@ import { url } from '../lib/site';
   .action :global(svg) {
     width: 30px;
     height: 30px;
+  }
+  .epreuve .lien-fleche {
+    align-self: flex-start;
+    color: var(--lien);
+  }
+  .epreuve .lien-fleche :global(svg) {
+    width: 18px;
+    height: 18px;
   }
   .secondaire {
     align-self: center;
