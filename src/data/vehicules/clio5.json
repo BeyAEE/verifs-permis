@@ -60,6 +60,16 @@
       "fichier": "clio5-interieur-reglage-volant.jpg",
       "alt": "Dessous de la colonne de direction de la Clio 5, au-dessus des pédales",
       "role": "vue-ensemble"
+    },
+    {
+      "fichier": "clio5-interieur-manette-feux.jpg",
+      "alt": "Manette à gauche du volant de la Clio 5, avec ses bagues et pictogrammes",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "clio5-interieur-manette-essuie-glaces.jpg",
+      "alt": "Manette à droite du volant de la Clio 5, avec ses bagues et pictogrammes",
+      "role": "vue-ensemble"
     }
   ],
   "zones": [
@@ -171,34 +181,6 @@
       "statut": "valide"
     },
     {
-      "id": "manette-feux",
-      "fiches": [
-        43,
-        51,
-        91,
-        95
-      ],
-      "photo": "clio5-interieur-poste-conduite.jpg",
-      "polygone": [[15.4,21.7], [18.6,20.3], [25,21.7], [25.7,24.8], [21.4,26], [16.1,26]],
-      "libelle": "Manette des feux (à gauche du volant)",
-      "grosPlan": null,
-      "statut": "valide"
-    },
-    {
-      "id": "manette-essuie-glaces",
-      "fiches": [
-        5,
-        59,
-        69,
-        97
-      ],
-      "photo": "clio5-interieur-poste-conduite.jpg",
-      "polygone": [[50.9,28], [57.1,28], [62.9,27.2], [63.6,31.4], [61.4,34.4], [54.3,32.6], [50.9,30.2]],
-      "libelle": "Manette des essuie-glaces (à droite du volant)",
-      "grosPlan": null,
-      "statut": "valide"
-    },
-    {
       "id": "feux-detresse",
       "fiches": [
         31,
@@ -266,6 +248,92 @@
       "photo": "clio5-interieur-reglage-volant.jpg",
       "polygone": [[35,80.3], [36.8,75.2], [50.4,70], [52.9,72.3], [52.9,79.7], [40.4,85.4], [35.4,84.9]],
       "libelle": "Levier de réglage du volant",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "bague-brouillard-arriere",
+      "fiches": [
+        16,
+        43,
+        91
+      ],
+      "photo": "clio5-interieur-manette-feux.jpg",
+      "polygone": [[26.5,28], [33,30], [40.5,36.5], [40,48], [37,62], [31,60], [26,56], [25,42]],
+      "libelle": "Bague des feux de brouillard (au milieu de la manette des feux)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "manette-essuie-glaces",
+      "fiches": [
+        5,
+        69
+      ],
+      "photo": "clio5-interieur-manette-essuie-glaces.jpg",
+      "polygone": [[35.3,72.6], [53.3,67.9], [64,65.6], [73.3,59], [81.3,55.7], [86.7,56.6], [89.3,62.3], [88.7,68.9], [81.3,74.5], [73.3,78.3], [65.3,81.1], [50,89.6], [38.7,94.3], [35.3,89.6]],
+      "libelle": "Manette des essuie-glaces (à droite du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "bague-essuie-glace-arriere",
+      "fiches": [
+        59,
+        97
+      ],
+      "photo": "clio5-interieur-manette-essuie-glaces.jpg",
+      "polygone": [[75.5,62.5], [81,57], [86.7,56.1], [89.3,61.3], [89,68.4], [81.7,74.5], [77.5,76], [75.8,72]],
+      "libelle": "Bague de l’essuie-glace arrière (au bout de la manette des essuie-glaces)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "picto-feux-position",
+      "fiches": [
+        30
+      ],
+      "photo": "clio5-interieur-manette-feux.jpg",
+      "polygone": [[16,37.38], [21.07,37.38], [21.07,42.86], [16,42.86]],
+      "libelle": "Pictogramme des feux de position (bague du bout de la manette)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "picto-feux-croisement",
+      "fiches": [
+        26,
+        82
+      ],
+      "photo": "clio5-interieur-manette-feux.jpg",
+      "polygone": [[11.2,40], [15.6,40], [15.6,45.48], [11.2,45.48]],
+      "libelle": "Pictogramme des feux de croisement (bague du bout de la manette)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "picto-feux-route-bague",
+      "fiches": [
+        20,
+        51,
+        78,
+        95
+      ],
+      "photo": "clio5-interieur-manette-feux.jpg",
+      "polygone": [[15.33,42.98], [19.87,42.98], [19.87,48.57], [15.33,48.57]],
+      "libelle": "Pictogramme des feux de route (bague du bout de la manette)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "manette-clignotants",
+      "fiches": [
+        14,
+        74
+      ],
+      "photo": "clio5-interieur-manette-feux.jpg",
+      "polygone": [[6,30], [9,24], [15,22], [24,26], [30,28], [40,36], [50,40], [60,44], [70,48], [75,50], [76,60], [75,88], [70,89], [64,76], [55,69], [45,65], [37,62], [28,57], [20,54], [10,47], [5,40]],
+      "libelle": "Manette des feux (clignotants : vers le haut ou vers le bas)",
       "grosPlan": null,
       "statut": "valide"
     }

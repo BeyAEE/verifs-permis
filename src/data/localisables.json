@@ -20,7 +20,7 @@
     {
       "numero": 5,
       "element": "Manette des essuie-glaces",
-      "vue": "poste-conduite"
+      "vue": "manette-essuie-glaces"
     },
     {
       "numero": 8,
@@ -43,9 +43,24 @@
       "vue": "console"
     },
     {
+      "numero": 14,
+      "element": "Commande des clignotants",
+      "vue": "manette-feux"
+    },
+    {
+      "numero": 16,
+      "element": "Commande du feu de brouillard arrière",
+      "vue": "manette-feux"
+    },
+    {
       "numero": 19,
       "element": "Commande de réglage du volant",
       "vue": "colonne"
+    },
+    {
+      "numero": 20,
+      "element": "Commande des feux de route",
+      "vue": "manette-feux"
     },
     {
       "numero": 21,
@@ -61,6 +76,16 @@
       "numero": 24,
       "element": "Batterie",
       "vue": "moteur"
+    },
+    {
+      "numero": 26,
+      "element": "Commande des feux de croisement",
+      "vue": "manette-feux"
+    },
+    {
+      "numero": 30,
+      "element": "Commande des feux de position",
+      "vue": "manette-feux"
     },
     {
       "numero": 31,
@@ -105,7 +130,7 @@
     {
       "numero": 43,
       "element": "Commande du feu de brouillard arrière",
-      "vue": "poste-conduite"
+      "vue": "manette-feux"
     },
     {
       "numero": 45,
@@ -125,7 +150,7 @@
     {
       "numero": 51,
       "element": "Commande des feux de route",
-      "vue": "poste-conduite"
+      "vue": "manette-feux"
     },
     {
       "numero": 56,
@@ -145,7 +170,7 @@
     {
       "numero": 59,
       "element": "Manette de l'essuie-glace arrière",
-      "vue": "poste-conduite"
+      "vue": "manette-essuie-glaces"
     },
     {
       "numero": 61,
@@ -170,7 +195,7 @@
     {
       "numero": 69,
       "element": "Manette des essuie-glaces",
-      "vue": "poste-conduite"
+      "vue": "manette-essuie-glaces"
     },
     {
       "numero": 70,
@@ -188,6 +213,16 @@
       "vue": "console"
     },
     {
+      "numero": 74,
+      "element": "Commande des clignotants",
+      "vue": "manette-feux"
+    },
+    {
+      "numero": 78,
+      "element": "Commande des feux de route",
+      "vue": "manette-feux"
+    },
+    {
       "numero": 79,
       "element": "Commande de répartition de l'air (vers le pare-brise)",
       "vue": "console"
@@ -196,6 +231,11 @@
       "numero": 80,
       "element": "Jauge à huile",
       "vue": "moteur"
+    },
+    {
+      "numero": 82,
+      "element": "Commande des feux de croisement",
+      "vue": "manette-feux"
     },
     {
       "numero": 84,
@@ -220,7 +260,7 @@
     {
       "numero": 91,
       "element": "Commande du feu de brouillard arrière",
-      "vue": "poste-conduite"
+      "vue": "manette-feux"
     },
     {
       "numero": 93,
@@ -230,7 +270,7 @@
     {
       "numero": 95,
       "element": "Commande des feux de route",
-      "vue": "poste-conduite"
+      "vue": "manette-feux"
     },
     {
       "numero": 96,
@@ -240,7 +280,7 @@
     {
       "numero": 97,
       "element": "Manette de l'essuie-glace arrière",
-      "vue": "poste-conduite"
+      "vue": "manette-essuie-glaces"
     },
     {
       "numero": 98,
@@ -300,6 +340,8 @@
     "combine": "Combiné d'instruments allumé (jauge de carburant visible)",
     "porte-passager": "Porte passager ouverte : côté de la planche de bord (airbag passager)",
     "siege": "Siège conducteur : appuie-tête et son bouton",
-    "banquette": "Banquette arrière : attaches Isofix"
+    "banquette": "Banquette arrière : attaches Isofix",
+    "manette-feux": "Manette des feux (à gauche du volant), pictogrammes bien lisibles",
+    "manette-essuie-glaces": "Manette des essuie-glaces (à droite du volant), pictogrammes bien lisibles"
   }
 }

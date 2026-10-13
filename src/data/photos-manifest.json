@@ -13,6 +13,32 @@
         "webp"
       ]
     },
+    "clio5-interieur-manette-essuie-glaces": {
+      "largeur": 1500,
+      "hauteur": 1060,
+      "largeurs": [
+        800,
+        1400,
+        1500
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-interieur-manette-feux": {
+      "largeur": 1500,
+      "hauteur": 840,
+      "largeurs": [
+        800,
+        1400,
+        1500
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
     "clio5-interieur-poste-conduite": {
       "largeur": 2900,
       "hauteur": 1715,
