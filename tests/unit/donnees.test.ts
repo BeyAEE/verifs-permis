@@ -64,10 +64,11 @@ describe('fiches.json', () => {
 });
 
 describe('localisables.json', () => {
-  it('ne liste que des vérifications extérieures, sans doublon', () => {
+  it('liste des fiches existantes, sans doublon, chacune avec sa photo décrite', () => {
     const numeros = [...localisables.fiches, ...localisables.aArbitrer].map((l) => l.numero);
     expect(new Set(numeros).size).toBe(numeros.length);
-    for (const n of numeros) expect(fiches[n - 1].type, `fiche ${n}`).toBe('exterieure');
+    for (const n of numeros) expect(n >= 1 && n <= 100, `fiche ${n}`).toBe(true);
+    for (const l of localisables.fiches) expect((localisables.vues as Record<string, string>)[l.vue], `vue « ${l.vue} »`).toBeTruthy();
   });
 });
 

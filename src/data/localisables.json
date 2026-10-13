@@ -3,9 +3,24 @@
   "statut": "Proposition à valider par Raphaël — voir COUVERTURE_PHOTOS.md",
   "fiches": [
     {
+      "numero": 1,
+      "element": "Commande de réglage de la hauteur des feux",
+      "vue": "planche-gauche"
+    },
+    {
       "numero": 2,
       "element": "Bocal de lave-glace (remplissage)",
       "vue": "moteur"
+    },
+    {
+      "numero": 3,
+      "element": "Commande « nuit » du rétroviseur intérieur",
+      "vue": "retroviseur"
+    },
+    {
+      "numero": 5,
+      "element": "Manette des essuie-glaces",
+      "vue": "poste-conduite"
     },
     {
       "numero": 8,
@@ -13,9 +28,29 @@
       "vue": "moteur"
     },
     {
+      "numero": 11,
+      "element": "Indicateur de niveau de carburant",
+      "vue": "combine"
+    },
+    {
       "numero": 12,
       "element": "Vase d'expansion (liquide de refroidissement)",
       "vue": "moteur"
+    },
+    {
+      "numero": 13,
+      "element": "Commande de dégivrage de la lunette arrière",
+      "vue": "console"
+    },
+    {
+      "numero": 19,
+      "element": "Commande de réglage du volant",
+      "vue": "colonne"
+    },
+    {
+      "numero": 21,
+      "element": "Commande de répartition de l'air (vers le pare-brise)",
+      "vue": "console"
     },
     {
       "numero": 22,
@@ -28,9 +63,19 @@
       "vue": "moteur"
     },
     {
+      "numero": 31,
+      "element": "Commande des feux de détresse",
+      "vue": "console"
+    },
+    {
       "numero": 32,
       "element": "Repère du témoin d'usure",
       "vue": "pneu"
+    },
+    {
+      "numero": 33,
+      "element": "Commande du régulateur de vitesse",
+      "vue": "poste-conduite"
     },
     {
       "numero": 34,
@@ -38,9 +83,19 @@
       "vue": "flanc"
     },
     {
+      "numero": 35,
+      "element": "Avertisseur sonore",
+      "vue": "poste-conduite"
+    },
+    {
       "numero": 36,
       "element": "Bouchon de remplissage d'huile",
       "vue": "moteur"
+    },
+    {
+      "numero": 37,
+      "element": "Commande de désactivation de l'airbag passager",
+      "vue": "porte-passager"
     },
     {
       "numero": 42,
@@ -48,9 +103,29 @@
       "vue": "portiere-arriere"
     },
     {
+      "numero": 43,
+      "element": "Commande du feu de brouillard arrière",
+      "vue": "poste-conduite"
+    },
+    {
+      "numero": 45,
+      "element": "Réglage de la hauteur de l'appui-tête",
+      "vue": "siege"
+    },
+    {
+      "numero": 49,
+      "element": "Commande de recyclage de l'air",
+      "vue": "console"
+    },
+    {
       "numero": 50,
       "element": "Orifice de remplissage du lave-glace",
       "vue": "moteur"
+    },
+    {
+      "numero": 51,
+      "element": "Commande des feux de route",
+      "vue": "poste-conduite"
     },
     {
       "numero": 56,
@@ -58,14 +133,44 @@
       "vue": "moteur"
     },
     {
+      "numero": 57,
+      "element": "Commande du limiteur de vitesse",
+      "vue": "poste-conduite"
+    },
+    {
       "numero": 58,
       "element": "Accès aux ampoules arrière",
       "vue": "coffre"
     },
     {
+      "numero": 59,
+      "element": "Manette de l'essuie-glace arrière",
+      "vue": "poste-conduite"
+    },
+    {
+      "numero": 61,
+      "element": "Attaches Isofix",
+      "vue": "banquette"
+    },
+    {
+      "numero": 65,
+      "element": "Commande de réglage de la hauteur des feux",
+      "vue": "planche-gauche"
+    },
+    {
       "numero": 66,
       "element": "Gicleurs de lave-glace avant",
       "vue": "capot"
+    },
+    {
+      "numero": 67,
+      "element": "Commande « nuit » du rétroviseur intérieur",
+      "vue": "retroviseur"
+    },
+    {
+      "numero": 69,
+      "element": "Manette des essuie-glaces",
+      "vue": "poste-conduite"
     },
     {
       "numero": 70,
@@ -78,6 +183,16 @@
       "vue": "moteur"
     },
     {
+      "numero": 73,
+      "element": "Commande de dégivrage de la lunette arrière",
+      "vue": "console"
+    },
+    {
+      "numero": 79,
+      "element": "Commande de répartition de l'air (vers le pare-brise)",
+      "vue": "console"
+    },
+    {
       "numero": 80,
       "element": "Jauge à huile",
       "vue": "moteur"
@@ -88,14 +203,44 @@
       "vue": "pneu"
     },
     {
+      "numero": 85,
+      "element": "Commande des feux de détresse",
+      "vue": "console"
+    },
+    {
+      "numero": 87,
+      "element": "Commande de désactivation de l'airbag passager",
+      "vue": "porte-passager"
+    },
+    {
       "numero": 88,
       "element": "Sécurité enfant",
       "vue": "portiere-arriere"
     },
     {
+      "numero": 91,
+      "element": "Commande du feu de brouillard arrière",
+      "vue": "poste-conduite"
+    },
+    {
+      "numero": 93,
+      "element": "Commande de recyclage de l'air",
+      "vue": "console"
+    },
+    {
+      "numero": 95,
+      "element": "Commande des feux de route",
+      "vue": "poste-conduite"
+    },
+    {
       "numero": 96,
       "element": "Accès aux ampoules avant",
       "vue": "moteur"
+    },
+    {
+      "numero": 97,
+      "element": "Manette de l'essuie-glace arrière",
+      "vue": "poste-conduite"
     },
     {
       "numero": 98,
@@ -146,6 +291,15 @@
     "flanc": "Côté de la voiture où se trouve la trappe à carburant",
     "portiere-arriere": "Chant d'une portière arrière ouverte, sécurité enfant visible",
     "coffre": "Coffre ouvert, arrière des feux (accès aux ampoules arrière)",
-    "capot": "Avant de la voiture capot fermé, gicleurs de lave-glace visibles"
+    "capot": "Avant de la voiture capot fermé, gicleurs de lave-glace visibles",
+    "poste-conduite": "Poste de conduite vu du siège conducteur : volant, manettes et combiné",
+    "console": "Console centrale : feux de détresse et commandes de chauffage",
+    "planche-gauche": "Bas de la planche de bord, à gauche du volant (réglage de la hauteur des feux)",
+    "colonne": "Sous le volant : levier de réglage du volant",
+    "retroviseur": "Rétroviseur intérieur, manette « nuit » visible",
+    "combine": "Combiné d'instruments allumé (jauge de carburant visible)",
+    "porte-passager": "Porte passager ouverte : côté de la planche de bord (airbag passager)",
+    "siege": "Siège conducteur : appuie-tête et son bouton",
+    "banquette": "Banquette arrière : attaches Isofix"
   }
 }

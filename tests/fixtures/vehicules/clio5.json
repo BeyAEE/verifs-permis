@@ -34,6 +34,15 @@
       "statut": "valide"
     },
     {
+      "id": "feux-detresse",
+      "fiches": [31, 85],
+      "photo": "test-moteur.jpg",
+      "polygone": [[10,60], [30,60], [30,80], [10,80]],
+      "libelle": "Zone de test : bouton des feux de détresse",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
       "id": "refroidissement-brouillon",
       "fiches": [12, 72],
       "photo": "test-moteur.jpg",
@@ -44,6 +53,7 @@
     }
   ],
   "reperes": [
-    { "fiches": [1, 65], "texte": "Repère de test : bouton à gauche du volant.", "source": "Fixture de test" }
+    { "fiches": [1, 65], "texte": "Repère de test : bouton à gauche du volant.", "source": "Fixture de test" },
+    { "fiches": [31, 85], "texte": "Repère de test : bouton au triangle rouge.", "source": "Fixture de test" }
   ]
 }

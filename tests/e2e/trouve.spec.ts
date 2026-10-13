@@ -32,6 +32,25 @@ test.describe('Trouve l’élément', () => {
     await expect(page.getByText('Fiche 8 · question 2 sur 3')).toBeVisible();
   });
 
+  test('vérification intérieure (fiche 31, feux de détresse) : on cherche aussi la commande sur la photo', async ({ page }) => {
+    await page.goto('./');
+    await choisirVoiture(page, 'Clio 5');
+    await examenSurFiche(page, '31');
+    const scene = page.locator('.vis-scene');
+    await expect(scene).toBeVisible();
+    await toucherPhoto(page, scene, 20, 70);
+    await page.getByRole('button', { name: 'Valider', exact: true }).click();
+    await expect(page.getByText('Bravo, c’est bien là !').first()).toBeVisible();
+    // Le repère de la voiture (le geste à faire) suit la réponse officielle.
+    await expect(page.getByText('Repère de test : bouton au triangle rouge.')).toBeVisible();
+
+    // Page de la fiche : la photo montre aussi la zone, avec le repère.
+    await page.goto('fiche/31/');
+    await page.getByRole('button', { name: 'Voir la réponse' }).first().click();
+    await expect(page.locator('[data-zone-photo] .vis-zones .zone-bonne')).toHaveCount(1);
+    await expect(page.getByText('Repère de test : bouton au triangle rouge.')).toBeVisible();
+  });
+
   test('alternative au clavier : choix dans la liste des zones de la photo', async ({ page }) => {
     await page.goto('./');
     await choisirVoiture(page, 'Clio 5');

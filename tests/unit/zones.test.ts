@@ -135,7 +135,7 @@ describe('choix du mode d’exercice', () => {
   });
 
   it.each([
-    ['vérification intérieure', 1, 'clio5', [zoneFrein], 'interieure'],
+    ['vérification intérieure non localisable', 1, 'clio5', [zoneFrein], 'pas-localisable'],
     ['« Je ne sais pas encore »', 8, 'inconnue', [zoneFrein], 'voiture-inconnue'],
     ['aucune voiture choisie', 8, null, [zoneFrein], 'voiture-inconnue'],
     ['fiche non localisable', 4, 'clio5', [zoneFrein], 'pas-localisable'],
@@ -145,6 +145,13 @@ describe('choix du mode d’exercice', () => {
   ])('repasse en classique : %s', (_cas, numero, choix, zones, raison) => {
     const ex = exercicePour(fiche(numero as number), choix as any, donnees(zones as any), manifeste, localisables);
     expect(ex).toEqual({ mode: 'classique', raison });
+  });
+
+  it('fonctionne aussi pour une vérification intérieure (commande sur la planche de bord)', () => {
+    const detresse = { ...zoneFrein, id: 'feux-detresse', fiches: [31, 85], libelle: 'Bouton des feux de détresse', grosPlan: null };
+    const ex = exercicePour(fiche(31), 'clio5', donnees([zoneFrein, detresse]), manifeste, new Set([8, 31, 85]), '/verifs-permis/');
+    expect(ex.mode).toBe('zone');
+    if (ex.mode === 'zone') expect(ex.zonesBonnes.map((z) => z.id)).toEqual(['feux-detresse']);
   });
 
   it('repasse en classique si la voiture n’a aucune donnée', () => {

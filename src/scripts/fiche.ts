@@ -49,7 +49,7 @@ tout.addEventListener('click', () => {
 async function afficherZone(): Promise<void> {
   const cible = page.querySelector<HTMLElement>('[data-zone-photo]');
   const rappel = page.querySelector<HTMLElement>('[data-reponse="verification"] .rappel');
-  if (!cible || fiche.type !== 'exterieure') return;
+  if (!cible) return;
   visionneuse?.detruire();
   visionneuse = null;
   cible.innerHTML = '';

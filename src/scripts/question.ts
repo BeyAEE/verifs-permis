@@ -58,6 +58,7 @@ export function afficherQuestion(o: OptionsQuestion): void {
       nomVoiture: o.nomVoiture,
       tentativeUnique: o.mode === 'examen',
       libelleContinuer: o.libelleSuite,
+      repere: o.repere,
       surPremierResultat: (ok) => (resultat = ok),
       surContinuer: () => o.surFin({ fiche: fiche.numero, partie, ok: resultat === true, mode: 'zone' }),
       surClassique: () => {

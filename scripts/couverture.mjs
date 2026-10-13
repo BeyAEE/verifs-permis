@@ -23,7 +23,7 @@ ecrire(
   '',
   '## 1. Fiches localisables (liste à valider)',
   '',
-  'Vérifications extérieures qui demandent de **montrer, indiquer, désigner ou ouvrir** un élément. Fichier : `src/data/localisables.json` (le texte des fiches n’est pas touché).',
+  'Vérifications, intérieures ou extérieures, qui demandent de **montrer, indiquer, désigner, ouvrir ou actionner** un élément. Fichier : `src/data/localisables.json` (le texte des fiches n’est pas touché).',
   '',
   '| Fiche | Élément à trouver | Photo nécessaire | Question |',
   '|---|---|---|---|',

@@ -40,6 +40,26 @@
       "fichier": "clio5-phare-avant-gauche.jpg",
       "alt": "Arrière du phare avant gauche de la Clio 5 (à droite quand tu es face au moteur) : accès aux ampoules",
       "role": "gros-plan"
+    },
+    {
+      "fichier": "clio5-interieur-poste-conduite.jpg",
+      "alt": "Poste de conduite de la Clio 5 vu du siège conducteur : volant, manettes, combiné et écran central",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "clio5-interieur-console.jpg",
+      "alt": "Console centrale de la Clio 5 : rangée de boutons sous l’écran et les trois molettes de chauffage",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "clio5-interieur-reglage-phares.jpg",
+      "alt": "Boutons en bas de la planche de bord, à gauche du volant, sur la Clio 5",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "clio5-interieur-reglage-volant.jpg",
+      "alt": "Dessous de la colonne de direction de la Clio 5, au-dessus des pédales",
+      "role": "vue-ensemble"
     }
   ],
   "zones": [
@@ -125,6 +145,128 @@
       "polygone": [[85,58.67], [91,57.33], [98,60], [98.5,66], [92.5,67.33], [86.5,66.67], [84.5,62.67]],
       "libelle": "Phare avant gauche (accès aux ampoules)",
       "grosPlan": "clio5-phare-avant-gauche.jpg",
+      "statut": "valide"
+    },
+    {
+      "id": "avertisseur-sonore",
+      "fiches": [
+        35
+      ],
+      "photo": "clio5-interieur-poste-conduite.jpg",
+      "polygone": [[23.6,26], [30,20.8], [42.9,20.8], [49.3,26], [50.4,39.9], [49.3,49.5], [45.7,60.4], [40,67], [31.4,67], [25.7,60.4], [22.1,49.5], [21.8,39.9]],
+      "libelle": "Avertisseur sonore (centre du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "regulateur-limiteur",
+      "fiches": [
+        33,
+        57
+      ],
+      "photo": "clio5-interieur-poste-conduite.jpg",
+      "polygone": [[10,36.2], [12.5,31.6], [21.4,29.6], [22.7,31.6], [21.4,42.3], [17.9,42.9], [10.7,39.9]],
+      "libelle": "Touches du régulateur et du limiteur (branche gauche du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "manette-feux",
+      "fiches": [
+        43,
+        51,
+        91,
+        95
+      ],
+      "photo": "clio5-interieur-poste-conduite.jpg",
+      "polygone": [[15.4,21.7], [18.6,20.3], [25,21.7], [25.7,24.8], [21.4,26], [16.1,26]],
+      "libelle": "Manette des feux (à gauche du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "manette-essuie-glaces",
+      "fiches": [
+        5,
+        59,
+        69,
+        97
+      ],
+      "photo": "clio5-interieur-poste-conduite.jpg",
+      "polygone": [[50.9,28], [57.1,28], [62.9,27.2], [63.6,31.4], [61.4,34.4], [54.3,32.6], [50.9,30.2]],
+      "libelle": "Manette des essuie-glaces (à droite du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "feux-detresse",
+      "fiches": [
+        31,
+        85
+      ],
+      "photo": "clio5-interieur-console.jpg",
+      "polygone": [[40.6,24.6], [50.9,24.6], [51.1,38.2], [40.4,38.2]],
+      "libelle": "Bouton des feux de détresse",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "degivrage-lunette-arriere",
+      "fiches": [
+        13,
+        73
+      ],
+      "photo": "clio5-interieur-console.jpg",
+      "polygone": [[13.6,82], [14.6,78.1], [17,76.5], [19.4,78.1], [20.4,82], [19.4,86], [17,87.6], [14.6,86]],
+      "libelle": "Bouton de dégivrage de la lunette arrière (centre de la molette de gauche)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "repartition-air",
+      "fiches": [
+        21,
+        79
+      ],
+      "photo": "clio5-interieur-console.jpg",
+      "polygone": [[27.14,82.27], [25.8,90.37], [22.14,96.3], [17.14,98.47], [12.14,96.3], [8.48,90.37], [7.14,82.27], [8.48,74.17], [12.14,68.24], [17.14,66.07], [22.14,68.24], [25.8,74.17]],
+      "libelle": "Molette de répartition de l’air (à gauche)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "recyclage-air",
+      "fiches": [
+        49,
+        93
+      ],
+      "photo": "clio5-interieur-console.jpg",
+      "polygone": [[48.2,82.5], [49.1,78.8], [51.4,77.3], [53.7,78.8], [54.6,82.5], [53.7,86.2], [51.4,87.7], [49.1,86.2]],
+      "libelle": "Bouton de recyclage de l’air (centre de la molette du milieu)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "reglage-hauteur-feux",
+      "fiches": [
+        1,
+        65
+      ],
+      "photo": "clio5-interieur-reglage-phares.jpg",
+      "polygone": [[51.6,34.6], [66.4,34.1], [68.4,35.5], [68.9,55.7], [52.9,56.3], [52,54.5]],
+      "libelle": "Bouton de réglage de la hauteur des feux",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "levier-reglage-volant",
+      "fiches": [
+        19
+      ],
+      "photo": "clio5-interieur-reglage-volant.jpg",
+      "polygone": [[35,80.3], [36.8,75.2], [50.4,70], [52.9,72.3], [52.9,79.7], [40.4,85.4], [35.4,84.9]],
+      "libelle": "Levier de réglage du volant",
+      "grosPlan": null,
       "statut": "valide"
     }
   ],

@@ -1,5 +1,57 @@
 {
   "clio5": {
+    "clio5-interieur-console": {
+      "largeur": 2890,
+      "hauteur": 1782,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-interieur-poste-conduite": {
+      "largeur": 2900,
+      "hauteur": 1715,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-interieur-reglage-phares": {
+      "largeur": 2285,
+      "hauteur": 1378,
+      "largeurs": [
+        800,
+        1400,
+        2285
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "clio5-interieur-reglage-volant": {
+      "largeur": 3024,
+      "hauteur": 1897,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
     "clio5-moteur-lave-glace": {
       "largeur": 3024,
       "hauteur": 4032,

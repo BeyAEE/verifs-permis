@@ -4,7 +4,7 @@ import { icone } from '../lib/icones';
 import type { Fiche } from '../lib/fiches';
 import { bonneReponse, type Exercice } from '../lib/vehicules';
 import { annoncer, defilement, echapper } from './commun';
-import { htmlReponse } from './reponses';
+import { htmlRepere, htmlReponse, type RepereAffiche } from './reponses';
 import { Visionneuse } from './visionneuse';
 
 export type ExerciceZone = Extract<Exercice, { mode: 'zone' }>;
@@ -22,6 +22,8 @@ export interface OptionsTrouve {
   libelleContinuer: string;
   /** Repli clavier quand la photo n'a pas assez de zones nommées pour une liste. */
   surClassique: () => void;
+  /** Repère de la voiture (geste à faire), affiché après la réponse officielle. */
+  repere?: RepereAffiche;
 }
 
 let compteur = 0;
@@ -118,7 +120,7 @@ export function trouverElement(o: OptionsTrouve): { detruire: () => void } {
     resultat.innerHTML = `
       <p class="verdict ${ok ? 'verdict-bon' : 'verdict-faux'}">${icone(ok ? 'check' : 'croix')}<span>${echapper(message)}</span></p>
       ${exercice.grosPlan ? htmlPhoto(exercice.grosPlan, exercice.zone.libelle) : `<p class="libelle-zone">${echapper(exercice.zone.libelle)}</p>`}
-      <div class="reponse"><p class="surtitre">Réponse officielle</p>${htmlReponse(o.fiche, 'verification', false)}</div>
+      <div class="reponse"><p class="surtitre">Réponse officielle</p>${htmlReponse(o.fiche, 'verification', false)}${o.repere ? htmlRepere(o.repere) : ''}</div>
       <div class="rangee">
         ${peutReessayer ? `<button type="button" class="bouton bouton-contour" data-reessayer>${icone('recadrer')}Réessayer</button>` : ''}
         <button type="button" class="bouton bouton-principal" data-continuer>${echapper(o.libelleContinuer)}${icone('fleche-droite')}</button>

@@ -85,7 +85,7 @@ export interface ChoixZone {
   libelle: string;
 }
 
-export type RaisonClassique = 'interieure' | 'voiture-inconnue' | 'pas-localisable' | 'pas-de-zone' | 'pas-de-photo';
+export type RaisonClassique = 'voiture-inconnue' | 'pas-localisable' | 'pas-de-zone' | 'pas-de-photo';
 
 export type Exercice =
   | {
@@ -159,7 +159,6 @@ export function exercicePour(
   localisables: ReadonlySet<number>,
   base = '/',
 ): Exercice {
-  if (fiche.type === 'interieure') return { mode: 'classique', raison: 'interieure' };
   if (!choix || choix === 'inconnue' || !donnees) return { mode: 'classique', raison: 'voiture-inconnue' };
   if (!localisables.has(fiche.numero)) return { mode: 'classique', raison: 'pas-localisable' };
 
