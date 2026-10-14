@@ -171,6 +171,97 @@
     }
   },
   "yaris": {
+    "yaris-interieur-combine": {
+      "largeur": 3793,
+      "hauteur": 1935,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-interieur-console": {
+      "largeur": 4284,
+      "hauteur": 3173,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-interieur-manette-essuie-glaces": {
+      "largeur": 3024,
+      "hauteur": 2061,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-interieur-manette-feux": {
+      "largeur": 2755,
+      "hauteur": 1300,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-interieur-reglage-phares": {
+      "largeur": 2934,
+      "hauteur": 2643,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-interieur-trappe-carburant": {
+      "largeur": 1837,
+      "hauteur": 2420,
+      "largeurs": [
+        800,
+        1400,
+        1837
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
+    "yaris-interieur-volant": {
+      "largeur": 4284,
+      "hauteur": 3586,
+      "largeurs": [
+        800,
+        1400,
+        2400
+      ],
+      "formats": [
+        "avif",
+        "webp"
+      ]
+    },
     "yaris-moteur-jauge-huile": {
       "largeur": 3024,
       "hauteur": 4032,

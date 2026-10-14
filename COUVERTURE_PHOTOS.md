@@ -106,23 +106,16 @@ Vérifications, intérieures ou extérieures, qui demandent de **montrer, indiqu
 
 | État | Fiches |
 |---|---|
-| ✅ Couvertes (zone validée, photo publiée) | 2, 8, 12, 22, 36, 50, 56, 70, 72, 80, 96 |
+| ✅ Couvertes (zone validée, photo publiée) | 1, 2, 5, 8, 11, 12, 13, 14, 16, 20, 21, 22, 26, 30, 31, 33, 34, 35, 36, 43, 49, 50, 51, 56, 57, 59, 65, 69, 70, 72, 73, 74, 78, 79, 80, 82, 85, 91, 93, 95, 96, 97 |
 | ✏️ Zone en brouillon, à valider dans l’éditeur | — |
 | 🖼️ Zone validée mais photo pas encore publiée | — |
-| 📷 Pas encore de photo ni de zone | 1, 3, 5, 11, 13, 14, 16, 19, 20, 21, 24, 26, 30, 31, 32, 33, 34, 35, 37, 42, 43, 45, 49, 51, 57, 58, 59, 61, 65, 66, 67, 69, 73, 74, 78, 79, 82, 84, 85, 87, 88, 91, 93, 95, 97, 98, 100 |
+| 📷 Pas encore de photo ni de zone | 3, 19, 24, 32, 37, 42, 45, 58, 61, 66, 67, 84, 87, 88, 98, 100 |
 
 **Photos à prendre** (une vue d’ensemble où l’élève cherche, + un gros plan par élément si possible) :
 
-- **Bas de la planche de bord, à gauche du volant (réglage de la hauteur des feux)** — pour : Commande de réglage de la hauteur des feux (fiches 1, 65)
 - **Rétroviseur intérieur, manette « nuit » visible** — pour : Commande « nuit » du rétroviseur intérieur (fiches 3, 67)
-- **Manette des essuie-glaces (à droite du volant), pictogrammes bien lisibles** — pour : Manette des essuie-glaces, Manette de l'essuie-glace arrière (fiches 5, 59, 69, 97)
-- **Combiné d'instruments allumé (jauge de carburant visible)** — pour : Indicateur de niveau de carburant (fiches 11)
-- **Console centrale : feux de détresse et commandes de chauffage** — pour : Commande de dégivrage de la lunette arrière, Commande de répartition de l'air (vers le pare-brise), Commande des feux de détresse, Commande de recyclage de l'air (fiches 13, 21, 31, 49, 73, 79, 85, 93)
-- **Manette des feux (à gauche du volant), pictogrammes bien lisibles** — pour : Commande des clignotants, Commande du feu de brouillard arrière, Commande des feux de route, Commande des feux de croisement, Commande des feux de position (fiches 14, 16, 20, 26, 30, 43, 51, 74, 78, 82, 91, 95)
 - **Sous le volant : levier de réglage du volant** — pour : Commande de réglage du volant (fiches 19)
 - **Flanc d'un pneu, repère du témoin d'usure (TWI) bien visible** — pour : Repère du témoin d'usure (fiches 32, 84)
-- **Poste de conduite vu du siège conducteur : volant, manettes et combiné** — pour : Commande du régulateur de vitesse, Avertisseur sonore, Commande du limiteur de vitesse (fiches 33, 35, 57)
-- **Côté de la voiture où se trouve la trappe à carburant** — pour : Trappe à carburant (fiches 34)
 - **Porte passager ouverte : côté de la planche de bord (airbag passager)** — pour : Commande de désactivation de l'airbag passager (fiches 37, 87)
 - **Chant d'une portière arrière ouverte, sécurité enfant visible** — pour : Sécurité enfant (fiches 42, 88)
 - **Siège conducteur : appuie-tête et son bouton** — pour : Réglage de la hauteur de l'appui-tête (fiches 45)

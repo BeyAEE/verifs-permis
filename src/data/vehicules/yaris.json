@@ -45,6 +45,41 @@
       "fichier": "yaris-phare-avant-gauche.jpg",
       "alt": "Arrière du phare avant gauche de la Yaris (à droite quand tu es face au moteur) : accès aux ampoules",
       "role": "gros-plan"
+    },
+    {
+      "fichier": "yaris-interieur-volant.jpg",
+      "alt": "Volant de la Yaris vu du siège conducteur, avec les touches des branches et le combiné derrière",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "yaris-interieur-combine.jpg",
+      "alt": "Combiné d’instruments de la Yaris allumé, avec le compteur et les jauges",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "yaris-interieur-manette-feux.jpg",
+      "alt": "Manette à gauche du volant de la Yaris, avec ses bagues et pictogrammes",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "yaris-interieur-manette-essuie-glaces.jpg",
+      "alt": "Manette à droite du volant de la Yaris, avec ses bagues et pictogrammes, et le bouton POWER",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "yaris-interieur-console.jpg",
+      "alt": "Console centrale de la Yaris : bouton sous l’écran, puis commandes de climatisation",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "yaris-interieur-reglage-phares.jpg",
+      "alt": "Boutons en bas de la planche de bord, à gauche du volant, sur la Yaris",
+      "role": "vue-ensemble"
+    },
+    {
+      "fichier": "yaris-interieur-trappe-carburant.jpg",
+      "alt": "Plancher à gauche du siège conducteur de la Yaris",
+      "role": "vue-ensemble"
     }
   ],
   "zones": [
@@ -129,6 +164,197 @@
       "polygone": [[82,43.33], [88,42], [90.5,46.67], [89.5,53.33], [85,54.67], [82.5,50.67]],
       "libelle": "Phare avant gauche (accès aux ampoules)",
       "grosPlan": "yaris-phare-avant-gauche.jpg",
+      "statut": "valide"
+    },
+    {
+      "id": "int-avertisseur-sonore",
+      "fiches": [
+        35
+      ],
+      "photo": "yaris-interieur-volant.jpg",
+      "polygone": [[64.75,48.7], [63.07,57.81], [58.35,65.12], [51.53,69.17], [43.97,69.17], [37.15,65.12], [32.43,57.81], [30.75,48.7], [32.43,39.59], [37.15,32.28], [43.97,28.23], [51.53,28.23], [58.35,32.28], [63.07,39.59]],
+      "libelle": "Avertisseur sonore (centre du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-regulateur-limiteur",
+      "fiches": [
+        33,
+        57
+      ],
+      "photo": "yaris-interieur-volant.jpg",
+      "polygone": [[69.5,45.5], [81,45.5], [91.5,48], [92,53.5], [88,55.5], [75,57], [69.5,57]],
+      "libelle": "Touches du régulateur et du limiteur (branche droite du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-jauge-carburant",
+      "fiches": [
+        11
+      ],
+      "photo": "yaris-interieur-combine.jpg",
+      "polygone": [[83.5,40], [88,26], [94,26], [94,84], [83.5,84]],
+      "libelle": "Jauge de carburant (à droite du combiné)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-manette-feux-route",
+      "fiches": [
+        20,
+        51,
+        78,
+        95
+      ],
+      "photo": "yaris-interieur-manette-feux.jpg",
+      "polygone": [[3,30], [8,20], [30,18], [52,19], [70,22], [85,26], [95,33], [97,45], [94,58], [80,62], [62,70], [52,78], [40,76], [30,73], [20,68], [8,60], [3,48]],
+      "libelle": "Manette des feux (à pousser pour les feux de route)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-manette-clignotants",
+      "fiches": [
+        14,
+        74
+      ],
+      "photo": "yaris-interieur-manette-feux.jpg",
+      "polygone": [[3,30], [8,20], [30,18], [52,19], [70,22], [85,26], [95,33], [97,45], [94,58], [80,62], [62,70], [52,78], [40,76], [30,73], [20,68], [8,60], [3,48]],
+      "libelle": "Manette des feux (clignotants : vers le haut ou vers le bas)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-picto-feux-croisement",
+      "fiches": [
+        26,
+        82
+      ],
+      "photo": "yaris-interieur-manette-feux.jpg",
+      "polygone": [[31.5,38], [37,38], [37,47.5], [31.5,47.5]],
+      "libelle": "Pictogramme des feux de croisement (bague de la manette)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-picto-feux-position",
+      "fiches": [
+        30
+      ],
+      "photo": "yaris-interieur-manette-feux.jpg",
+      "polygone": [[29.5,65.5], [35.5,65.5], [35.5,72], [29.5,72]],
+      "libelle": "Pictogramme des feux de position (bague de la manette)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-bague-antibrouillards",
+      "fiches": [
+        16,
+        43,
+        91
+      ],
+      "photo": "yaris-interieur-manette-feux.jpg",
+      "polygone": [[40.5,19], [52,19], [60,22], [60,70], [52,78], [41,76]],
+      "libelle": "Bague des feux antibrouillard (au milieu de la manette des feux)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-manette-essuie-glaces",
+      "fiches": [
+        5,
+        69
+      ],
+      "photo": "yaris-interieur-manette-essuie-glaces.jpg",
+      "polygone": [[12,38], [20,30], [30,24], [42,15], [55,11], [65,9], [85,6], [93,8], [97,16], [96,32], [92,40], [80,43], [62,49], [48,53], [36,54], [25,56], [15,58], [11,50]],
+      "libelle": "Manette des essuie-glaces (à droite du volant)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-essuie-glace-arriere",
+      "fiches": [
+        59,
+        97
+      ],
+      "photo": "yaris-interieur-manette-essuie-glaces.jpg",
+      "polygone": [[54.5,10.5], [65,8.5], [85,6], [93,8], [97,16], [96,32], [92,40], [80,43], [64,47.5], [56,49.5], [54.5,30]],
+      "libelle": "Bout de la manette des essuie-glaces (essuie-glace arrière)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-feux-detresse",
+      "fiches": [
+        31,
+        85
+      ],
+      "photo": "yaris-interieur-console.jpg",
+      "polygone": [[43.3,8.8], [54.2,8.8], [54.2,30.4], [43.3,30.4]],
+      "libelle": "Bouton des feux de détresse",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-desembuage-pare-brise",
+      "fiches": [
+        21,
+        79
+      ],
+      "photo": "yaris-interieur-console.jpg",
+      "polygone": [[22.8,81], [30.5,81], [30.5,90], [22.8,90]],
+      "libelle": "Touche FRONT (air vers le pare-brise)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-degivrage-lunette-arriere",
+      "fiches": [
+        13,
+        73
+      ],
+      "photo": "yaris-interieur-console.jpg",
+      "polygone": [[30.5,81], [38.3,81], [38.3,90], [30.5,90]],
+      "libelle": "Touche REAR (dégivrage de la lunette arrière)",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-recyclage-air",
+      "fiches": [
+        49,
+        93
+      ],
+      "photo": "yaris-interieur-console.jpg",
+      "polygone": [[53,81], [60.2,81], [60.2,90], [53,90]],
+      "libelle": "Touche de recyclage de l’air",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-reglage-hauteur-feux",
+      "fiches": [
+        1,
+        65
+      ],
+      "photo": "yaris-interieur-reglage-phares.jpg",
+      "polygone": [[4.5,8.5], [24.5,8.5], [24.5,29.5], [4.5,29.5]],
+      "libelle": "Molette de réglage de la hauteur des feux",
+      "grosPlan": null,
+      "statut": "valide"
+    },
+    {
+      "id": "int-trappe-carburant",
+      "fiches": [
+        34
+      ],
+      "photo": "yaris-interieur-trappe-carburant.jpg",
+      "polygone": [[25,40], [27,38], [48,38], [50,40], [50,70], [48,72.5], [27,72.5], [25,70]],
+      "libelle": "Levier d’ouverture de la trappe à carburant (au sol, à gauche du siège)",
+      "grosPlan": null,
       "statut": "valide"
     }
   ],
