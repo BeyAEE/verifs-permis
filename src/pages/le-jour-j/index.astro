@@ -1,12 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
+import AnimationExamen from '../../components/AnimationExamen.astro';
 import { url } from '../../lib/site';
 
 const etapes = [
   {
     titre: 'Accueil',
-    texte: 'L’inspecteur contrôle ton identité, te présente l’épreuve et fait un petit test de vue.',
+    texte: 'L’inspecteur contrôle ton identité, te présente l’épreuve et te demande si tu portes des lunettes ou des lentilles.',
   },
   {
     titre: 'Installation',
@@ -58,6 +59,11 @@ const eliminatoires = [
       <li class="carte"><strong>20&nbsp;points</strong><span>au minimum, sur 31</span></li>
       <li class="carte"><strong>0</strong><span>erreur éliminatoire</span></li>
     </ul>
+
+    <section class="pile" aria-labelledby="titre-animation">
+      <h2 id="titre-animation">L’examen en 1 minute</h2>
+      <AnimationExamen />
+    </section>
 
     <section class="carte pile" aria-labelledby="titre-voiture">
       <h2 id="titre-voiture">Qui est dans la voiture&nbsp;?</h2>
@@ -237,3 +243,7 @@ const eliminatoires = [
     color: var(--lien);
   }
 </style>
+
+<script>
+  import '../../scripts/animation-examen';
+</script>

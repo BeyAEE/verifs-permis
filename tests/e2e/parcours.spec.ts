@@ -158,6 +158,23 @@ test.describe('progression', () => {
   });
 });
 
+test.describe('page « Le jour J »', () => {
+  test('l’animation se lance au clic, se met en pause et reprend', async ({ page }) => {
+    await page.goto('le-jour-j/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('L’examen du permis B, étape par étape');
+    const animation = page.locator('[data-animation-examen]');
+    await animation.getByRole('button', { name: /Voir l’examen en 1/ }).click();
+    await expect(animation.getByText('L’inspecteur vérifie ton identité', { exact: false })).toBeVisible({ timeout: 10_000 });
+    const pause = animation.getByRole('button', { name: 'Mettre en pause' });
+    await pause.click();
+    const temps = await animation.locator('[data-temps]').textContent();
+    await page.waitForTimeout(1200);
+    await expect(animation.locator('[data-temps]')).toHaveText(temps!);
+    await animation.getByRole('button', { name: 'Reprendre' }).click();
+    await expect(animation.getByRole('button', { name: 'Mettre en pause' })).toBeVisible();
+  });
+});
+
 test.describe('examen blanc', () => {
   test('tirage au compteur animé, 3 questions, résultat sur 3', async ({ page }) => {
     await page.goto('examen/');
