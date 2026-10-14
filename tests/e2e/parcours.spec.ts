@@ -43,7 +43,7 @@ test.describe('recherche', () => {
     await page.getByLabel('Aller à la fiche n°').fill('42');
     await page.getByRole('button', { name: 'Ouvrir' }).click();
     await expect(page).toHaveURL(/fiche\/42\/$/);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fiche 42');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(/^Fiche 42\b/);
   });
 });
 
@@ -62,7 +62,7 @@ test.describe('page d’une fiche', () => {
     await expect(page).toHaveURL(/fiche\/2\/$/);
     await page.getByRole('link', { name: 'Fiche 1' }).click();
     await page.getByRole('link', { name: 'Fiche 100' }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Fiche 100');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(/^Fiche 100\b/);
   });
 });
 

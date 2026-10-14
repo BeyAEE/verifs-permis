@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { filAriane } from '../../lib/site';
 import Icone from '../../components/Icone.astro';
 import '../../styles/exercices.css';
 ---
@@ -7,6 +8,7 @@ import '../../styles/exercices.css';
 <Base
   titre="Examen blanc des vérifications du permis B | Vérifs permis"
   description="Passe un examen blanc des vérifications comme le jour du permis : la fiche est tirée au compteur kilométrique, 3 questions, résultat sur 3 points."
+  donneesStructurees={[filAriane([['Accueil', ''], ['Examen blanc', 'examen/']])]}
   actif="examen"
 >
   <div class="pile" data-examen>

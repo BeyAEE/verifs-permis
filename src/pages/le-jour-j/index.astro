@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
 import AnimationExamen from '../../components/AnimationExamen.astro';
-import { url } from '../../lib/site';
+import { filAriane, url } from '../../lib/site';
 
 const etapes = [
   {
@@ -45,7 +45,8 @@ const eliminatoires = [
 
 <Base
   titre="Examen du permis B : le déroulement, étape par étape | ECF Albi"
-  description="Comment se passe l’examen pratique du permis B : 32 minutes, conduite autonome, manœuvres, vérifications, notation sur 31 points, erreurs éliminatoires et résultat."
+  description="Comment se passe l’examen pratique du permis B : 32 minutes, conduite autonome, manœuvres, vérifications, notation sur 31 points et résultat."
+  donneesStructurees={[filAriane([['Accueil', ''], ['L’examen étape par étape', 'le-jour-j/']])]}
   demanderVoiture={false}
 >
   <article class="pile jour-j">

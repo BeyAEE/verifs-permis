@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { filAriane } from '../../lib/site';
 import Icone from '../../components/Icone.astro';
 import CarteProgression from '../../components/CarteProgression.astro';
 import '../../styles/exercices.css';
@@ -14,11 +15,12 @@ const series = [
 
 <Base
   titre="S’entraîner aux vérifications du permis B | Vérifs permis"
-  description="Entraîne-toi sur les questions de vérification du permis B : 10 fiches au hasard, toutes les fiches, ou seulement les intérieures ou les extérieures. Score, questions à revoir et suivi de ta progression."
+  description="Entraîne-toi aux vérifications du permis B : 10 fiches au hasard, toutes les fiches, les intérieures ou les extérieures, en QCU. Score et progression."
   actif="entrainement"
+  donneesStructurees={[filAriane([['Accueil', ''], ['S’entraîner', 'entrainement/']])]}
 >
   <div class="pile" data-entrainement>
-    <h1>S’entraîner</h1>
+    <h1>S’entraîner aux vérifications</h1>
     <section class="pile" data-vue="choix">
       <div class="pile intro">
         <p class="doux">Pour chaque question, réponds dans ta tête ou à voix haute, regarde la réponse, puis sois honnête avec toi-même.</p>

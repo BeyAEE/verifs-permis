@@ -104,6 +104,17 @@ describe('fichiers voiture', () => {
   });
 });
 
+describe('sujets (titres des pages de fiches)', () => {
+  it('donnent un intitulé court pour chacune des 100 fiches', async () => {
+    const sujets = (await import('../../src/data/sujets.json')).default.sujets as Record<string, string>;
+    for (let n = 1; n <= 100; n++) {
+      const s = sujets[String(n)];
+      expect(s, `fiche ${n}`).toBeTruthy();
+      expect(s.length, `fiche ${n} : « ${s} »`).toBeLessThanOrEqual(52);
+    }
+  });
+});
+
 describe('notes « Bon à savoir »', () => {
   it('visent des fiches existantes et citent une source', async () => {
     const notes = (await import('../../src/data/notes.json')).default.notes;

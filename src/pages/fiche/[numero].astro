@@ -3,7 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
 import { FICHES, PARTIES, libellePartie, voisines, type Fiche } from '../../lib/fiches';
 import { htmlReponse } from '../../scripts/reponses';
-import { url } from '../../lib/site';
+import { filAriane, url } from '../../lib/site';
+import donneesSujets from '../../data/sujets.json';
 import '../../styles/exercices.css';
 
 export function getStaticPaths() {
@@ -18,13 +19,19 @@ const n = fiche.numero;
 const { precedente, suivante } = voisines(n);
 const tronquer = (t: string, max: number) => (t.length <= max ? t : t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…');
 const typeLong = fiche.type === 'interieure' ? 'Vérification intérieure' : 'Vérification extérieure';
+const sujets = donneesSujets.sujets as Record<string, string>;
+const sujet = sujets[String(n)];
+// Fiches qui posent la même vérification (ex. 26 et 82) : liens entre elles.
+const memes = FICHES.filter((f) => f.numero !== n && sujets[String(f.numero)] === sujet).map((f) => f.numero);
+const titrePage = `Fiche ${n} : ${sujet} | Vérifications permis B`;
 const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterieur', securite: 'securite', secours: 'secours' };
 ---
 
 <Base
-  titre={`Fiche ${n} : ${tronquer(fiche.verification.question, 58)} | Vérifs permis B`}
-  description={tronquer(`Fiche ${n} des vérifications du permis B. ${fiche.verification.question} Avec la question de sécurité routière, de premiers secours et les réponses.`, 158)}
+  titre={titrePage.length <= 70 ? titrePage : `Fiche ${n} : ${sujet}`}
+  description={tronquer(`Fiche ${n} des vérifications du permis B (${sujet.charAt(0).toLowerCase() + sujet.slice(1)}) : ${fiche.verification.question} Avec les questions de sécurité routière, de premiers secours et les réponses.`, 158)}
   actif="fiches"
+  donneesStructurees={[filAriane([['Accueil', ''], ['Les 100 fiches', 'fiches/'], [`Fiche ${n}`, `fiche/${n}/`]])]}
 >
   <div class="pile" data-fiche-page data-numero={n} data-type={fiche.type}>
     <a class="lien-fleche retour" href={url('fiches/')}><Icone nom="fleche-gauche" />Toutes les fiches</a>
@@ -32,7 +39,7 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
     <header class="fiche-entete">
       <span class="numero grand" aria-hidden="true">{n}</span>
       <div>
-        <h1>Fiche {n}</h1>
+        <h1>Fiche {n}<span class="visuellement-cache"> : </span><span class="h1-sujet">{sujet}</span></h1>
         <p class="doux">{typeLong} · 3 questions · 3 points</p>
       </div>
     </header>
@@ -75,6 +82,15 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
       ))
     }
 
+    {
+      memes.length > 0 && (
+        <p class="memes doux">
+          Même vérification dans {memes.length > 1 ? 'les fiches' : 'la fiche'}{' '}
+          {memes.map((m, i) => <Fragment>{i > 0 && (i === memes.length - 1 ? ' et ' : ', ')}<a href={url(`fiche/${m}/`)}>{m}</a></Fragment>)}{', avec d’autres questions de sécurité routière et de premiers secours.'}
+        </p>
+      )
+    }
+
     <nav class="voisines" aria-label="Autres fiches">
       <a class="bouton bouton-contour" href={url(`fiche/${precedente}/`)} rel="prev">
         <Icone nom="fleche-gauche" />Fiche {precedente}
@@ -97,6 +113,22 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
   }
   .fiche-entete p {
     text-wrap: balance;
+  }
+  .h1-sujet {
+    display: block;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--texte-doux);
+    text-wrap: balance;
+  }
+  .memes {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  .memes a {
+    color: var(--lien);
+    font-weight: 600;
   }
   .fiche-entete {
     display: flex;

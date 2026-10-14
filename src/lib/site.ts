@@ -8,6 +8,38 @@ import { donneesPubliques, type DonneesVehicule, type Manifeste } from './vehicu
 
 export const NOM_SITE = 'Vérifs permis B';
 export const ECOLE = 'ECF Albi';
+export const SITE = 'https://beyaee.github.io';
+
+/** L'auto-école, pour les données structurées (schema.org DrivingSchool). */
+export const AUTO_ECOLE = {
+  '@type': 'DrivingSchool',
+  '@id': `${SITE}/verifs-permis/#auto-ecole`,
+  name: 'Auto-école ECF Albi (Picco Pechberty)',
+  legalName: 'AUTO ECOLE PICCO PECHBERTY',
+  telephone: '+33 5 63 54 09 47',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '5 rue Séré de Rivières',
+    postalCode: '81000',
+    addressLocality: 'Albi',
+    addressCountry: 'FR',
+  },
+  areaServed: 'Albi',
+  logo: `${SITE}/verifs-permis/icones/icon-512.png`,
+};
+
+/** Fil d'Ariane schema.org : [libellé, chemin relatif au site][]. */
+export function filAriane(etapes: [string, string][]) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: etapes.map(([name, chemin], i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+      item: SITE + url(chemin),
+    })),
+  };
+}
 
 export const VEHICULES = { clio5, yaris } as unknown as Record<'clio5' | 'yaris', DonneesVehicule>;
 export const MANIFESTE = manifeste as Manifeste;

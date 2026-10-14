@@ -3,16 +3,17 @@ import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
 import { FICHES, libelleType } from '../../lib/fiches';
 import { texteIndexe } from '../../lib/recherche';
-import { url } from '../../lib/site';
+import { filAriane, url } from '../../lib/site';
 ---
 
 <Base
   titre="Les 100 fiches de vérification du permis B | Vérifs permis"
   description="Toutes les questions de vérification du permis B : vérifications intérieures et extérieures, sécurité routière, premiers secours. Recherche instantanée."
+  donneesStructurees={[filAriane([['Accueil', ''], ['Les 100 fiches', 'fiches/']])]}
   actif="fiches"
 >
   <div class="pile">
-    <h1>Les 100 fiches</h1>
+    <h1>Les 100 fiches de vérification</h1>
 
     <form class="outils carte" role="search" data-recherche>
       <div class="champ">

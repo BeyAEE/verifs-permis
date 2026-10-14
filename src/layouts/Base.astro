@@ -17,9 +17,11 @@ interface Props {
   noindex?: boolean;
   /** Ouvre le choix de la voiture au premier lancement. */
   demanderVoiture?: boolean;
+  /** Données structurées schema.org (JSON-LD) propres à la page. */
+  donneesStructurees?: Record<string, unknown>[];
 }
 
-const { titre, description, actif = null, noindex = false, demanderVoiture = true } = Astro.props;
+const { titre, description, actif = null, noindex = false, demanderVoiture = true, donneesStructurees = [] } = Astro.props;
 const canonique = new URL(Astro.url.pathname, Astro.site).href;
 const image = new URL(url('og.png'), Astro.site).href;
 const liens = [
@@ -59,6 +61,7 @@ const liens = [
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Vérifs permis B — les 100 fiches de vérification, ECF Albi" />
     <meta name="twitter:card" content="summary_large_image" />
+    {donneesStructurees.map((d) => <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', ...d })} />)}
     <noscript><style>[data-reponse][hidden]{display:flex!important}[data-sans-js]{display:none!important}</style></noscript>
   </head>
   <body data-demander-voiture={demanderVoiture ? 'oui' : undefined}>

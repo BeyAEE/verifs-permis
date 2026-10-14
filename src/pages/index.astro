@@ -2,13 +2,17 @@
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import CarteProgression from '../components/CarteProgression.astro';
-import { url } from '../lib/site';
+import { AUTO_ECOLE, NOM_SITE, SITE, url } from '../lib/site';
 ---
 
 <Base
   titre="Questions de vérification permis B : les 100 fiches | ECF Albi"
-  description="Révise les 100 questions de vérification du permis B (intérieures, extérieures, sécurité routière, premiers secours) et entraîne-toi comme le jour de l’examen. Gratuit, sans compte, même hors connexion."
+  description="Les 100 fiches de vérification du permis B avec leurs réponses, un entraînement et un examen blanc comme le jour J. Gratuit, sans compte, même hors ligne."
   actif="accueil"
+  donneesStructurees={[
+    { '@type': 'WebSite', name: NOM_SITE, url: SITE + url(), inLanguage: 'fr-FR', publisher: { '@id': AUTO_ECOLE['@id'] } },
+    { ...AUTO_ECOLE, url: SITE + url() },
+  ]}
 >
   <div class="pile accueil">
     <section class="hero">

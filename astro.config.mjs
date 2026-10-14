@@ -20,6 +20,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/editeur/') && !page.includes('/404'),
+      lastmod: new Date(),
     }),
     ...(FIXTURES ? [fixturesPhotos()] : []),
     serviceWorker(),
