@@ -28,14 +28,17 @@
   --bouton-vert: #0c7a3b;
   --entete: #0a2a57;
   --bande: #1b4ea0;
-  --ombre: 0 1px 2px rgb(10 42 87 / 6%), 0 10px 30px rgb(10 42 87 / 8%);
+  --ombre: 0 3px 0 rgb(10 42 87 / 9%);
+  --ombre-bleu: #0b2f63;
+  --ombre-rouge: #9a0b0e;
+  --ombre-vert: #06491f;
   --focus: #124483;
   --bouton: #124483;
   --bouton-survol: #0f3a70;
   --bordure-bouton: #aab7cc;
 
-  --rayon: 24px;
-  --rayon-s: 16px;
+  --rayon: 16px;
+  --rayon-s: 12px;
   --pilule: 999px;
   --cible: 48px;
   --largeur: 760px;
@@ -68,7 +71,7 @@
     --bouton-vert: #0c7a3b;
     --entete: #0a2a57;
     --bande: #1b4ea0;
-    --ombre: 0 1px 2px rgb(0 0 0 / 30%), 0 10px 30px rgb(0 0 0 / 25%);
+    --ombre: 0 3px 0 rgb(0 0 0 / 35%);
     --focus: #8fb8ff;
     --bouton: #1f5fbf;
     --bouton-survol: #2a6ad0;
@@ -118,8 +121,60 @@ h3 {
   letter-spacing: -0.02em;
 }
 h1 {
-  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-size: clamp(1.6rem, 6.4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
   text-wrap: balance;
+}
+h2 {
+  font-weight: 800;
+}
+/* Mot mis en avant dans un titre : pastille rouge inclinée (visuels de l'auto-école). */
+.autocollant {
+  display: inline-block;
+  padding: 0.04em 0.28em 0;
+  border-radius: 0.18em;
+  background: var(--rouge);
+  color: #fff;
+  transform: rotate(-3deg);
+  box-shadow: 0 0.09em 0 var(--ombre-rouge);
+}
+.autocollant.vert {
+  background: var(--bouton-vert);
+  box-shadow: 0 0.09em 0 var(--ombre-vert);
+}
+/* Pastille de lieu (comme « Conducteurs d'Albi » sur les visuels). */
+.pastille-lieu {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 4px;
+  border-radius: var(--pilule);
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  box-shadow: var(--ombre);
+  color: var(--texte);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pastille-lieu i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--rouge);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pastille-lieu svg {
+  width: 13px;
+  height: 13px;
 }
 h2 {
   font-size: 1.3rem;
@@ -417,9 +472,9 @@ main:focus {
   gap: 10px;
   min-height: 52px;
   padding: 12px 22px;
-  border-radius: 18px;
+  border-radius: 14px;
   border: 2px solid transparent;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
   text-align: center;
@@ -431,7 +486,7 @@ main:focus {
   -webkit-tap-highlight-color: transparent;
 }
 .bouton:active {
-  transform: scale(0.97);
+  transform: translateY(3px);
 }
 .bouton svg {
   width: 22px;
@@ -441,28 +496,48 @@ main:focus {
 .bouton-principal {
   background: var(--bouton);
   color: #fff;
-  box-shadow: 0 6px 18px rgb(18 68 131 / 28%);
+  box-shadow: 0 4px 0 var(--ombre-bleu);
 }
 .bouton-rouge {
   background: var(--rouge);
   color: #fff;
-  box-shadow: 0 6px 18px rgb(219 20 24 / 25%);
+  box-shadow: 0 4px 0 var(--ombre-rouge);
 }
 
 .bouton-vert {
   background: var(--bouton-vert);
   color: #fff;
+  box-shadow: 0 4px 0 var(--ombre-vert);
+}
+.bouton-principal:active,
+.bouton-rouge:active,
+.bouton-vert:active {
+  box-shadow: 0 1px 0 var(--ombre-bleu);
+}
+.bouton-rouge:active {
+  box-shadow: 0 1px 0 var(--ombre-rouge);
+}
+.bouton-vert:active {
+  box-shadow: 0 1px 0 var(--ombre-vert);
 }
 
 .bouton-contour {
   background: var(--surface);
   color: var(--texte);
   border-color: var(--bordure-bouton);
+  box-shadow: 0 3px 0 var(--bordure-bouton);
+}
+.bouton-contour:active {
+  box-shadow: 0 0 0 var(--bordure-bouton);
 }
 .bouton-a-revoir {
   background: var(--surface);
   color: var(--rouge-texte);
   border-color: currentColor;
+  box-shadow: 0 3px 0 currentColor;
+}
+.bouton-a-revoir:active {
+  box-shadow: 0 0 0 currentColor;
 }
 
 .bouton-large {
@@ -477,8 +552,10 @@ main:focus {
 .bouton-geant {
   min-height: 72px;
   font-size: 1.15rem;
-  border-radius: 22px;
-  font-weight: 700;
+  border-radius: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 .rangee {
   display: flex;
@@ -524,13 +601,14 @@ main:focus {
   min-width: 48px;
   height: 48px;
   padding: 0 8px;
-  border-radius: 16px;
+  border-radius: 12px;
   background: var(--bouton);
   color: #fff;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.1rem;
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
+  box-shadow: 0 3px 0 var(--ombre-bleu);
 }
 
 /* ── Champs ───────────────────────────────────────────────────────────── */

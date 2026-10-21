@@ -165,7 +165,9 @@ const series = [
   .carte-serie-icone {
     width: 52px;
     height: 52px;
-    border-radius: 16px;
+    border-radius: 14px;
+    transform: rotate(-4deg);
+    box-shadow: 0 3px 0 var(--ombre-bleu);
     background: var(--marine);
     color: #fff;
     display: flex;
@@ -175,6 +177,7 @@ const series = [
   }
   .serie-faibles .carte-serie-icone {
     background: var(--rouge);
+    box-shadow: 0 3px 0 var(--ombre-rouge);
   }
   .carte-serie-icone :global(svg) {
     width: 26px;

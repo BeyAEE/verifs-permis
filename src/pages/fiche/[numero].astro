@@ -40,7 +40,7 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
       <span class="numero grand" aria-hidden="true">{n}</span>
       <div>
         <h1>Fiche {n}<span class="visuellement-cache"> : </span><span class="h1-sujet">{sujet}</span></h1>
-        <p class="doux">{typeLong} · 3 questions · 3 points</p>
+        <p class="doux">{typeLong}&nbsp;· 3&nbsp;questions&nbsp;· 3&nbsp;points</p>
       </div>
     </header>
 
@@ -116,6 +116,7 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
   }
   .h1-sujet {
     display: block;
+    text-transform: none;
     font-size: 1.02rem;
     font-weight: 600;
     line-height: 1.3;
@@ -139,8 +140,9 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
     min-width: 72px;
     height: 72px;
     font-size: 1.8rem;
-    border-radius: 22px;
-    box-shadow: 0 8px 20px rgb(18 68 131 / 25%);
+    border-radius: 18px;
+    transform: rotate(-4deg);
+    box-shadow: 0 5px 0 var(--ombre-bleu);
   }
   .tout {
     align-self: flex-start;
