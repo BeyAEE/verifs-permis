@@ -60,6 +60,7 @@ const surBlanc: Array<[string, number]> = [
   ['rouge', 4.5], // bouton Examen blanc
   ['bouton-vert', 4.5], // « Je savais »
   ['entete', 4.5],
+  ['bande', 4.5], // bande du titre « Vérifs permis B »
   ['nuit', 4.5],
 ];
 

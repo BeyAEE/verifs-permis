@@ -67,21 +67,32 @@ const liens = [
   <body data-demander-voiture={demanderVoiture ? 'oui' : undefined}>
     <a class="lien-evitement" href="#contenu">Aller au contenu</a>
     <header class="entete">
-      <div class="entete-interieur">
-        <a class="marque" href={url()}>
-          <picture>
-            <source srcset={url('img/logo-ecf-80.webp')} type="image/webp" />
-            <img src={url('img/logo-ecf-80.png')} alt="" width="40" height="40" />
-          </picture>
-          <span class="marque-texte"><strong>Vérifs permis</strong><span>{ECOLE}<span class="visuellement-cache">, accueil</span></span></span>
-        </a>
-        <nav class="nav-haut" aria-label="Navigation principale">
-          {liens.map((l) => <a href={l.href} aria-current={actif === l.id ? 'page' : undefined}>{l.libelle}</a>)}
-        </nav>
-        <button type="button" class="pastille-voiture" data-ouvrir-voiture aria-haspopup="dialog">
-          <Icone nom="voiture" />
-          <span data-voiture-nom>Ma voiture</span>
-        </button>
+      <div class="bande-agence">
+        <div class="entete-interieur">
+          <span class="agence-logo">
+            <picture>
+              <source srcset={url('img/logo-ecf-bandeau.webp')} type="image/webp" />
+              <img src={url('img/logo-ecf-bandeau.png')} alt="Auto-école ECF" width="62" height="22" />
+            </picture>
+          </span>
+          <span class="agence-nom">Picco Pechberty · Albi</span>
+          <a class="appeler" href="tel:+33563540947" aria-label="Appeler l’auto-école : 05 63 54 09 47">
+            <Icone nom="telephone" />
+            <span class="appeler-court">Appeler</span><span class="appeler-numero">05 63 54 09 47</span>
+          </a>
+        </div>
+      </div>
+      <div class="bande-titre">
+        <div class="entete-interieur">
+          <a class="titre-site" href={url()}>Vérifs permis <em>B</em><span class="visuellement-cache">, accueil</span></a>
+          <nav class="nav-haut" aria-label="Navigation principale">
+            {liens.map((l) => <a href={l.href} aria-current={actif === l.id ? 'page' : undefined}>{l.libelle}</a>)}
+          </nav>
+          <button type="button" class="pastille-voiture" data-ouvrir-voiture aria-haspopup="dialog">
+            <span class="pastille-icone"><Icone nom="voiture" /></span>
+            <span data-voiture-nom>Ma voiture</span>
+          </button>
+        </div>
       </div>
     </header>
 
