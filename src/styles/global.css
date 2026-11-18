@@ -1,41 +1,62 @@
-/* ── Charte ECF ──────────────────────────────────────────────────────────
-   Contrastes vérifiés par tests/unit/contrastes.test.ts (WCAG AA).
-   Le vert #14A856 de la charte fait 3,1:1 avec du blanc : il sert aux
-   éléments graphiques (zones, icônes) ; le texte et les boutons « Je savais »
-   utilisent --vert-texte, plus foncé. */
+/* ── Charte ECF 2026 ────────────────────────────────────────────────────
+   Palette Groupe & Auto-école : Bleu ECF #124483 (accent unique), Rouge ECF
+   #DA1F26 (touches), blanc, Bleus ECF dégradés #98C0F1 / #C0D9F6 / #E9F1FC,
+   roses #FCE9E9. Texte #191C21 et #5C626C ; succès en vert désaturé
+   (sémantique, pas une couleur de marque). Police Affogato.
+   Contrastes vérifiés par tests/unit/contrastes.test.ts (WCAG AA). */
+@font-face {
+  font-family: 'Affogato';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/Affogato-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Affogato';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/Affogato-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Affogato';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/Affogato-Bold.ttf') format('truetype');
+}
+
 :root {
   --marine: #124483;
-  --nuit: #0a2a57;
-  --rouge: #db1418;
+  --rouge: #da1f26;
   --blanc: #ffffff;
-  --fond-clair: #eef2f8;
-  --vert: #14a856;
+  --bleu-1: #98c0f1;
+  --bleu-2: #c0d9f6;
+  --bleu-3: #e9f1fc;
+  --rose-3: #fce9e9;
+  /* Succès : vert désaturé, réservé au sens « bonne réponse ». */
+  --vert: #3c8a62;
 
-  --fond: var(--fond-clair);
+  --fond: var(--bleu-3);
   --surface: #ffffff;
-  --surface-2: #f6f8fc;
-  --texte: #0a2a57;
-  --texte-doux: #51607a;
-  --bordure: #d6deeb;
-  --bordure-champ: #76839b;
-  --accent: #124483;
+  --surface-2: var(--bleu-3);
+  --texte: #191c21;
+  --texte-doux: #5c626c;
+  --bordure: var(--bleu-2);
+  --bordure-champ: #5c626c;
+  --accent: var(--marine);
   --accent-texte: #ffffff;
-  --lien: #124483;
-  --rouge-texte: #c40f13;
-  --rouge-pale: #fcebec;
-  --vert-texte: #0c7a3b;
-  --vert-pale: #e6f6ec;
-  --bouton-vert: #0c7a3b;
-  --entete: #0a2a57;
-  --bande: #1b4ea0;
-  --ombre: 0 3px 0 rgb(10 42 87 / 9%);
-  --ombre-bleu: #0b2f63;
-  --ombre-rouge: #9a0b0e;
-  --ombre-vert: #06491f;
-  --focus: #124483;
-  --bouton: #124483;
-  --bouton-survol: #0f3a70;
-  --bordure-bouton: #aab7cc;
+  --lien: var(--marine);
+  --rouge-texte: var(--rouge);
+  --rouge-pale: var(--rose-3);
+  --vert-texte: #2f6b4f;
+  --vert-pale: #e6f0ea;
+  --bouton-vert: #2f6b4f;
+  --entete: var(--marine);
+  --bande: var(--marine);
+  --focus: var(--marine);
+  --bouton: var(--marine);
+  --bordure-bouton: var(--bleu-2);
 
   --rayon: 16px;
   --rayon-s: 12px;
@@ -50,34 +71,6 @@
   --nav-bas: 68px;
 
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fond: #08182f;
-    --surface: #102745;
-    --surface-2: #0c2140;
-    --texte: #eaf0fa;
-    --texte-doux: #a9b9d3;
-    --bordure: #24406a;
-    --bordure-champ: #6a86b0;
-    --accent: #124483;
-    --accent-texte: #ffffff;
-    --lien: #8fb8ff;
-    --rouge-texte: #ff6b6e;
-    --rouge-pale: #3a1622;
-    --vert-texte: #3dd27f;
-    --vert-pale: #0f3326;
-    --bouton-vert: #0c7a3b;
-    --entete: #0a2a57;
-    --bande: #1b4ea0;
-    --ombre: 0 3px 0 rgb(0 0 0 / 35%);
-    --focus: #8fb8ff;
-    --bouton: #1f5fbf;
-    --bouton-survol: #2a6ad0;
-    --bordure-bouton: #3a5c8c;
-    color-scheme: dark;
-  }
 }
 
 /* ── Base ─────────────────────────────────────────────────────────────── */
@@ -102,7 +95,7 @@ body {
   flex-direction: column;
   background: var(--fond);
   color: var(--texte);
-  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: 'Affogato', 'Aptos', -apple-system, 'Segoe UI', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -118,18 +111,18 @@ h3 {
   margin: 0;
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 h1 {
   font-size: clamp(1.6rem, 6.4vw, 2.4rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.08;
   letter-spacing: 0;
   text-transform: uppercase;
   text-wrap: balance;
 }
 h2 {
-  font-weight: 800;
+  font-weight: 700;
 }
 /* Mot mis en avant dans un titre : pastille rouge inclinée (visuels de l'auto-école). */
 .autocollant {
@@ -139,11 +132,10 @@ h2 {
   background: var(--rouge);
   color: #fff;
   transform: rotate(-3deg);
-  box-shadow: 0 0.09em 0 var(--ombre-rouge);
 }
 .autocollant.vert {
-  background: var(--bouton-vert);
-  box-shadow: 0 0.09em 0 var(--ombre-vert);
+  /* Ancien autocollant vert : le vert est réservé au sens « bonne réponse ». */
+  background: var(--marine);
 }
 /* Pastille de lieu (comme « Conducteurs d'Albi » sur les visuels). */
 .pastille-lieu {
@@ -155,10 +147,9 @@ h2 {
   border-radius: var(--pilule);
   background: var(--surface);
   border: 1px solid var(--bordure);
-  box-shadow: var(--ombre);
   color: var(--texte);
   font-size: 0.74rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -224,21 +215,20 @@ button {
   color: var(--texte);
   padding: 12px 18px;
   border-radius: var(--rayon-s);
-  font-weight: 600;
+  font-weight: 500;
 }
 .lien-evitement:focus {
   top: calc(12px + var(--sait));
 }
 
 /* ── En-tête ──────────────────────────────────────────────────────────
-   Deux bandes : l'agence (marine, logo + appel), puis le titre (bleu, rayons
-   comme sur les visuels Instagram de l'auto-école). Au défilement, la bande de
-   l'agence s'en va et seule la bande du titre reste en haut. */
+   Une seule bande Bleu ECF : logo ECF contour (version charte sur fond
+   coloré), titre, navigation (ordinateur), choix de la voiture, appel. */
 body {
   padding-top: var(--sait);
 }
 body::before {
-  /* Barre d'état de l'iPhone (appli installée) : toujours marine. */
+  /* Barre d'état de l'iPhone (appli installée) : toujours Bleu ECF. */
   content: '';
   position: fixed;
   inset: 0 0 auto;
@@ -247,91 +237,36 @@ body::before {
   z-index: 40;
 }
 .entete {
-  --h-agence: 44px;
   position: sticky;
-  top: calc(var(--sait) - var(--h-agence));
+  top: var(--sait);
   z-index: 30;
   color: #fff;
-}
-.entete-interieur {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 .entete :focus-visible {
   outline-color: #fff;
 }
-.bande-agence {
-  height: var(--h-agence);
+.bande-titre {
+  background: var(--bande);
+  padding: 6px max(16px, env(safe-area-inset-right)) 6px max(16px, env(safe-area-inset-left));
+}
+.entete-interieur {
+  max-width: 1180px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  background: var(--entete);
-  padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+  gap: 8px;
 }
-.bande-agence .entete-interieur {
-  width: 100%;
-}
+/* Logo ECF contour : 84 px de large (minimum charte 80 px). Zone de
+   protection d'environ 10 px laissée libre autour (la marge de la page
+   tient lieu de zone à gauche). */
 .agence-logo {
   display: flex;
-  padding: 4px 8px;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  flex-shrink: 0;
+  padding: 10px 10px 10px 0;
 }
 .agence-logo img {
-  height: 22px;
-  width: auto;
-}
-.agence-nom {
-  margin-right: auto;
-  font-size: 0.8rem;
-  font-weight: 600;
-  opacity: 0.92;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.appeler {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 32px;
-  padding: 6px 12px 6px 10px;
-  border-radius: var(--pilule);
-  background: var(--rouge);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.appeler svg {
-  width: 14px;
-  height: 14px;
-}
-.appeler-numero {
-  display: none;
-}
-.bande-titre {
-  position: relative;
-  overflow: hidden;
-  background: var(--bande);
-  padding: 8px max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
-  box-shadow: 0 4px 14px rgb(10 42 87 / 18%);
-}
-.bande-titre::before {
-  /* Rayons, comme sur les visuels de l'auto-école. */
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-conic-gradient(from 0deg at 70% 140%, rgb(255 255 255 / 0%) 0 6deg, rgb(255 255 255 / 6%) 6deg 8deg);
-  pointer-events: none;
-}
-.bande-titre .entete-interieur {
-  position: relative;
+  width: 84px;
+  height: auto;
 }
 .titre-site {
   display: flex;
@@ -340,12 +275,30 @@ body::before {
   margin-right: auto;
   color: #fff;
   text-decoration: none;
-  font-weight: 800;
-  font-size: 1.35rem;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 4.3vw, 1.35rem);
   line-height: 1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+.titre-site {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+.titre-ligne {
+  display: flex;
+  align-items: center;
+}
+.agence-nom {
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bleu-2);
 }
 .titre-site em {
   font-style: normal;
@@ -355,38 +308,40 @@ body::before {
   border-radius: 6px;
   background: var(--rouge);
   transform: rotate(-4deg);
-  box-shadow: 0 3px 0 rgb(0 0 0 / 18%);
 }
 .nav-haut {
   display: none;
-  gap: 4px;
+  gap: 2px;
 }
 .nav-haut a {
   color: #fff;
   text-decoration: none;
-  font-weight: 600;
-  padding: 10px 14px;
+  font-weight: 500;
+  padding: 10px 12px;
   border-radius: var(--pilule);
   min-height: 44px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 .nav-haut a:hover {
-  background: rgb(255 255 255 / 12%);
+  text-decoration: underline;
 }
 .nav-haut a[aria-current='page'] {
-  background: rgb(255 255 255 / 18%);
+  background: var(--surface);
+  color: var(--marine);
+  font-weight: 700;
 }
 .pastille-voiture {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   min-height: 40px;
-  padding: 6px 14px 6px 7px;
+  padding: 7px;
   border: 0;
   border-radius: var(--pilule);
   background: #fff;
-  color: var(--nuit);
+  color: var(--marine);
   font-weight: 700;
   font-size: 0.82rem;
   letter-spacing: 0.02em;
@@ -408,12 +363,109 @@ body::before {
   width: 16px;
   height: 16px;
 }
+/* Petits écrans : la pastille ne montre que l'icône (le nom reste lu). */
+.pastille-texte {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .pastille-voiture:hover {
-  background: #eef2f8;
+  background: var(--bleu-3);
 }
 .entete .pastille-voiture:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 2px;
+}
+.appeler {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-radius: var(--pilule);
+  background: var(--rouge);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.appeler svg {
+  width: 16px;
+  height: 16px;
+}
+.appeler-court,
+.appeler-numero {
+  display: none;
+}
+/* Très petits téléphones (320 px) : tout tient encore sur une ligne. */
+@media (max-width: 359px) {
+  .entete-interieur {
+    gap: 5px;
+  }
+  .agence-logo {
+    padding-right: 9px;
+  }
+  .agence-logo img {
+    width: 80px;
+  }
+  .titre-site {
+    font-size: 0.75rem;
+  }
+  .titre-site em {
+    margin-left: 4px;
+    padding: 2px 6px 0;
+  }
+}
+@media (min-width: 600px) {
+  .pastille-voiture {
+    padding-right: 14px;
+  }
+  .pastille-texte {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+  .appeler {
+    padding: 6px 14px 6px 12px;
+  }
+  .appeler-court {
+    display: inline;
+  }
+}
+@media (min-width: 900px) {
+  .nav-haut {
+    display: flex;
+  }
+}
+@media (min-width: 900px) and (max-width: 1099px) {
+  /* Place comptée : la navigation passe avant les libellés. */
+  .pastille-voiture {
+    padding-right: 7px;
+  }
+  .pastille-texte {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+@media (min-width: 1200px) {
+  .appeler-court {
+    display: none;
+  }
+  .appeler-numero {
+    display: inline;
+  }
 }
 
 /* ── Contenu ──────────────────────────────────────────────────────────── */
@@ -436,12 +488,11 @@ main:focus {
   background: var(--surface);
   border-radius: var(--rayon);
   padding: 20px;
-  box-shadow: var(--ombre);
   border: 1px solid var(--bordure);
 }
 .surtitre {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--texte-doux);
@@ -481,8 +532,7 @@ main:focus {
   line-height: 1.2;
   transition:
     transform var(--vitesse) var(--courbe),
-    background-color var(--vitesse),
-    box-shadow var(--vitesse);
+    background-color var(--vitesse);
   -webkit-tap-highlight-color: transparent;
 }
 .bouton:active {
@@ -496,48 +546,26 @@ main:focus {
 .bouton-principal {
   background: var(--bouton);
   color: #fff;
-  box-shadow: 0 4px 0 var(--ombre-bleu);
 }
 .bouton-rouge {
   background: var(--rouge);
   color: #fff;
-  box-shadow: 0 4px 0 var(--ombre-rouge);
 }
 
 .bouton-vert {
   background: var(--bouton-vert);
   color: #fff;
-  box-shadow: 0 4px 0 var(--ombre-vert);
-}
-.bouton-principal:active,
-.bouton-rouge:active,
-.bouton-vert:active {
-  box-shadow: 0 1px 0 var(--ombre-bleu);
-}
-.bouton-rouge:active {
-  box-shadow: 0 1px 0 var(--ombre-rouge);
-}
-.bouton-vert:active {
-  box-shadow: 0 1px 0 var(--ombre-vert);
 }
 
 .bouton-contour {
   background: var(--surface);
   color: var(--texte);
   border-color: var(--bordure-bouton);
-  box-shadow: 0 3px 0 var(--bordure-bouton);
-}
-.bouton-contour:active {
-  box-shadow: 0 0 0 var(--bordure-bouton);
 }
 .bouton-a-revoir {
   background: var(--surface);
   color: var(--rouge-texte);
   border-color: currentColor;
-  box-shadow: 0 3px 0 currentColor;
-}
-.bouton-a-revoir:active {
-  box-shadow: 0 0 0 currentColor;
 }
 
 .bouton-large {
@@ -545,7 +573,9 @@ main:focus {
 }
 .bouton[disabled],
 .bouton[aria-disabled='true'] {
-  opacity: 0.45;
+  background: var(--bleu-3);
+  color: var(--texte-doux);
+  border-color: var(--bordure);
   cursor: not-allowed;
   transform: none;
 }
@@ -553,7 +583,7 @@ main:focus {
   min-height: 72px;
   font-size: 1.15rem;
   border-radius: 18px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -570,7 +600,7 @@ main:focus {
   align-items: center;
   gap: 6px;
   min-height: var(--cible);
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
 }
 .lien-fleche:hover {
@@ -585,7 +615,7 @@ main:focus {
   padding: 4px 12px;
   border-radius: var(--pilule);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   background: var(--surface-2);
   color: var(--texte);
   border: 1px solid var(--bordure);
@@ -604,11 +634,10 @@ main:focus {
   border-radius: 12px;
   background: var(--bouton);
   color: #fff;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.1rem;
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
-  box-shadow: 0 3px 0 var(--ombre-bleu);
 }
 
 /* ── Champs ───────────────────────────────────────────────────────────── */
@@ -619,7 +648,7 @@ main:focus {
 }
 .champ label,
 .etiquette {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9rem;
 }
 .saisie {
@@ -659,7 +688,7 @@ main:focus {
   justify-content: center;
   min-height: 44px;
   border-radius: var(--pilule);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9rem;
   color: var(--texte-doux);
   cursor: pointer;
@@ -700,7 +729,7 @@ main:focus {
 }
 .question-texte {
   font-size: 1.12rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
   text-wrap: pretty;
 }
@@ -712,11 +741,6 @@ main:focus {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-@media (prefers-color-scheme: dark) {
-  .reponse {
-    border-left-color: var(--lien);
-  }
 }
 .reponse[hidden] {
   display: none;
@@ -762,7 +786,7 @@ main:focus {
 .progression > div {
   min-width: 12px;
   height: 100%;
-  background: linear-gradient(90deg, var(--marine), var(--rouge));
+  background: var(--marine);
   border-radius: inherit;
   transition: width 0.35s var(--courbe);
 }
@@ -779,7 +803,6 @@ main:focus {
   display: flex;
   background: var(--surface);
   border-top: 1px solid var(--bordure);
-  box-shadow: 0 -6px 20px rgb(10 42 87 / 6%);
 }
 .nav-bas a {
   flex: 1;
@@ -806,20 +829,8 @@ main:focus {
   :root {
     --largeur: 860px;
   }
-  .entete-interieur {
-    max-width: calc(var(--largeur) - 32px);
-  }
   .nav-bas {
     display: none;
-  }
-  .nav-haut {
-    display: flex;
-  }
-  .appeler-court {
-    display: none;
-  }
-  .appeler-numero {
-    display: inline;
   }
   main {
     padding-bottom: 48px;
@@ -842,11 +853,11 @@ main:focus {
   border-radius: 28px;
   background: var(--surface);
   color: var(--texte);
-  box-shadow: 0 30px 80px rgb(0 0 0 / 35%);
+  border: 1px solid var(--bordure);
 }
 .fenetre::backdrop {
-  background: rgb(5 15 34 / 60%);
-  backdrop-filter: blur(3px);
+  /* Voile de la fenêtre modale : Bleu ECF assombrissant la page. */
+  background: rgb(18 68 131 / 75%);
 }
 .fenetre[open] {
   animation: apparition 0.3s var(--courbe);
@@ -885,7 +896,8 @@ main:focus {
 .carte-voiture[aria-pressed='true'] {
   border-color: var(--marine);
   background: var(--surface-2);
-  box-shadow: inset 0 0 0 1px var(--marine);
+  outline: 1px solid var(--marine);
+  outline-offset: -3px;
 }
 .carte-voiture .silhouette {
   width: 72px;
@@ -917,14 +929,11 @@ main:focus {
 
 /* ── Survols : seulement avec une souris ou un pavé ───────────────────── */
 @media (hover: hover) {
-  .bouton-principal:hover {
-    background: var(--bouton-survol);
-  }
-  .bouton-rouge:hover {
-    background: #bd1115;
-  }
+  .bouton-principal:hover,
+  .bouton-rouge:hover,
   .bouton-vert:hover {
-    background: #096531;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
   .bouton-contour:hover {
     border-color: var(--lien);

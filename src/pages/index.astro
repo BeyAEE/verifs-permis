@@ -121,10 +121,9 @@ import { AUTO_ECOLE, NOM_SITE, SITE, url } from '../lib/site';
     border-radius: 11px;
     background: var(--marine);
     color: #fff;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.2rem;
     transform: rotate(-4deg);
-    box-shadow: 0 3px 0 var(--ombre-bleu);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,7 +133,6 @@ import { AUTO_ECOLE, NOM_SITE, SITE, url } from '../lib/site';
   }
   .chiffre-compteur {
     background: var(--rouge);
-    box-shadow: 0 3px 0 var(--ombre-rouge);
   }
   .chiffre-compteur :global(svg) {
     width: 22px;
@@ -159,14 +157,14 @@ import { AUTO_ECOLE, NOM_SITE, SITE, url } from '../lib/site';
     gap: 3px;
     padding: 4px;
     border-radius: 10px;
-    background: #050f22;
+    background: var(--marine);
   }
   .mini-compteur span {
     width: 22px;
     height: 30px;
     border-radius: 5px;
-    background: #16233b;
-    color: #e6edf8;
+    background: var(--bleu-3);
+    color: var(--marine);
     font-weight: 700;
     font-size: 1.05rem;
     display: flex;
@@ -193,17 +191,9 @@ import { AUTO_ECOLE, NOM_SITE, SITE, url } from '../lib/site';
     min-height: 104px;
     border-radius: 18px;
     font-size: 1.05rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-  }
-  .action::before {
-    /* Rayons, comme le bandeau du haut. */
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-conic-gradient(from 0deg at 50% 130%, rgb(255 255 255 / 0%) 0 6deg, rgb(255 255 255 / 8%) 6deg 8deg);
-    pointer-events: none;
   }
   .action > * {
     position: relative;

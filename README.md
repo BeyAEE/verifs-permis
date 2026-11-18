@@ -121,9 +121,13 @@ Si un test échoue, rien n'est mis en ligne.
 
 Une fois pour toutes (déjà fait) : Settings → Pages → Source : **GitHub Actions**.
 
+## Charte graphique ECF
+
+Le site suit la charte graphique ECF 2026 (logo officiel, police Affogato, palette Bleu ECF / Rouge ECF, pas d'ombre ni de dégradé, pas de mode sombre). Les règles sont dans [`docs/CHARTE-ECF-WEB.md`](docs/CHARTE-ECF-WEB.md) : à respecter pour toute modification visuelle. Le test `tests/unit/contrastes.test.ts` refuse toute couleur hors charte.
+
 ## Choix faits en cours de route
 
-- **Vert de la charte.** `#14A856` sur blanc fait 3,1:1, sous le seuil AA de 4,5 pour du texte. Il sert donc aux éléments graphiques (zones, icônes). Les boutons « Je savais » et les textes verts utilisent `#0C7A3B` (5,4:1). Les contrastes sont vérifiés par un test en mode clair et en mode sombre.
+- **Charte ECF 2026.** Logo officiel ECF (`public/logo-ecf.svg`, version classique sur la bande blanche ; `public/logo-ecf-contour.svg` sur fond bleu), police Affogato (`src/fonts/`, graisses 400, 500 et 700), palette Groupe & Auto-école : Bleu ECF `#124483`, Rouge ECF `#DA1F26`, Bleus ECF dégradés, texte `#191C21` / `#5C626C`. Pas de dégradé, pas d'ombre, pas de mode sombre (la charte n'en prévoit pas). Le vert `#2F6B4F` / `#3C8A62` est réservé au sens « bonne réponse ». Le test `contrastes.test.ts` vérifie les contrastes AA et refuse toute couleur hors charte dans les variables du thème. Icônes : `node scripts/icones.mjs` ; image de partage : `npm run og`.
 - **Réponses absentes.** 55 fiches n'ont pas de réponse écrite pour la vérification dans la source. Le site affiche « Pas de réponse écrite… il faut la faire ou la montrer », sans rien inventer. Le test d'intégrité vérifie la liste exacte de ces fiches au lieu d'exiger « tous les champs remplis ».
 - **Fiches jumelles.** Une zone peut servir à plusieurs fiches (`"fiches": [8, 70]`), puisque 31 vérifications existent en double.
 - **Score en entraînement.** Pour « Trouve l'élément », c'est le premier essai qui compte. « Réessayer » sert à apprendre, pas à remonter le score.

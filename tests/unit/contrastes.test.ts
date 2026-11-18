@@ -1,5 +1,6 @@
-// Contrastes WCAG AA des couleurs du thème, lues directement dans le CSS
-// (clair et sombre) : un changement de couleur qui casse l'AA fait échouer la CI.
+// Contrastes WCAG AA des couleurs du thème (charte ECF 2026), lues directement
+// dans le CSS : un changement de couleur qui casse l'AA fait échouer la CI.
+// Le site n'a qu'un thème clair : la charte ECF ne prévoit pas de mode sombre.
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 
@@ -20,9 +21,7 @@ function jetons(bloc: string, base: Record<string, string> = {}): Record<string,
   );
 }
 
-const clair = jetons(css.slice(css.indexOf(':root {'), css.indexOf('@media (prefers-color-scheme: dark)')));
-const blocSombre = css.slice(css.indexOf('@media (prefers-color-scheme: dark)'));
-const sombre = jetons(blocSombre.slice(0, blocSombre.indexOf('\n}\n')), clair);
+const clair = jetons(css.slice(css.indexOf(':root {'), css.indexOf('/* ── Base')));
 
 function luminance(hex: string): number {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
@@ -46,7 +45,7 @@ const paires: Array<[string, string, number]> = [
   ['lien', 'surface', 4.5],
   ['lien', 'surface-2', 4.5],
   ['rouge-texte', 'surface', 4.5],
-  ['rouge-texte', 'rouge-pale', 4.5],
+  ['texte', 'rouge-pale', 4.5], // sur fond rose, le texte reste foncé (rouge seulement en icône)
   ['vert-texte', 'surface', 4.5],
   ['vert-texte', 'vert-pale', 4.5],
   ['bordure-champ', 'surface', 3],
@@ -56,18 +55,15 @@ const paires: Array<[string, string, number]> = [
 ];
 const surBlanc: Array<[string, number]> = [
   ['marine', 4.5],
-  ['bouton', 4.5], // boutons principaux, numéros, segment actif (plus vif en sombre)
-  ['rouge', 4.5], // bouton Examen blanc
+  ['bouton', 4.5], // boutons principaux, numéros, segment actif
+  ['rouge', 4.5], // bouton Examen blanc, Appeler
   ['bouton-vert', 4.5], // « Je savais »
   ['entete', 4.5],
   ['bande', 4.5], // bande du titre « Vérifs permis B »
-  ['nuit', 4.5],
 ];
 
-describe.each([
-  ['thème clair', clair],
-  ['thème sombre', sombre],
-])('contrastes WCAG AA — %s', (_nom, t) => {
+describe('contrastes WCAG AA — thème clair', () => {
+  const t = clair;
   it.each(paires)('%s sur %s', (avant, fond, seuil) => {
     expect(t[avant], `--${avant} manquant`).toBeDefined();
     expect(t[fond], `--${fond} manquant`).toBeDefined();
@@ -79,7 +75,14 @@ describe.each([
   });
 });
 
-it('le vert de la charte reste réservé aux éléments graphiques (3:1 sur blanc)', () => {
+it('le vert des zones (graphique) reste lisible sur blanc (3:1)', () => {
   expect(contraste(clair.vert, BLANC)).toBeGreaterThanOrEqual(3);
-  expect(contraste(clair.vert, BLANC)).toBeLessThan(4.5); // d'où --vert-texte et --bouton-vert
+});
+
+it('seules les couleurs de la charte ECF 2026 sont utilisées', () => {
+  const charte = ['#124483', '#da1f26', '#ffffff', '#98c0f1', '#c0d9f6', '#e9f1fc', '#fce9e9', '#f0989b'];
+  const texteEtSemantique = ['#191c21', '#5c626c', '#3c8a62', '#2f6b4f', '#e6f0ea'];
+  const autorisees = new Set([...charte, ...texteEtSemantique]);
+  const horsCharte = Object.values(clair).filter((c) => !autorisees.has(c));
+  expect(horsCharte).toEqual([]);
 });

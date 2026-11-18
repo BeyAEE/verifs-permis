@@ -1,49 +1,45 @@
 #!/usr/bin/env node
-// Image de partage 1200×630 aux couleurs ECF → public/og.png
-import { chromium } from '@playwright/test';
-import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
+// Image de partage 1200×630 aux couleurs de la charte ECF 2026 → public/og.png
+// Fond Bleu ECF, logo ECF contour (fond coloré), textes en Affogato blanc,
+// filet Rouge ECF en pied. Rendu avec sharp (aucun navigateur nécessaire).
+import sharp from 'sharp';
 
-// Polices intégrées en data: URI (une page vierge ne peut pas lire file://).
-const polices = {};
-for (const g of [500, 700]) {
-  const fichier = fileURLToPath(new URL(`../node_modules/@fontsource/poppins/files/poppins-latin-${g}-normal.woff2`, import.meta.url));
-  polices[g] = 'data:font/woff2;base64,' + (await readFile(fichier)).toString('base64');
+const L = 1200;
+const H = 630;
+const BLEU = '#124483';
+const ROUGE = '#da1f26';
+const police = (graisse) => `src/fonts/Affogato-${graisse}.ttf`;
+
+async function texte(contenu, graisse, taille, largeur) {
+  return sharp({
+    text: {
+      text: `<span foreground="#ffffff" size="${taille * 1024}">${contenu}</span>`,
+      font: graisse === 'Regular' ? 'Affogato' : `Affogato ${graisse}`,
+      fontfile: police(graisse),
+      width: largeur,
+      rgba: true,
+      dpi: 72,
+      spacing: Math.round(taille * 0.12),
+    },
+  }).png().toBuffer();
 }
-const police = (graisse) => polices[graisse];
-const logo = (await readFile('public/logo-ecf.png')).toString('base64');
 
-const html = `<!doctype html><html><head><style>
-@font-face{font-family:P;font-weight:500;src:url(${police(500)})}
-@font-face{font-family:P;font-weight:700;src:url(${police(700)})}
-*{margin:0;box-sizing:border-box}
-body{width:1200px;height:630px;font-family:P;color:#fff;background:linear-gradient(135deg,#0a2a57 0%,#124483 100%);position:relative;overflow:hidden}
-.bande{position:absolute;left:0;right:0;bottom:0;height:14px;background:#db1418}
-.cercle{position:absolute;right:-120px;top:-140px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.06)}
-.contenu{position:absolute;left:80px;top:72px;right:80px}
-.marque{display:flex;align-items:center;gap:20px;margin-bottom:56px}
-.marque img{width:92px;height:92px;background:#fff;border-radius:26px;padding:8px}
-.marque span{font-size:34px;font-weight:700}.marque small{display:block;font-size:24px;font-weight:500;opacity:.8}
-h1{font-size:68px;line-height:1.05;letter-spacing:-2px;max-width:820px}
-p{margin-top:26px;font-size:30px;font-weight:500;opacity:.9}
-.compteur{position:absolute;right:80px;bottom:80px;display:flex;gap:8px;padding:12px;border-radius:22px;background:#050b16}
-.compteur b{width:58px;height:80px;border-radius:12px;background:#16233b;display:flex;align-items:center;justify-content:center;font-size:50px}
-.compteur b.cle{background:#db1418}
-</style></head><body>
-<div class="cercle"></div>
-<div class="contenu">
-  <div class="marque"><img src="data:image/png;base64,${logo}"><span>Vérifs permis<small>ECF Albi</small></span></div>
-  <h1>Questions de vérification du permis B</h1>
-  <p>Les 100 fiches · Entraînement · Examen blanc</p>
-</div>
-<div class="compteur"><b>5</b><b>4</b><b>7</b><b class="cle">2</b><b class="cle">6</b></div>
-<div class="bande"></div>
-</body></html>`;
+// Logo contour : 300 px de large, zone de protection (≈ 0,115 × largeur) respectée.
+const logo = await sharp('public/logo-ecf-contour.svg', { density: 300 }).resize({ width: 300 }).png().toBuffer();
 
-const navigateur = await chromium.launch();
-const page = await navigateur.newPage({ viewport: { width: 1200, height: 630 } });
-await page.setContent(html, { waitUntil: 'networkidle' });
-await page.evaluate(() => document.fonts.ready);
-await page.screenshot({ path: 'public/og.png' });
-await navigateur.close();
+const titre = await texte('QUESTIONS DE VÉRIFICATION\nDU PERMIS B', 'Bold', 64, 1040);
+const sousTitre = await texte('Les 100 fiches · Entraînement · Examen blanc', 'Regular', 32, 1040);
+const lieu = await texte('Auto-école ECF Picco Pechberty · Albi', 'Medium', 28, 1040);
+
+await sharp({ create: { width: L, height: H, channels: 4, background: BLEU } })
+  .composite([
+    { input: logo, left: 80, top: 64 },
+    { input: titre, left: 80, top: 250 },
+    { input: sousTitre, left: 80, top: 445 },
+    { input: lieu, left: 80, top: 520 },
+    { input: { create: { width: L, height: 14, channels: 4, background: ROUGE } }, left: 0, top: H - 14 },
+  ])
+  .flatten({ background: BLEU })
+  .png({ compressionLevel: 9 })
+  .toFile('public/og.png');
 console.log('✓ public/og.png');

@@ -65,7 +65,7 @@ function initialiser(racine: HTMLElement): void {
   const bezier = (t: number, p0: number, p1: number, p2: number) => (1 - t) ** 2 * p0 + 2 * (1 - t) * t * p1 + t ** 2 * p2;
 
   // Confettis : petites pièces lancées en gerbe, retombant avec la gravité.
-  const COULEURS = ['#db1418', '#14a856', '#ffffff', '#8fb8ff', '#ffcf3f'];
+  const COULEURS = ['#da1f26', '#ffffff', '#98c0f1', '#c0d9f6', '#f0989b'];
   function creerConfettis(groupe: Element): SVGRectElement[] {
     return Array.from({ length: 22 }, (_, i) => {
       const r = document.createElementNS(NS, 'rect');

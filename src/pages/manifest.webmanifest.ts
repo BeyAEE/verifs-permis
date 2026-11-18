@@ -12,8 +12,8 @@ export const GET: APIRoute = () =>
       scope: url(),
       display: 'standalone',
       orientation: 'portrait',
-      background_color: '#eef2f8',
-      theme_color: '#0a2a57',
+      background_color: '#ffffff',
+      theme_color: '#124483',
       icons: [
         { src: url('icones/icon-192.png'), sizes: '192x192', type: 'image/png', purpose: 'any' },
         { src: url('icones/icon-512.png'), sizes: '512x512', type: 'image/png', purpose: 'any' },

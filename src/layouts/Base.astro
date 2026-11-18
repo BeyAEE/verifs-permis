@@ -1,10 +1,6 @@
 ---
-import '@fontsource/poppins/latin-400.css';
-import '@fontsource/poppins/latin-500.css';
-import '@fontsource/poppins/latin-600.css';
-import '@fontsource/poppins/latin-700.css';
-import poppins400 from '@fontsource/poppins/files/poppins-latin-400-normal.woff2?url';
-import poppins700 from '@fontsource/poppins/files/poppins-latin-700-normal.woff2?url';
+import affogato400 from '../fonts/Affogato-Regular.ttf?url';
+import affogato700 from '../fonts/Affogato-Bold.ttf?url';
 import '../styles/global.css';
 import Icone from '../components/Icone.astro';
 import ChoixVoiture from '../components/ChoixVoiture.astro';
@@ -40,15 +36,15 @@ const liens = [
     <title>{titre}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonique} />}
-    <meta name="theme-color" content="#0a2a57" />
+    <meta name="theme-color" content="#124483" />
     <link rel="manifest" href={url('manifest.webmanifest')} />
     <link rel="icon" type="image/png" sizes="32x32" href={url('icones/favicon-32.png')} />
     <link rel="apple-touch-icon" href={url('icones/apple-touch-icon.png')} />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Vérifs permis" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <link rel="preload" href={poppins700} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={poppins400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={affogato700} as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href={affogato400} as="font" type="font/ttf" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
@@ -67,31 +63,27 @@ const liens = [
   <body data-demander-voiture={demanderVoiture ? 'oui' : undefined}>
     <a class="lien-evitement" href="#contenu">Aller au contenu</a>
     <header class="entete">
-      <div class="bande-agence">
-        <div class="entete-interieur">
-          <span class="agence-logo">
-            <picture>
-              <source srcset={url('img/logo-ecf-bandeau.webp')} type="image/webp" />
-              <img src={url('img/logo-ecf-bandeau.png')} alt="Auto-école ECF" width="62" height="22" />
-            </picture>
-          </span>
-          <span class="agence-nom">Picco Pechberty · Albi</span>
-          <a class="appeler" href="tel:+33563540947" aria-label="Appeler l’auto-école : 05 63 54 09 47">
-            <Icone nom="telephone" />
-            <span class="appeler-court">Appeler</span><span class="appeler-numero">05 63 54 09 47</span>
-          </a>
-        </div>
-      </div>
       <div class="bande-titre">
         <div class="entete-interieur">
-          <a class="titre-site" href={url()}>Vérifs permis <em>B</em><span class="visuellement-cache">, accueil</span></a>
+          <a class="agence-logo" href={url()}>
+            <img src={url('logo-ecf-contour.svg')} alt="Auto-école ECF : accueil" width="84" height="34" />
+          </a>
+          <a class="titre-site" href={url()}>
+            <span class="titre-ligne">Vérifs permis <em>B</em></span>
+            <span class="agence-nom">Picco Pechberty · Albi</span>
+            <span class="visuellement-cache">, accueil</span>
+          </a>
           <nav class="nav-haut" aria-label="Navigation principale">
             {liens.map((l) => <a href={l.href} aria-current={actif === l.id ? 'page' : undefined}>{l.libelle}</a>)}
           </nav>
           <button type="button" class="pastille-voiture" data-ouvrir-voiture aria-haspopup="dialog">
             <span class="pastille-icone"><Icone nom="voiture" /></span>
-            <span data-voiture-nom>Ma voiture</span>
+            <span class="pastille-texte" data-voiture-nom>Ma voiture</span>
           </button>
+          <a class="appeler" href="tel:+33563540947" aria-label="Appeler l’auto-école : 05 63 54 09 47">
+            <Icone nom="telephone" />
+            <span class="appeler-court">Appeler</span><span class="appeler-numero">05 63 54 09 47</span>
+          </a>
         </div>
       </div>
     </header>

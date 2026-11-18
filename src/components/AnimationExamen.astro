@@ -1,8 +1,8 @@
 ---
 // Animation « l'examen en 1 minute » : SVG piloté par src/scripts/animation-examen.ts.
 // Sans son, lancée au clic ; tout son contenu est repris dans le texte de la page.
-const ROUGE = '#db1418';
-const VERT = '#14a856';
+const ROUGE = '#da1f26';
+const VERT = '#3c8a62';
 ---
 
 <figure class="animation" data-animation-examen>
@@ -10,17 +10,17 @@ const VERT = '#14a856';
     <svg viewBox="0 0 480 360" aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id="ae-fond" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#103a78"></stop>
-          <stop offset="1" stop-color="#0a2a57"></stop>
+          <stop offset="0" stop-color="#124483"></stop>
+          <stop offset="1" stop-color="#124483"></stop>
         </linearGradient>
         <symbol id="ae-voiture" viewBox="-20 -11 40 22">
-          <rect x="-15" y="-11" width="7" height="3" rx="1.5" fill="#06152b"></rect>
-          <rect x="8" y="-11" width="7" height="3" rx="1.5" fill="#06152b"></rect>
-          <rect x="-15" y="8" width="7" height="3" rx="1.5" fill="#06152b"></rect>
-          <rect x="8" y="8" width="7" height="3" rx="1.5" fill="#06152b"></rect>
+          <rect x="-15" y="-11" width="7" height="3" rx="1.5" fill="#191c21"></rect>
+          <rect x="8" y="-11" width="7" height="3" rx="1.5" fill="#191c21"></rect>
+          <rect x="-15" y="8" width="7" height="3" rx="1.5" fill="#191c21"></rect>
+          <rect x="8" y="8" width="7" height="3" rx="1.5" fill="#191c21"></rect>
           <rect x="-18" y="-9.5" width="36" height="19" rx="6" fill={ROUGE}></rect>
-          <rect x="2" y="-7" width="8" height="14" rx="2.5" fill="#dfe9f7"></rect>
-          <rect x="-14" y="-6" width="5" height="12" rx="2" fill="#dfe9f7" opacity="0.7"></rect>
+          <rect x="2" y="-7" width="8" height="14" rx="2.5" fill="#e9f1fc"></rect>
+          <rect x="-14" y="-6" width="5" height="12" rx="2" fill="#e9f1fc" opacity="0.7"></rect>
         </symbol>
         <symbol id="ae-coche" viewBox="-14 -14 28 28">
           <circle r="13" fill={VERT}></circle>
@@ -33,7 +33,7 @@ const VERT = '#14a856';
       <!-- 1. 32 minutes -->
       <g data-scene="1">
         <g data-a="cadran">
-        <circle cx="240" cy="200" r="78" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="14"></circle>
+        <circle cx="240" cy="200" r="78" fill="none" stroke="#98c0f1" stroke-width="14"></circle>
         <circle data-a="chrono" cx="240" cy="200" r="78" fill="none" stroke={ROUGE} stroke-width="14" stroke-linecap="round" transform="rotate(-90 240 200)" stroke-dasharray="490.1" stroke-dashoffset="490.1"></circle>
         <text data-a="minutes" x="240" y="212" text-anchor="middle" class="t-gros">0</text>
         <text x="240" y="242" text-anchor="middle" class="t-moyen">minutes</text>
@@ -43,7 +43,7 @@ const VERT = '#14a856';
       <!-- 2. Accueil et installation -->
       <g data-scene="2">
         <g data-a="icone-1">
-          <rect x="40" y="120" width="100" height="100" rx="20" fill="rgba(255,255,255,.08)"></rect>
+          <rect x="40" y="120" width="100" height="100" rx="20" fill="none" stroke="#98c0f1" stroke-width="2"></rect>
           <rect x="62" y="150" width="56" height="38" rx="6" fill="none" stroke="#fff" stroke-width="3"></rect>
           <circle cx="78" cy="165" r="6" fill="none" stroke="#fff" stroke-width="3"></circle>
           <path d="M92 162h18M92 172h14M70 180h40" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
@@ -51,7 +51,7 @@ const VERT = '#14a856';
           <use data-a="coche-1" href="#ae-coche" x="118" y="108" width="28" height="28"></use>
         </g>
         <g data-a="icone-2">
-          <rect x="190" y="120" width="100" height="100" rx="20" fill="rgba(255,255,255,.08)"></rect>
+          <rect x="190" y="120" width="100" height="100" rx="20" fill="none" stroke="#98c0f1" stroke-width="2"></rect>
           <circle cx="221" cy="174" r="14" fill="none" stroke="#fff" stroke-width="3"></circle>
           <circle cx="259" cy="174" r="14" fill="none" stroke="#fff" stroke-width="3"></circle>
           <path d="M235 172q5-5 10 0M207 170l-9-10M273 170l9-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
@@ -59,7 +59,7 @@ const VERT = '#14a856';
           <use data-a="coche-2" href="#ae-coche" x="268" y="108" width="28" height="28"></use>
         </g>
         <g data-a="icone-3">
-          <rect x="340" y="120" width="100" height="100" rx="20" fill="rgba(255,255,255,.08)"></rect>
+          <rect x="340" y="120" width="100" height="100" rx="20" fill="none" stroke="#98c0f1" stroke-width="2"></rect>
           <path d="M370 140h22a6 6 0 0 1 6 6v30h12a6 6 0 0 1 6 6v14h-46z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"></path>
           <path d="M372 144 412 194" stroke={ROUGE} stroke-width="4" stroke-linecap="round"></path>
           <text x="390" y="252" text-anchor="middle" class="t-petit">Installation</text>
@@ -69,8 +69,8 @@ const VERT = '#14a856';
 
       <!-- 3. Conduite -->
       <g data-scene="3">
-        <path d="M30 300C130 300 140 170 240 175S360 300 450 235" fill="none" stroke="#294a7c" stroke-width="30" stroke-linecap="round"></path>
-        <path data-a="tirets-3" d="M30 300C130 300 140 170 240 175S360 300 450 235" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="10 12"></path>
+        <path d="M30 300C130 300 140 170 240 175S360 300 450 235" fill="none" stroke="#c0d9f6" stroke-width="30" stroke-linecap="round"></path>
+        <path data-a="tirets-3" d="M30 300C130 300 140 170 240 175S360 300 450 235" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="10 12"></path>
         <path data-a="route-1" d="M30 300C130 300 140 170 240 175S360 300 450 235" fill="none" stroke={ROUGE} stroke-width="4" stroke-linecap="round" opacity="0.8"></path>
         <use data-a="voiture-1" href="#ae-voiture" x="-20" y="-11" width="40" height="22"></use>
         <text data-a="compteur-25" x="450" y="100" text-anchor="end" class="t-moyen">0 min</text>
@@ -78,13 +78,13 @@ const VERT = '#14a856';
 
       <!-- 4. Conduite autonome -->
       <g data-scene="4">
-        <path d="M20 285H460" stroke="#294a7c" stroke-width="30" stroke-linecap="round"></path>
-        <path d="M210 285C260 285 300 225 325 165L345 115" fill="none" stroke="#294a7c" stroke-width="30" stroke-linecap="round"></path>
-        <path data-a="tirets-4" d="M20 285H190C250 285 300 225 325 165L345 115" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="10 12"></path>
+        <path d="M20 285H460" stroke="#c0d9f6" stroke-width="30" stroke-linecap="round"></path>
+        <path d="M210 285C260 285 300 225 325 165L345 115" fill="none" stroke="#c0d9f6" stroke-width="30" stroke-linecap="round"></path>
+        <path data-a="tirets-4" d="M20 285H190C250 285 300 225 325 165L345 115" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="10 12"></path>
         <g data-a="panneau">
           <rect x="40" y="132" width="168" height="48" rx="8" fill="#124483" stroke="#fff" stroke-width="3"></rect>
           <text x="124" y="163" text-anchor="middle" class="t-petit">Centre-ville ↗</text>
-          <path d="M124 180v30" stroke="#c9d3e3" stroke-width="5"></path>
+          <path d="M124 180v30" stroke="#c0d9f6" stroke-width="5"></path>
         </g>
         <path data-a="route-2" d="M20 285H190C250 285 300 225 325 165L345 115" fill="none" stroke={ROUGE} stroke-width="4" stroke-linecap="round" opacity="0.8"></path>
         <use data-a="voiture-2" href="#ae-voiture" x="-20" y="-11" width="40" height="22"></use>
@@ -93,7 +93,7 @@ const VERT = '#14a856';
 
       <!-- 5. Manœuvres -->
       <g data-scene="5">
-        <rect x="0" y="222" width="480" height="58" fill="#294a7c"></rect>
+        <rect x="0" y="222" width="480" height="58" fill="#c0d9f6"></rect>
         <g data-a="arret">
           <rect x="360" y="224" width="7" height="54" fill="#fff"></rect>
           <text x="240" y="324" text-anchor="middle" class="t-moyen">Freinage précis</text>
@@ -112,7 +112,7 @@ const VERT = '#14a856';
           {
             ['5', '4', '7', '2', '6'].map((c, i) => (
               <g>
-                <rect x={145 + i * 40} y="88" width="34" height="48" rx="7" fill={i >= 3 ? ROUGE : '#06152b'} />
+                <rect x={145 + i * 40} y="88" width="34" height="48" rx="7" fill={i >= 3 ? ROUGE : '#191c21'} />
                 <text data-a={`chiffre-${i}`} x={162 + i * 40} y="122" text-anchor="middle" class="t-chiffre">
                   {c}
                 </text>
@@ -128,7 +128,7 @@ const VERT = '#14a856';
             ['Premiers', 'secours'],
           ].map(([l1, l2], i) => (
             <g data-a={`carte-${i + 1}`}>
-              <rect x={20 + i * 150} y="200" width="140" height="104" rx="16" fill="rgba(255,255,255,.1)" />
+              <rect x={20 + i * 150} y="200" width="140" height="104" rx="16" fill="none" stroke="#98c0f1" stroke-width="2" />
               <text x={90 + i * 150} y={l2 ? 232 : 244} text-anchor="middle" class="t-petit">
                 {l1}
               </text>
@@ -147,7 +147,7 @@ const VERT = '#14a856';
 
       <!-- 7. Pour être reçu -->
       <g data-scene="7">
-        <rect x="40" y="140" width="400" height="28" rx="14" fill="rgba(255,255,255,.14)"></rect>
+        <rect x="40" y="140" width="400" height="28" rx="14" fill="#98c0f1"></rect>
         <rect data-a="barre" x="40" y="140" width="0" height="28" rx="14" fill={VERT}></rect>
         <path d="M298 126v56" stroke="#fff" stroke-width="3" stroke-dasharray="5 4"></path>
         <text x="298" y="118" text-anchor="middle" class="t-petit">20</text>
@@ -162,11 +162,11 @@ const VERT = '#14a856';
       <!-- 8. Résultat -->
       <g data-scene="8">
         <g data-a="telephone">
-        <rect x="40" y="80" width="130" height="236" rx="22" fill="rgba(255,255,255,.06)" stroke="#fff" stroke-width="3"></rect>
+        <rect x="40" y="80" width="130" height="236" rx="22" fill="none" stroke="#fff" stroke-width="3"></rect>
         <path d="M88 96h34" stroke="#fff" stroke-width="3" stroke-linecap="round"></path>
         <text x="105" y="140" text-anchor="middle" class="t-petit">Résultat</text>
         <g data-a="favorable">
-          <rect x="54" y="168" width="102" height="40" rx="10" fill="#0c7a3b"></rect>
+          <rect x="54" y="168" width="102" height="40" rx="10" fill="#2f6b4f"></rect>
           <text x="105" y="195" text-anchor="middle" class="t-petit">Reçu ✓</text>
         </g>
         </g>
@@ -214,8 +214,7 @@ const VERT = '#14a856';
     position: relative;
     border-radius: var(--rayon);
     overflow: hidden;
-    box-shadow: var(--ombre);
-    background: #0a2a57;
+    background: var(--marine);
   }
   .scene-video > svg {
     width: 100%;
@@ -223,31 +222,31 @@ const VERT = '#14a856';
     aspect-ratio: 4 / 3;
   }
   .scene-video :global(.t-titre) {
-    font: 700 26px Poppins, system-ui, sans-serif;
+    font: 700 26px Affogato, Aptos, system-ui, sans-serif;
     fill: #fff;
   }
   .scene-video :global(.t-gros) {
-    font: 700 44px Poppins, system-ui, sans-serif;
+    font: 700 44px Affogato, Aptos, system-ui, sans-serif;
     fill: #fff;
   }
   .scene-video :global(.t-moyen) {
-    font: 500 21px Poppins, system-ui, sans-serif;
+    font: 500 21px Affogato, Aptos, system-ui, sans-serif;
     fill: #fff;
   }
   .scene-video :global(.t-moyen-gras) {
-    font: 700 24px Poppins, system-ui, sans-serif;
+    font: 700 24px Affogato, Aptos, system-ui, sans-serif;
     fill: #fff;
   }
   .scene-video :global(.t-petit) {
-    font: 600 18px Poppins, system-ui, sans-serif;
+    font: 500 18px Affogato, Aptos, system-ui, sans-serif;
     fill: #fff;
   }
   .scene-video :global(.t-point) {
-    font: 700 18px Poppins, system-ui, sans-serif;
-    fill: #3dd27f;
+    font: 700 18px Affogato, Aptos, system-ui, sans-serif;
+    fill: #e6f0ea;
   }
   .scene-video :global(.t-chiffre) {
-    font: 700 28px Poppins, system-ui, sans-serif;
+    font: 700 28px Affogato, Aptos, system-ui, sans-serif;
     fill: #fff;
   }
   .lancer {
@@ -262,11 +261,10 @@ const VERT = '#14a856';
     padding: 10px 20px;
     border: 0;
     border-radius: var(--pilule);
-    background: #db1418;
+    background: var(--rouge);
     color: #fff;
-    font: 600 1rem Poppins, system-ui, sans-serif;
+    font: 500 1rem Affogato, Aptos, system-ui, sans-serif;
     white-space: nowrap;
-    box-shadow: 0 6px 20px rgb(0 0 0 / 35%);
     cursor: pointer;
   }
   .lancer svg {
@@ -276,7 +274,7 @@ const VERT = '#14a856';
   .sous-titre {
     margin: 0;
     min-height: 3.1em;
-    font-weight: 600;
+    font-weight: 500;
   }
   .commandes {
     display: flex;
