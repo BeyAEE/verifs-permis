@@ -103,9 +103,16 @@ test.describe('Trouve l’élément', () => {
   test('page de la fiche 8 : la réponse montre la zone sur la photo de la Clio', async ({ page }) => {
     await page.goto('fiche/8/');
     await choisirVoiture(page, 'Clio 5');
+    // La photo est là dès la question, sans la zone (pour ne pas donner la réponse).
+    await expect(page.locator('[data-zone-photo] .visionneuse')).toBeVisible();
+    await expect(page.locator('[data-zone-photo] .vis-zones .zone-bonne')).toHaveCount(0);
     await page.getByRole('button', { name: 'Voir la réponse' }).first().click();
     await expect(page.getByText('Sur ta Clio 5')).toBeVisible();
     await expect(page.locator('[data-zone-photo] .vis-zones .zone-bonne')).toHaveCount(1);
     await expect(page.locator('[data-reponse="verification"] .rappel')).toBeHidden();
+    // Masquer la réponse retire la zone, la photo reste.
+    await page.getByRole('button', { name: 'Masquer la réponse' }).first().click();
+    await expect(page.locator('[data-zone-photo] .vis-zones .zone-bonne')).toHaveCount(0);
+    await expect(page.locator('[data-zone-photo] .visionneuse')).toBeVisible();
   });
 });

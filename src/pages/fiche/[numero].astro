@@ -63,6 +63,7 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
           <h2 class="question-texte" id={`q-${partie}`}>
             {fiche[partie].question}
           </h2>
+          {partie === 'verification' && <div data-zone-photo />}
           <button
             type="button"
             class="bouton bouton-contour bouton-large"
@@ -75,7 +76,7 @@ const icones = { verification: fiche.type === 'interieure' ? 'volant' : 'exterie
             <span>Voir la réponse</span>
           </button>
           <div class="reponse" id={`r-${partie}`} hidden data-reponse={partie} tabindex="-1">
-            {partie === 'verification' && <div data-zone-photo />}
+            {partie === 'verification' && <div data-gros-plan />}
             <Fragment set:html={htmlReponse(fiche, partie, partie === 'verification')} />
           </div>
         </section>

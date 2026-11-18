@@ -1,8 +1,9 @@
 // Page d'une fiche : révélation des réponses, « Tout afficher », et photo de
-// la voiture choisie avec la zone en surbrillance quand elle existe.
+// la voiture choisie. La photo est visible dès la question ; la zone n'est
+// surlignée (et le gros plan montré) qu'avec la réponse.
 import type { Fiche } from '../lib/fiches';
 import { lireVoiture } from '../lib/stockage';
-import { exercicePour, repereDe } from '../lib/vehicules';
+import { exercicePour, repereDe, type Exercice } from '../lib/vehicules';
 import { BASE, annoncer, chargerVehicules, libelleVoiture } from './commun';
 import { htmlPhoto } from './trouve';
 import { RAPPEL_MONITEUR, htmlRepere } from './reponses';
@@ -14,6 +15,7 @@ const fiche = { numero: Number(page.dataset.numero), type: page.dataset.type } a
 const boutons = [...page.querySelectorAll<HTMLButtonElement>('[data-voir]')];
 const tout = page.querySelector<HTMLButtonElement>('[data-tout]')!;
 let visionneuse: Visionneuse | null = null;
+let exercice: Extract<Exercice, { mode: 'zone' }> | null = null;
 
 function montrer(bouton: HTMLButtonElement, oui: boolean, annonce = true): void {
   const reponse = document.getElementById(bouton.getAttribute('aria-controls')!)!;
@@ -28,8 +30,8 @@ function montrer(bouton: HTMLButtonElement, oui: boolean, annonce = true): void 
       const picto = reponse.querySelector<HTMLImageElement>('.pictogramme img')?.alt;
       annoncer('Réponse : ' + (picto ?? reponse.querySelector('.reponse-texte')?.textContent ?? '').trim());
     }
-    if (bouton.dataset.voir === 'verification') void afficherZone();
   }
+  if (bouton.dataset.voir === 'verification') revelerZone(oui);
   majTout();
 }
 
@@ -46,14 +48,14 @@ tout.addEventListener('click', () => {
   annoncer(ouvrir ? 'Les 3 réponses sont affichées.' : 'Les réponses sont masquées.');
 });
 
-async function afficherZone(): Promise<void> {
+/** Photo de la voiture choisie, sous la question (sans la zone). */
+async function afficherPhoto(): Promise<void> {
   const cible = page.querySelector<HTMLElement>('[data-zone-photo]');
-  const rappel = page.querySelector<HTMLElement>('[data-reponse="verification"] .rappel');
   if (!cible) return;
   visionneuse?.detruire();
   visionneuse = null;
+  exercice = null;
   cible.innerHTML = '';
-  if (rappel) rappel.hidden = false;
 
   const choix = lireVoiture();
   let donnees;
@@ -63,15 +65,28 @@ async function afficherZone(): Promise<void> {
     return; // pas de données : mode classique
   }
   const ex = exercicePour(fiche, choix, choix ? donnees.vehicules[choix] : undefined, donnees.manifeste, new Set(donnees.localisables), BASE);
-  if (ex.mode !== 'zone') return;
-
-  cible.innerHTML = `<p class="surtitre">Sur ta ${libelleVoiture(choix)}</p><div data-vis></div>`;
-  visionneuse = new Visionneuse(cible.querySelector('[data-vis]')!, { photo: ex.photo });
-  visionneuse.activer(false);
-  visionneuse.dessinerZones(ex.zonesBonnes.map((z) => ({ points: z.polygone, classe: 'zone-bonne zone-revelee' })));
-  if (ex.grosPlan) cible.insertAdjacentHTML('beforeend', htmlPhoto(ex.grosPlan, ex.zone.libelle));
-  if (rappel) rappel.hidden = true;
+  if (ex.mode === 'zone') {
+    exercice = ex;
+    cible.innerHTML = `<p class="surtitre">Sur ta ${libelleVoiture(choix)}</p><div data-vis></div>`;
+    visionneuse = new Visionneuse(cible.querySelector('[data-vis]')!, { photo: ex.photo });
+    visionneuse.activer(false);
+  }
+  const ouverte = page.querySelector<HTMLButtonElement>('[data-voir="verification"]')?.getAttribute('aria-expanded') === 'true';
+  revelerZone(ouverte);
 }
+
+/** Avec la réponse : zone surlignée sur la photo, gros plan, et plus de rappel générique. */
+function revelerZone(oui: boolean): void {
+  const grosPlan = page.querySelector<HTMLElement>('[data-gros-plan]');
+  const rappel = page.querySelector<HTMLElement>('[data-reponse="verification"] .rappel');
+  const montrer = oui && exercice !== null;
+  visionneuse?.dessinerZones(
+    montrer ? exercice!.zonesBonnes.map((z) => ({ points: z.polygone, classe: 'zone-bonne zone-revelee' })) : [],
+  );
+  if (grosPlan) grosPlan.innerHTML = montrer && exercice!.grosPlan ? htmlPhoto(exercice!.grosPlan, exercice!.zone.libelle) : '';
+  if (rappel) rappel.hidden = montrer;
+}
+void afficherPhoto();
 
 /** Rappel générique ↔ repère de la voiture choisie (ex. « manette au bas du rétroviseur »). */
 async function majRepere(): Promise<void> {
@@ -94,6 +109,5 @@ void majRepere();
 
 document.addEventListener('voiture:changee', () => {
   void majRepere();
-  const ouverte = page.querySelector<HTMLButtonElement>('[data-voir="verification"]')?.getAttribute('aria-expanded') === 'true';
-  if (ouverte) void afficherZone();
+  void afficherPhoto();
 });
